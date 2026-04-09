@@ -1,0 +1,226 @@
+{
+    "total_recorridos": 19,
+    "total_recargas": 0,
+    "uso_electrolineras": {},
+    "por_vehiculo": {
+        "Tesla Model 3 Long Range": {
+            "recargas": 0,
+            "km_total": 39.38060121865597
+        },
+        "BYD Seagull (Std Range)": {
+            "recargas": 0,
+            "km_total": 25.89359010995566
+        }
+    },
+    "recorridos": [
+        {
+            "recorrido_num": 1,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 839087681,
+            "destino_osm": 287184202,
+            "origen_nombre": "PTAR Río Frío",
+            "destino_nombre": "UIS Campus Bucarica (Centro)",
+            "distancia_km": 5.695,
+            "bateria_final_pct": 99.06,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 2,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 839097185,
+            "destino_osm": 287184202,
+            "origen_nombre": "UPB",
+            "destino_nombre": "UIS Campus Bucarica (Centro)",
+            "distancia_km": 2.065,
+            "bateria_final_pct": 99.49,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 3,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 948655341,
+            "destino_osm": 2791599646,
+            "origen_nombre": "UTS",
+            "destino_nombre": "UIS Campus Central",
+            "distancia_km": 2.25,
+            "bateria_final_pct": 98.68,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 4,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 948655341,
+            "destino_osm": 845132340,
+            "origen_nombre": "UTS",
+            "destino_nombre": "UIS Parque Tecnológico Guatiguará",
+            "distancia_km": 7.622,
+            "bateria_final_pct": 97.6,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 5,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 839092126,
+            "destino_osm": 287184202,
+            "origen_nombre": "UIS Campus Florida",
+            "destino_nombre": "UIS Campus Bucarica (Centro)",
+            "distancia_km": 2.45,
+            "bateria_final_pct": 98.28,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 6,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 948655341,
+            "destino_osm": 286385600,
+            "origen_nombre": "UTS",
+            "destino_nombre": "CENFER",
+            "distancia_km": 0.882,
+            "bateria_final_pct": 97.38,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 7,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 845132340,
+            "destino_osm": 948655341,
+            "origen_nombre": "UIS Parque Tecnológico Guatiguará",
+            "destino_nombre": "UTS",
+            "distancia_km": 7.419,
+            "bateria_final_pct": 97.05,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 9,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 948655341,
+            "destino_osm": 839097185,
+            "origen_nombre": "UTS",
+            "destino_nombre": "UPB",
+            "distancia_km": 2.326,
+            "bateria_final_pct": 96.66,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 10,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 839092126,
+            "destino_osm": 287184202,
+            "origen_nombre": "UIS Campus Florida",
+            "destino_nombre": "UIS Campus Bucarica (Centro)",
+            "distancia_km": 2.45,
+            "bateria_final_pct": 96.78,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 11,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 839103570,
+            "destino_osm": 286385600,
+            "origen_nombre": "UNAB",
+            "destino_nombre": "CENFER",
+            "distancia_km": 3.288,
+            "bateria_final_pct": 96.11,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 12,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 286385600,
+            "destino_osm": 287184202,
+            "origen_nombre": "CENFER",
+            "destino_nombre": "UIS Campus Bucarica (Centro)",
+            "distancia_km": 1.644,
+            "bateria_final_pct": 96.37,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 13,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 2791599646,
+            "destino_osm": 286385600,
+            "origen_nombre": "UIS Campus Central",
+            "destino_nombre": "CENFER",
+            "distancia_km": 1.557,
+            "bateria_final_pct": 95.86,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 14,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 845132340,
+            "destino_osm": 839092126,
+            "origen_nombre": "UIS Parque Tecnológico Guatiguará",
+            "destino_nombre": "UIS Campus Florida",
+            "distancia_km": 9.333,
+            "bateria_final_pct": 94.06,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 15,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 845132340,
+            "destino_osm": 286385600,
+            "origen_nombre": "UIS Parque Tecnológico Guatiguará",
+            "destino_nombre": "CENFER",
+            "distancia_km": 8.301,
+            "bateria_final_pct": 94.48,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 16,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 2791599646,
+            "destino_osm": 839092126,
+            "origen_nombre": "UIS Campus Central",
+            "destino_nombre": "UIS Campus Florida",
+            "distancia_km": 0.664,
+            "bateria_final_pct": 93.9,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 17,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 948655341,
+            "destino_osm": 2791599646,
+            "origen_nombre": "UTS",
+            "destino_nombre": "UIS Campus Central",
+            "distancia_km": 2.25,
+            "bateria_final_pct": 94.11,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 18,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 2791599646,
+            "destino_osm": 839092126,
+            "origen_nombre": "UIS Campus Central",
+            "destino_nombre": "UIS Campus Florida",
+            "distancia_km": 0.664,
+            "bateria_final_pct": 93.73,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 19,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 839103570,
+            "destino_osm": 839092126,
+            "origen_nombre": "UNAB",
+            "destino_nombre": "UIS Campus Florida",
+            "distancia_km": 3.845,
+            "bateria_final_pct": 93.47,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 20,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 839092126,
+            "destino_osm": 2791599646,
+            "origen_nombre": "UIS Campus Florida",
+            "destino_nombre": "UIS Campus Central",
+            "distancia_km": 0.57,
+            "bateria_final_pct": 93.59,
+            "recarga_activada": false
+        }
+    ]
+}

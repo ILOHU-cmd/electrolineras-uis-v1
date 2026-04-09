@@ -9,6 +9,12 @@ Lógica principal:
   3. Cuando batería ∈ [10%, 20%], buscar electrolinera más cercana.
   4. Calcular ruta Dijkstra hacia esa electrolinera.
   5. Registrar el evento de recarga en archivos CSV/JSON.
+
+MODIFICACIÓN 1 — Trazabilidad de nodos:
+  Se agrega `trazar_historial_ruta()` que, dado el grafo y la lista
+  de nodos OSM retornada por Dijkstra, reconstruye un historial
+  legible de calles y puntos de interés recorridos.
+  Se integra en el detalle de cada recorrido cuando se usa semilla.
 """
 
 import random
@@ -20,7 +26,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from src.grafo.algoritmos_grafo import dijkstra, electrolinera_mas_cercana
 from src.grafo.constructor_grafo import obtener_nodos_electrolineras, obtener_nodos_referencia, obtener_nombre_nodo
-from src.utils.archivos import registrar_recarga, exportar_estadisticas_json
+from src.utils.archivos import registrar_recarga, exportar_estadisticas_json, generar_reporte_txt
 from data.datos_estaticos import VEHICULOS
 
 
@@ -31,6 +37,137 @@ UMBRAL_RECARGA_MIN = 10.0   # % batería mínimo para buscar recarga
 UMBRAL_RECARGA_MAX = 20.0   # % batería máximo que activa búsqueda
 BATERIA_INICIAL = 100.0     # % con que inicia cada recorrido
 METROS_POR_KM = 1000.0
+
+
+# ─────────────────────────────────────────────────────────────
+# MODIFICACIÓN 1 — TRAZABILIDAD DE NODOS
+# ─────────────────────────────────────────────────────────────
+
+def trazar_historial_ruta(G, ruta_nodos: list) -> list:
+    """
+    Recibe la lista de nodos OSM devuelta por Dijkstra y construye
+    un historial detallado, segmento a segmento, extrayendo:
+      - nombre de la calle (atributo 'name' de la arista)
+      - distancia parcial del segmento en metros
+      - si el nodo es un punto de interés especial (electrolinera
+        o punto de referencia), lo indica explícitamente.
+
+    Parámetros
+    ----------
+    G : nx.MultiDiGraph
+        Grafo vial con atributos de aristas y nodos etiquetados.
+    ruta_nodos : list[int]
+        Lista ordenada de nodos OSM que forman la ruta.
+
+    Retorna
+    -------
+    list[dict]
+        Lista de pasos. Cada paso contiene:
+          paso          → número de orden (1-indexed)
+          nodo_osm      → ID del nodo en OpenStreetMap
+          tipo_especial → 'electrolinera' | 'referencia' | None
+          nombre_lugar  → nombre del lugar especial o None
+          calle_desde   → nombre de la calle que lleva a este nodo
+          dist_parcial_m→ metros desde el nodo anterior
+          dist_acum_m   → distancia acumulada desde el origen
+    """
+    if not ruta_nodos:
+        return []
+
+    historial = []
+    dist_acumulada = 0.0
+
+    for idx, nodo in enumerate(ruta_nodos):
+        datos_nodo = G.nodes[nodo]
+        tipo_especial = datos_nodo.get("tipo_especial")
+        nombre_lugar  = datos_nodo.get("nombre_especial")
+
+        # Distancia y nombre de calle desde el nodo anterior
+        calle_desde    = None
+        dist_parcial_m = 0.0
+
+        if idx > 0:
+            nodo_prev = ruta_nodos[idx - 1]
+            # En MultiDiGraph puede haber varias aristas entre dos nodos;
+            # tomamos la de menor longitud (la que usó Dijkstra).
+            edge_data = G.get_edge_data(nodo_prev, nodo)
+            if edge_data:
+                mejor_arista = min(
+                    edge_data.values(),
+                    key=lambda d: d.get("length", float("inf"))
+                )
+                dist_parcial_m = mejor_arista.get("length", 0.0)
+
+                # El nombre puede ser str o list (varias calles fusionadas)
+                nombre_raw = mejor_arista.get("name", None)
+                if isinstance(nombre_raw, list):
+                    calle_desde = " / ".join(nombre_raw)
+                elif nombre_raw:
+                    calle_desde = nombre_raw
+                else:
+                    calle_desde = "(sin nombre)"
+
+            dist_acumulada += dist_parcial_m
+
+        historial.append({
+            "paso":           idx + 1,
+            "nodo_osm":       nodo,
+            "tipo_especial":  tipo_especial,
+            "nombre_lugar":   nombre_lugar,
+            "calle_desde":    calle_desde,
+            "dist_parcial_m": round(dist_parcial_m, 1),
+            "dist_acum_m":    round(dist_acumulada, 1),
+        })
+
+    return historial
+
+
+def imprimir_historial_ruta(historial: list, titulo: str = "HISTORIAL DE RUTA") -> None:
+    """
+    Imprime en consola el historial de ruta de forma legible,
+    resaltando los puntos de interés especiales.
+
+    Parámetros
+    ----------
+    historial : list[dict]
+        Salida de `trazar_historial_ruta()`.
+    titulo : str
+        Encabezado del bloque de impresión.
+    """
+    if not historial:
+        print("  ⚠  Historial vacío.")
+        return
+
+    print(f"\n  {'─'*62}")
+    print(f"  {titulo}")
+    print(f"  {'─'*62}")
+    print(f"  {'Paso':>4}  {'Nodo OSM':>12}  {'Calle':^28}  {'Parcial':>8}  {'Acum.':>8}")
+    print(f"  {'─'*62}")
+
+    for paso in historial:
+        # Indicador visual para nodos especiales
+        if paso["tipo_especial"] == "electrolinera":
+            icono = "⚡"
+            extra = f"  → {paso['nombre_lugar']}"
+        elif paso["tipo_especial"] == "referencia":
+            icono = "📍"
+            extra = f"  → {paso['nombre_lugar']}"
+        else:
+            icono = "  "
+            extra = ""
+
+        calle = (paso["calle_desde"] or "─")[:28]
+        dist_p = f"{paso['dist_parcial_m']:>7.1f}m" if paso["paso"] > 1 else "  origen"
+        dist_a = f"{paso['dist_acum_m']:>7.1f}m"
+
+        print(f"  {paso['paso']:>4}  {icono} {paso['nodo_osm']:>10}  "
+              f"{calle:<28}  {dist_p}  {dist_a}{extra}")
+
+    total_m = historial[-1]["dist_acum_m"]
+    print(f"  {'─'*62}")
+    print(f"  Distancia total: {total_m:.1f} m  ({total_m/1000:.3f} km) "
+          f"| Nodos recorridos: {len(historial)}")
+    print(f"  {'─'*62}\n")
 
 
 # ─────────────────────────────────────────────────────────────
@@ -134,6 +271,8 @@ def ejecutar_simulacion(G, n_recorridos: int = 20,
 
     print(f"\n  🚗 Iniciando simulación: {n_recorridos} recorridos | "
           f"{len(vehiculos)} vehículo(s)")
+    if semilla is not None:
+        print(f"  🔒 Semilla fija: {semilla} — se imprimirá historial detallado de ruta\n")
 
     # Timestamp base de simulación (empezamos en 07:00 del día actual)
     ts_base = datetime.now().replace(hour=7, minute=0, second=0, microsecond=0)
@@ -162,7 +301,7 @@ def ejecutar_simulacion(G, n_recorridos: int = 20,
 
         # Seleccionar vehículo (rotación circular)
         vehiculo = vehiculos[i % len(vehiculos)]
-        """vehiculo.nivel_bateria = BATERIA_INICIAL  # reiniciar batería"""
+        vehiculo.nivel_bateria = BATERIA_INICIAL  # reiniciar batería
 
         ts_actual = ts_base + timedelta(hours=i * 2)  # timestamp simulado
 
@@ -190,6 +329,12 @@ def ejecutar_simulacion(G, n_recorridos: int = 20,
             "bateria_final_pct": round(vehiculo.nivel_bateria, 2),
             "recarga_activada": False,
         }
+
+        # ── MODIFICACIÓN: construir historial de nodos (siempre se guarda en dict)
+        # La impresión en terminal fue reemplazada por el reporte TXT.
+        # imprimir_historial_ruta() ya NO se llama aquí para no saturar la consola.
+        historial_ruta = trazar_historial_ruta(G, ruta)
+        detalle_recorrido["historial_ruta"] = historial_ruta
 
         # ─── ACTIVAR BÚSQUEDA DE ELECTROLINERA ───
         if vehiculo.necesita_recarga() or vehiculo.bateria_critica():
@@ -232,12 +377,21 @@ def ejecutar_simulacion(G, n_recorridos: int = 20,
         estadisticas["total_recorridos"] += 1
         i += 1
 
-    # Guardar estadísticas
+    # ── Guardar estadísticas en JSON (para ML) ───────────────
     exportar_estadisticas_json(estadisticas)
 
-    print(f"\n  ✓  Simulación completada:")
-    print(f"     Recorridos: {estadisticas['total_recorridos']}")
-    print(f"     Recargas:   {estadisticas['total_recargas']}")
+    # ── Generar reporte TXT detallado (historial completo) ───
+    ruta_reporte = generar_reporte_txt(estadisticas)
+
+    # ── Mensaje limpio en terminal (no satura con historial) ─
+    print(f"\n  {'─'*55}")
+    print(f"  ✅  Simulación completada.")
+    print(f"      Recorridos : {estadisticas['total_recorridos']}")
+    print(f"      Recargas   : {estadisticas['total_recargas']}")
+    print(f"  {'─'*55}")
+    print(f"  📄  Reporte detallado generado con éxito en:")
+    print(f"      {ruta_reporte}")
+    print(f"  {'─'*55}\n")
 
     return estadisticas
 

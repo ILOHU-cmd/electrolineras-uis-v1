@@ -1,0 +1,507 @@
+{
+    "total_recorridos": 1,
+    "total_recargas": 0,
+    "uso_electrolineras": {},
+    "por_vehiculo": {
+        "Tesla Model 3 Long Range": {
+            "recargas": 0,
+            "km_total": 3.99508623020917
+        },
+        "BYD Seagull (Std Range)": {
+            "recargas": 0,
+            "km_total": 0.0
+        }
+    },
+    "recorridos": [
+        {
+            "recorrido_num": 1,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 839097185,
+            "destino_osm": 839092126,
+            "origen_nombre": "UPB",
+            "destino_nombre": "UIS Campus Florida",
+            "distancia_km": 3.995,
+            "bateria_final_pct": 99.34,
+            "recarga_activada": false,
+            "historial_ruta": [
+                {
+                    "paso": 1,
+                    "nodo_osm": 839097185,
+                    "tipo_especial": "referencia",
+                    "nombre_lugar": "UPB",
+                    "calle_desde": null,
+                    "dist_parcial_m": 0.0,
+                    "dist_acum_m": 0.0
+                },
+                {
+                    "paso": 2,
+                    "nodo_osm": 9753461870,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 30",
+                    "dist_parcial_m": 13.8,
+                    "dist_acum_m": 13.8
+                },
+                {
+                    "paso": 3,
+                    "nodo_osm": 839089855,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 30",
+                    "dist_parcial_m": 49.3,
+                    "dist_acum_m": 63.1
+                },
+                {
+                    "paso": 4,
+                    "nodo_osm": 839091513,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 30",
+                    "dist_parcial_m": 35.8,
+                    "dist_acum_m": 98.9
+                },
+                {
+                    "paso": 5,
+                    "nodo_osm": 839089000,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Calle 58",
+                    "dist_parcial_m": 43.6,
+                    "dist_acum_m": 142.5
+                },
+                {
+                    "paso": 6,
+                    "nodo_osm": 839102623,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Calle 58",
+                    "dist_parcial_m": 45.9,
+                    "dist_acum_m": 188.4
+                },
+                {
+                    "paso": 7,
+                    "nodo_osm": 847038543,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Calle 58",
+                    "dist_parcial_m": 123.4,
+                    "dist_acum_m": 311.8
+                },
+                {
+                    "paso": 8,
+                    "nodo_osm": 847038459,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 84.5,
+                    "dist_acum_m": 396.3
+                },
+                {
+                    "paso": 9,
+                    "nodo_osm": 847038919,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 9.1,
+                    "dist_acum_m": 405.4
+                },
+                {
+                    "paso": 10,
+                    "nodo_osm": 839101902,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 31.6,
+                    "dist_acum_m": 437.0
+                },
+                {
+                    "paso": 11,
+                    "nodo_osm": 615090096,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 102.4,
+                    "dist_acum_m": 539.3
+                },
+                {
+                    "paso": 12,
+                    "nodo_osm": 839097321,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 122.7,
+                    "dist_acum_m": 662.0
+                },
+                {
+                    "paso": 13,
+                    "nodo_osm": 1152970384,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 128.4,
+                    "dist_acum_m": 790.4
+                },
+                {
+                    "paso": 14,
+                    "nodo_osm": 615086718,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 101.5,
+                    "dist_acum_m": 891.9
+                },
+                {
+                    "paso": 15,
+                    "nodo_osm": 12824390901,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 14.7,
+                    "dist_acum_m": 906.6
+                },
+                {
+                    "paso": 16,
+                    "nodo_osm": 12824300847,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 110.8,
+                    "dist_acum_m": 1017.4
+                },
+                {
+                    "paso": 17,
+                    "nodo_osm": 839092589,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 102.8,
+                    "dist_acum_m": 1120.2
+                },
+                {
+                    "paso": 18,
+                    "nodo_osm": 615081100,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 137.7,
+                    "dist_acum_m": 1257.9
+                },
+                {
+                    "paso": 19,
+                    "nodo_osm": 615081099,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 123.0,
+                    "dist_acum_m": 1380.9
+                },
+                {
+                    "paso": 20,
+                    "nodo_osm": 615074479,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 105.5,
+                    "dist_acum_m": 1486.4
+                },
+                {
+                    "paso": 21,
+                    "nodo_osm": 839102443,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 15.6,
+                    "dist_acum_m": 1502.0
+                },
+                {
+                    "paso": 22,
+                    "nodo_osm": 615080353,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 110.4,
+                    "dist_acum_m": 1612.4
+                },
+                {
+                    "paso": 23,
+                    "nodo_osm": 615080927,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 10.5,
+                    "dist_acum_m": 1623.0
+                },
+                {
+                    "paso": 24,
+                    "nodo_osm": 839088899,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 86.0,
+                    "dist_acum_m": 1709.0
+                },
+                {
+                    "paso": 25,
+                    "nodo_osm": 616545398,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 85.9,
+                    "dist_acum_m": 1794.8
+                },
+                {
+                    "paso": 26,
+                    "nodo_osm": 616545404,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 8.8,
+                    "dist_acum_m": 1803.7
+                },
+                {
+                    "paso": 27,
+                    "nodo_osm": 331463239,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 92.0,
+                    "dist_acum_m": 1895.6
+                },
+                {
+                    "paso": 28,
+                    "nodo_osm": 615066174,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 93.5,
+                    "dist_acum_m": 1989.1
+                },
+                {
+                    "paso": 29,
+                    "nodo_osm": 321501579,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 122.7,
+                    "dist_acum_m": 2111.9
+                },
+                {
+                    "paso": 30,
+                    "nodo_osm": 839096808,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 93.2,
+                    "dist_acum_m": 2205.1
+                },
+                {
+                    "paso": 31,
+                    "nodo_osm": 5931861406,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Avenida Carrera 27",
+                    "dist_parcial_m": 45.3,
+                    "dist_acum_m": 2250.4
+                },
+                {
+                    "paso": 32,
+                    "nodo_osm": 839099738,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Túnel Avenida Carrera 27",
+                    "dist_parcial_m": 266.8,
+                    "dist_acum_m": 2517.3
+                },
+                {
+                    "paso": 33,
+                    "nodo_osm": 12691358285,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Túnel Boulevard Bolívar",
+                    "dist_parcial_m": 243.5,
+                    "dist_acum_m": 2760.8
+                },
+                {
+                    "paso": 34,
+                    "nodo_osm": 839091533,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Boulevard Bolívar",
+                    "dist_parcial_m": 4.8,
+                    "dist_acum_m": 2765.6
+                },
+                {
+                    "paso": 35,
+                    "nodo_osm": 12757704451,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Boulevard Bolívar",
+                    "dist_parcial_m": 127.2,
+                    "dist_acum_m": 2892.8
+                },
+                {
+                    "paso": 36,
+                    "nodo_osm": 12691358296,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Boulevard Bolívar",
+                    "dist_parcial_m": 11.0,
+                    "dist_acum_m": 2903.8
+                },
+                {
+                    "paso": 37,
+                    "nodo_osm": 12757758240,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Boulevard Bolívar",
+                    "dist_parcial_m": 122.7,
+                    "dist_acum_m": 3026.5
+                },
+                {
+                    "paso": 38,
+                    "nodo_osm": 839091632,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Boulevard Bolívar",
+                    "dist_parcial_m": 11.4,
+                    "dist_acum_m": 3037.9
+                },
+                {
+                    "paso": 39,
+                    "nodo_osm": 839099896,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Boulevard Bolívar",
+                    "dist_parcial_m": 123.8,
+                    "dist_acum_m": 3161.7
+                },
+                {
+                    "paso": 40,
+                    "nodo_osm": 12757787720,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Boulevard Bolívar",
+                    "dist_parcial_m": 13.7,
+                    "dist_acum_m": 3175.5
+                },
+                {
+                    "paso": 41,
+                    "nodo_osm": 12757806943,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Boulevard Bolívar",
+                    "dist_parcial_m": 69.4,
+                    "dist_acum_m": 3244.9
+                },
+                {
+                    "paso": 42,
+                    "nodo_osm": 1107724686,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Rotonda San Francisco",
+                    "dist_parcial_m": 38.2,
+                    "dist_acum_m": 3283.1
+                },
+                {
+                    "paso": 43,
+                    "nodo_osm": 12757806959,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Rotonda San Francisco",
+                    "dist_parcial_m": 35.1,
+                    "dist_acum_m": 3318.1
+                },
+                {
+                    "paso": 44,
+                    "nodo_osm": 12757806963,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Rotonda San Francisco",
+                    "dist_parcial_m": 21.1,
+                    "dist_acum_m": 3339.2
+                },
+                {
+                    "paso": 45,
+                    "nodo_osm": 839091360,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Rotonda San Francisco",
+                    "dist_parcial_m": 35.9,
+                    "dist_acum_m": 3375.1
+                },
+                {
+                    "paso": 46,
+                    "nodo_osm": 12757848310,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 21",
+                    "dist_parcial_m": 37.1,
+                    "dist_acum_m": 3412.3
+                },
+                {
+                    "paso": 47,
+                    "nodo_osm": 839098391,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 21",
+                    "dist_parcial_m": 96.2,
+                    "dist_acum_m": 3508.4
+                },
+                {
+                    "paso": 48,
+                    "nodo_osm": 598241329,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 21",
+                    "dist_parcial_m": 95.5,
+                    "dist_acum_m": 3603.9
+                },
+                {
+                    "paso": 49,
+                    "nodo_osm": 948467489,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 21",
+                    "dist_parcial_m": 94.4,
+                    "dist_acum_m": 3698.4
+                },
+                {
+                    "paso": 50,
+                    "nodo_osm": 839089529,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 21",
+                    "dist_parcial_m": 69.0,
+                    "dist_acum_m": 3767.4
+                },
+                {
+                    "paso": 51,
+                    "nodo_osm": 839100039,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 21",
+                    "dist_parcial_m": 95.7,
+                    "dist_acum_m": 3863.0
+                },
+                {
+                    "paso": 52,
+                    "nodo_osm": 948467286,
+                    "tipo_especial": null,
+                    "nombre_lugar": null,
+                    "calle_desde": "Carrera 21",
+                    "dist_parcial_m": 85.2,
+                    "dist_acum_m": 3948.2
+                },
+                {
+                    "paso": 53,
+                    "nodo_osm": 839092126,
+                    "tipo_especial": "referencia",
+                    "nombre_lugar": "UIS Campus Florida",
+                    "calle_desde": "Carrera 21",
+                    "dist_parcial_m": 46.9,
+                    "dist_acum_m": 3995.1
+                }
+            ]
+        }
+    ]
+}

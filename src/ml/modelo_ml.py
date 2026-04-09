@@ -13,6 +13,13 @@ Modelos evaluados:
   3. XGBoost (si está instalado)
 
 Métricas: accuracy, F1-score, tiempo de inferencia vs Dijkstra.
+
+MODIFICACIÓN 2 — Persistencia del modelo (memoria en disco):
+  `cargar_o_entrenar()` implementa la lógica de caché:
+    1. Si existe `modelo_random_forest.pkl` en data/processed/ → carga.
+    2. Si no existe o el usuario fuerza reentrenamiento → entrena y guarda.
+  Así el sistema "recuerda" el modelo entre sesiones sin reentrenar
+  cada vez que se abre el programa.
 """
 
 import sys
@@ -45,6 +52,122 @@ except ImportError:
 # Ruta para guardar modelos entrenados
 DIR_MODELOS = os.path.join(os.path.dirname(__file__), "..", "..", "data", "processed")
 os.makedirs(DIR_MODELOS, exist_ok=True)
+
+# Nombre del modelo principal que se persiste en disco
+MODELO_PRINCIPAL = "random_forest"
+RUTA_MODELO_PRINCIPAL = os.path.join(DIR_MODELOS, f"modelo_{MODELO_PRINCIPAL}.pkl")
+
+
+# ─────────────────────────────────────────────────────────────
+# MODIFICACIÓN 2 — PERSISTENCIA DEL MODELO (MEMORIA EN DISCO)
+# ─────────────────────────────────────────────────────────────
+
+def cargar_o_entrenar(forzar_reentrenamiento: bool = False) -> dict:
+    """
+    Punto de entrada principal para la Opción [6] del menú.
+
+    Lógica de caché:
+      1. Si `forzar_reentrenamiento=False` Y el archivo .pkl existe
+         → carga el modelo desde disco (instantáneo, sin reentrenar).
+      2. En cualquier otro caso → llama a `entrenar_modelos()`,
+         guarda el resultado y lo retorna.
+
+    Parámetros
+    ----------
+    forzar_reentrenamiento : bool
+        Si True, ignora el caché y reentrena desde cero aunque el
+        archivo .pkl exista. Útil cuando se agregan nuevos datos de
+        simulación.
+
+    Retorna
+    -------
+    dict
+        Mismo formato que `entrenar_modelos()`:
+        {nombre_modelo: {modelo, le_target, accuracy, f1, tiempos}}
+        Retorna {} si no hay datos suficientes.
+    """
+    if not SK_DISPONIBLE:
+        print("  ⚠  scikit-learn no está instalado.")
+        return {}
+
+    # ── RAMA 1: intentar cargar desde disco ──────────────────
+    if not forzar_reentrenamiento and os.path.exists(RUTA_MODELO_PRINCIPAL):
+        try:
+            paquete = joblib.load(RUTA_MODELO_PRINCIPAL)
+            modelo    = paquete["modelo"]
+            le_target = paquete["le_target"]
+            metricas  = paquete.get("metricas", {})
+
+            print(f"\n  ✅ Modelo cargado desde disco:")
+            print(f"     Archivo  : {RUTA_MODELO_PRINCIPAL}")
+            print(f"     Tipo     : {type(modelo).__name__}")
+            print(f"     Clases   : {list(le_target.classes_)}")
+            if metricas:
+                print(f"     Accuracy : {metricas.get('accuracy', 'N/A')}")
+                print(f"     F1       : {metricas.get('f1_weighted', 'N/A')}")
+            print(f"\n  💡 Para reentrenar use: cargar_o_entrenar(forzar_reentrenamiento=True)")
+
+            return {
+                MODELO_PRINCIPAL: {
+                    "modelo":    modelo,
+                    "le_target": le_target,
+                    **metricas,
+                }
+            }
+        except Exception as e:
+            # El archivo existe pero está corrupto → reentrenar
+            print(f"  ⚠  Error al cargar modelo desde disco: {e}")
+            print(f"  ↺  Reentrenando desde cero...\n")
+
+    # ── RAMA 2: entrenar desde cero ───────────────────────────
+    if forzar_reentrenamiento:
+        print("\n  🔄 Reentrenamiento forzado por el usuario.\n")
+    else:
+        print(f"\n  ℹ  No se encontró modelo en disco ({RUTA_MODELO_PRINCIPAL}).")
+        print(f"  🔧 Entrenando nuevo modelo...\n")
+
+    resultados = entrenar_modelos()
+
+    # Enriquecer el .pkl del modelo principal con métricas
+    # (entrenar_modelos ya guarda el pkl, aquí solo añadimos métricas)
+    if MODELO_PRINCIPAL in _normalizar_claves(resultados):
+        clave_real = _clave_real(resultados, MODELO_PRINCIPAL)
+        datos = resultados[clave_real]
+        metricas_guardadas = {
+            "accuracy":                datos.get("accuracy"),
+            "f1_weighted":             datos.get("f1_weighted"),
+            "tiempo_entrenamiento_ms": datos.get("tiempo_entrenamiento_ms"),
+            "tiempo_inferencia_ms":    datos.get("tiempo_inferencia_ms"),
+        }
+        # Reescribir pkl incluyendo métricas para futuras cargas
+        joblib.dump(
+            {
+                "modelo":    datos["modelo"],
+                "le_target": datos["le_target"],
+                "metricas":  metricas_guardadas,
+            },
+            RUTA_MODELO_PRINCIPAL,
+        )
+
+    return resultados
+
+
+def _normalizar_claves(d: dict) -> dict:
+    """Devuelve un dict con claves normalizadas a minúsculas sin tildes."""
+    return {
+        k.lower()
+         .replace(" ", "_")
+         .replace("ó", "o")
+         .replace("é", "e")
+         .replace("ú", "u"): k
+        for k in d
+    }
+
+
+def _clave_real(d: dict, nombre_normalizado: str) -> str | None:
+    """Retorna la clave original del dict dado su nombre normalizado."""
+    mapa = _normalizar_claves(d)
+    return mapa.get(nombre_normalizado)
 
 
 # ─────────────────────────────────────────────────────────────
