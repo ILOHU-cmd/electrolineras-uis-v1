@@ -162,7 +162,7 @@ def ejecutar_simulacion(G, n_recorridos: int = 20,
 
         # Seleccionar vehículo (rotación circular)
         vehiculo = vehiculos[i % len(vehiculos)]
-        vehiculo.nivel_bateria = BATERIA_INICIAL  # reiniciar batería
+        """vehiculo.nivel_bateria = BATERIA_INICIAL  # reiniciar batería"""
 
         ts_actual = ts_base + timedelta(hours=i * 2)  # timestamp simulado
 

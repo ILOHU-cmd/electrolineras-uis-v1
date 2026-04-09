@@ -1,0 +1,6 @@
+timestamp,vehiculo_id,vehiculo_nombre,electrolinera_id,electrolinera_nombre,nodo_origen_osm,nivel_bateria_llegada,distancia_recorrida_m
+2026-04-22 21:00:00,V2,BYD Seagull (Std Range),E6,Éxito de La Rosita,845132340,18.43,2954.5
+2026-04-30 15:00:00,V1,Tesla Model 3 Long Range,E7,Centro Comercial La Florida,839087681,19.53,4033.7
+2026-05-01 21:00:00,V2,BYD Seagull (Std Range),E7,Centro Comercial La Florida,839087681,19.32,4033.7
+2026-05-12 09:00:00,V2,BYD Seagull (Std Range),E6,Éxito de La Rosita,845132340,18.85,2954.5
+2026-05-15 15:00:00,V1,Tesla Model 3 Long Range,E7,Centro Comercial La Florida,839087681,19.05,4033.7
