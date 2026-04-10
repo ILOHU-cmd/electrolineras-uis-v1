@@ -30,3 +30,6 @@ timestamp,vehiculo_id,vehiculo_nombre,electrolinera_id,electrolinera_nombre,nodo
 2026-05-13 13:00:00,V2,BYD Seagull (Std Range),E1,Homecenter Bucaramanga,287184202,19.99,927.3
 2026-05-18 07:00:00,V1,Tesla Model 3 Long Range,E6,Éxito de La Rosita,845132340,18.11,2954.5
 2026-04-25 13:00:00,V2,BYD Seagull (Std Range),E6,Éxito de La Rosita,845132340,19.26,2954.5
+2026-04-25 13:00:00,V2,BYD Seagull (Std Range),E6,Éxito de La Rosita,845132340,19.26,2954.5
+2026-05-02 11:00:00,V1,Tesla Model 3 Long Range,E3,Centro Comercial Cacique,839103570,18.28,337.8
+2026-05-05 21:00:00,V2,BYD Seagull (Std Range),E2,Centro Comercial Quinta Etapa,839097185,19.61,1004.3

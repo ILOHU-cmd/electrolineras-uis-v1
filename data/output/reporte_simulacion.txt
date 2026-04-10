@@ -2,9 +2,9 @@
   REPORTE DE SIMULACIÓN — SISTEMA DE ELECTROLINERAS BGA
   Universidad Industrial de Santander · Semestre 2026-1
 ======================================================================
-  Fecha de generación : 2026-04-09  18:55:13
+  Fecha de generación : 2026-04-09  19:03:16
   Total recorridos    : 361
-  Total recargas      : 0
+  Total recargas      : 3
 ======================================================================
 
 ----------------------------------------------------------------------
@@ -135,7 +135,7 @@
   Origen         : UTS
   Destino        : UIS Campus Central
   Distancia      : 2.250 km
-  Batería final  : 99.6 %
+  Batería final  : 98.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -186,7 +186,7 @@
   Origen         : UTS
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 7.622 km
-  Batería final  : 98.1 %
+  Batería final  : 97.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -267,7 +267,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.450 km
-  Batería final  : 99.6 %
+  Batería final  : 98.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -313,7 +313,7 @@
   Origen         : UTS
   Destino        : CENFER
   Distancia      : 0.882 km
-  Batería final  : 99.8 %
+  Batería final  : 97.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -337,7 +337,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UTS
   Distancia      : 7.419 km
-  Batería final  : 98.8 %
+  Batería final  : 97.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -421,7 +421,7 @@
   Origen         : UTS
   Destino        : UPB
   Distancia      : 2.326 km
-  Batería final  : 99.6 %
+  Batería final  : 96.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -471,7 +471,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.450 km
-  Batería final  : 99.4 %
+  Batería final  : 96.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -517,7 +517,7 @@
   Origen         : UNAB
   Destino        : CENFER
   Distancia      : 3.288 km
-  Batería final  : 99.5 %
+  Batería final  : 96.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -567,7 +567,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 1.644 km
-  Batería final  : 99.6 %
+  Batería final  : 96.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -598,7 +598,7 @@
   Origen         : UIS Campus Central
   Destino        : CENFER
   Distancia      : 1.557 km
-  Batería final  : 99.7 %
+  Batería final  : 95.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -642,7 +642,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UIS Campus Florida
   Distancia      : 9.333 km
-  Batería final  : 97.7 %
+  Batería final  : 94.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -754,7 +754,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : CENFER
   Distancia      : 8.301 km
-  Batería final  : 98.6 %
+  Batería final  : 94.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -849,7 +849,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.8 %
+  Batería final  : 93.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -871,7 +871,7 @@
   Origen         : UTS
   Destino        : UIS Campus Central
   Distancia      : 2.250 km
-  Batería final  : 99.6 %
+  Batería final  : 94.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -922,7 +922,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.8 %
+  Batería final  : 93.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -944,7 +944,7 @@
   Origen         : UNAB
   Destino        : UIS Campus Florida
   Distancia      : 3.845 km
-  Batería final  : 99.4 %
+  Batería final  : 93.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1007,7 +1007,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Central
   Distancia      : 0.570 km
-  Batería final  : 99.9 %
+  Batería final  : 93.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1027,7 +1027,7 @@
   Origen         : UPB
   Destino        : CENFER
   Distancia      : 3.040 km
-  Batería final  : 99.5 %
+  Batería final  : 93.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1087,7 +1087,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : Sede Recreacional Catay
   Distancia      : 3.111 km
-  Batería final  : 99.2 %
+  Batería final  : 92.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1129,7 +1129,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Florida
   Distancia      : 2.331 km
-  Batería final  : 99.6 %
+  Batería final  : 92.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1178,7 +1178,7 @@
   Origen         : UPB
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.065 km
-  Batería final  : 99.5 %
+  Batería final  : 92.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1228,7 +1228,7 @@
   Origen         : UNAB
   Destino        : Sede Recreacional Catay
   Distancia      : 4.275 km
-  Batería final  : 99.3 %
+  Batería final  : 91.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1298,7 +1298,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : Sede Recreacional Catay
   Distancia      : 3.111 km
-  Batería final  : 99.2 %
+  Batería final  : 91.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1340,7 +1340,7 @@
   Origen         : UIS Campus Florida
   Destino        : UNAB
   Distancia      : 4.110 km
-  Batería final  : 99.3 %
+  Batería final  : 91.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1414,7 +1414,7 @@
   Origen         : UPB
   Destino        : UIS Campus Central
   Distancia      : 4.013 km
-  Batería final  : 99.0 %
+  Batería final  : 90.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1480,7 +1480,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 9.381 km
-  Batería final  : 98.4 %
+  Batería final  : 89.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1589,7 +1589,7 @@
   Origen         : UTS
   Destino        : UIS Campus Florida
   Distancia      : 1.913 km
-  Batería final  : 99.7 %
+  Batería final  : 89.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1630,7 +1630,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UTS
   Distancia      : 7.419 km
-  Batería final  : 98.2 %
+  Batería final  : 88.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1714,7 +1714,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 12.436 km
-  Batería final  : 97.9 %
+  Batería final  : 87.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1846,7 +1846,7 @@
   Origen         : UIS Campus Central
   Destino        : UNAB
   Distancia      : 3.943 km
-  Batería final  : 99.0 %
+  Batería final  : 87.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1919,7 +1919,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Central
   Distancia      : 2.673 km
-  Batería final  : 99.6 %
+  Batería final  : 86.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -1978,7 +1978,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.850 km
-  Batería final  : 99.3 %
+  Batería final  : 87.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2038,7 +2038,7 @@
   Origen         : PTAR Río Frío
   Destino        : Sede Recreacional Catay
   Distancia      : 9.459 km
-  Batería final  : 98.4 %
+  Batería final  : 85.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2149,7 +2149,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UNAB
   Distancia      : 7.178 km
-  Batería final  : 98.2 %
+  Batería final  : 85.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2227,7 +2227,7 @@
   Origen         : UTS
   Destino        : CENFER
   Distancia      : 0.882 km
-  Batería final  : 99.8 %
+  Batería final  : 85.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2251,7 +2251,7 @@
   Origen         : UTS
   Destino        : CENFER
   Distancia      : 0.882 km
-  Batería final  : 99.8 %
+  Batería final  : 85.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2275,7 +2275,7 @@
   Origen         : UPB
   Destino        : UTS
   Distancia      : 2.158 km
-  Batería final  : 99.6 %
+  Batería final  : 84.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2324,7 +2324,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Florida
   Distancia      : 3.704 km
-  Batería final  : 99.1 %
+  Batería final  : 84.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2367,7 +2367,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.9 %
+  Batería final  : 84.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2389,7 +2389,7 @@
   Origen         : CENFER
   Destino        : UPB
   Distancia      : 3.011 km
-  Batería final  : 99.2 %
+  Batería final  : 83.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2448,7 +2448,7 @@
   Origen         : UIS Campus Central
   Destino        : Sede Recreacional Catay
   Distancia      : 6.405 km
-  Batería final  : 98.9 %
+  Batería final  : 83.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2536,7 +2536,7 @@
   Origen         : UIS Campus Florida
   Destino        : UTS
   Distancia      : 2.157 km
-  Batería final  : 99.5 %
+  Batería final  : 82.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2581,7 +2581,7 @@
   Origen         : UIS Campus Central
   Destino        : UNAB
   Distancia      : 3.943 km
-  Batería final  : 99.3 %
+  Batería final  : 82.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2654,7 +2654,7 @@
   Origen         : UTS
   Destino        : UPB
   Distancia      : 2.326 km
-  Batería final  : 99.6 %
+  Batería final  : 82.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2704,7 +2704,7 @@
   Origen         : UIS Campus Central
   Destino        : CENFER
   Distancia      : 1.557 km
-  Batería final  : 99.6 %
+  Batería final  : 82.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2748,7 +2748,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : Sede Recreacional Catay
   Distancia      : 3.111 km
-  Batería final  : 99.5 %
+  Batería final  : 82.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2790,7 +2790,7 @@
   Origen         : PTAR Río Frío
   Destino        : Sede Recreacional Catay
   Distancia      : 9.459 km
-  Batería final  : 97.7 %
+  Batería final  : 80.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2901,7 +2901,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.9 %
+  Batería final  : 81.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -2923,7 +2923,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : CENFER
   Distancia      : 8.301 km
-  Batería final  : 98.0 %
+  Batería final  : 78.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3018,7 +3018,7 @@
   Origen         : UTS
   Destino        : UNAB
   Distancia      : 2.875 km
-  Batería final  : 99.5 %
+  Batería final  : 81.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3071,7 +3071,7 @@
   Origen         : UIS Campus Florida
   Destino        : Sede Recreacional Catay
   Distancia      : 6.421 km
-  Batería final  : 98.9 %
+  Batería final  : 80.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3159,7 +3159,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UIS Campus Central
   Distancia      : 9.405 km
-  Batería final  : 97.7 %
+  Batería final  : 75.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3264,7 +3264,7 @@
   Origen         : UNAB
   Destino        : UTS
   Distancia      : 2.488 km
-  Batería final  : 99.6 %
+  Batería final  : 79.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3306,7 +3306,7 @@
   Origen         : UNAB
   Destino        : CENFER
   Distancia      : 3.288 km
-  Batería final  : 99.2 %
+  Batería final  : 74.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3356,7 +3356,7 @@
   Origen         : UIS Campus Central
   Destino        : Sede Recreacional Catay
   Distancia      : 6.405 km
-  Batería final  : 98.9 %
+  Batería final  : 78.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3444,7 +3444,7 @@
   Origen         : UTS
   Destino        : CENFER
   Distancia      : 0.882 km
-  Batería final  : 99.8 %
+  Batería final  : 78.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3468,7 +3468,7 @@
   Origen         : UIS Campus Florida
   Destino        : PTAR Río Frío
   Distancia      : 3.708 km
-  Batería final  : 99.1 %
+  Batería final  : 74.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3512,7 +3512,7 @@
   Origen         : UIS Campus Central
   Destino        : PTAR Río Frío
   Distancia      : 3.894 km
-  Batería final  : 99.3 %
+  Batería final  : 78.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3557,7 +3557,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : Sede Recreacional Catay
   Distancia      : 4.375 km
-  Batería final  : 98.9 %
+  Batería final  : 72.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3614,7 +3614,7 @@
   Origen         : UPB
   Destino        : CENFER
   Distancia      : 3.040 km
-  Batería final  : 99.5 %
+  Batería final  : 77.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3674,7 +3674,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : PTAR Río Frío
   Distancia      : 5.555 km
-  Batería final  : 98.6 %
+  Batería final  : 71.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3747,7 +3747,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Central
   Distancia      : 1.373 km
-  Batería final  : 99.8 %
+  Batería final  : 77.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3787,7 +3787,7 @@
   Origen         : CENFER
   Destino        : UNAB
   Distancia      : 3.123 km
-  Batería final  : 99.2 %
+  Batería final  : 70.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3842,7 +3842,7 @@
   Origen         : UIS Campus Florida
   Destino        : UNAB
   Distancia      : 4.110 km
-  Batería final  : 99.3 %
+  Batería final  : 76.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3916,7 +3916,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Florida
   Distancia      : 2.331 km
-  Batería final  : 99.4 %
+  Batería final  : 70.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -3965,7 +3965,7 @@
   Origen         : UNAB
   Destino        : UPB
   Distancia      : 1.794 km
-  Batería final  : 99.7 %
+  Batería final  : 76.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4002,7 +4002,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Florida
   Distancia      : 2.331 km
-  Batería final  : 99.4 %
+  Batería final  : 69.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4051,7 +4051,7 @@
   Origen         : PTAR Río Frío
   Destino        : UNAB
   Distancia      : 6.118 km
-  Batería final  : 99.0 %
+  Batería final  : 75.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4124,7 +4124,7 @@
   Origen         : UIS Campus Central
   Destino        : PTAR Río Frío
   Distancia      : 3.894 km
-  Batería final  : 99.0 %
+  Batería final  : 68.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4169,7 +4169,7 @@
   Origen         : UPB
   Destino        : UNAB
   Distancia      : 1.925 km
-  Batería final  : 99.7 %
+  Batería final  : 75.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4206,7 +4206,7 @@
   Origen         : UTS
   Destino        : UNAB
   Distancia      : 2.875 km
-  Batería final  : 99.3 %
+  Batería final  : 68.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4259,7 +4259,7 @@
   Origen         : UTS
   Destino        : UIS Campus Central
   Distancia      : 2.250 km
-  Batería final  : 99.6 %
+  Batería final  : 74.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4310,7 +4310,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : CENFER
   Distancia      : 1.325 km
-  Batería final  : 99.7 %
+  Batería final  : 67.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4340,7 +4340,7 @@
   Origen         : UPB
   Destino        : UTS
   Distancia      : 2.158 km
-  Batería final  : 99.6 %
+  Batería final  : 74.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4389,7 +4389,7 @@
   Origen         : UNAB
   Destino        : UTS
   Distancia      : 2.488 km
-  Batería final  : 99.4 %
+  Batería final  : 67.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4431,7 +4431,7 @@
   Origen         : UIS Campus Florida
   Destino        : UNAB
   Distancia      : 4.110 km
-  Batería final  : 99.3 %
+  Batería final  : 73.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4505,7 +4505,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UNAB
   Distancia      : 2.605 km
-  Batería final  : 99.4 %
+  Batería final  : 66.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4555,7 +4555,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.9 %
+  Batería final  : 73.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4577,7 +4577,7 @@
   Origen         : CENFER
   Destino        : UPB
   Distancia      : 3.011 km
-  Batería final  : 99.5 %
+  Batería final  : 73.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4636,7 +4636,7 @@
   Origen         : CENFER
   Destino        : UTS
   Distancia      : 1.063 km
-  Batería final  : 99.7 %
+  Batería final  : 66.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4662,7 +4662,7 @@
   Origen         : PTAR Río Frío
   Destino        : CENFER
   Distancia      : 4.558 km
-  Batería final  : 99.2 %
+  Batería final  : 72.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4721,7 +4721,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Central
   Distancia      : 3.984 km
-  Batería final  : 99.0 %
+  Batería final  : 65.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4767,7 +4767,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 9.381 km
-  Batería final  : 98.4 %
+  Batería final  : 70.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4876,7 +4876,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.8 %
+  Batería final  : 65.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4898,7 +4898,7 @@
   Origen         : UIS Campus Central
   Destino        : UTS
   Distancia      : 2.298 km
-  Batería final  : 99.6 %
+  Batería final  : 70.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -4949,7 +4949,7 @@
   Origen         : UIS Campus Florida
   Destino        : Sede Recreacional Catay
   Distancia      : 6.421 km
-  Batería final  : 98.4 %
+  Batería final  : 63.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5037,7 +5037,7 @@
   Origen         : CENFER
   Destino        : UTS
   Distancia      : 1.063 km
-  Batería final  : 99.8 %
+  Batería final  : 70.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5063,7 +5063,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : CENFER
   Distancia      : 8.301 km
-  Batería final  : 98.6 %
+  Batería final  : 68.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5158,7 +5158,7 @@
   Origen         : UPB
   Destino        : PTAR Río Frío
   Distancia      : 7.070 km
-  Batería final  : 98.2 %
+  Batería final  : 61.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5236,7 +5236,7 @@
   Origen         : UIS Campus Florida
   Destino        : CENFER
   Distancia      : 1.157 km
-  Batería final  : 99.8 %
+  Batería final  : 68.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5266,7 +5266,7 @@
   Origen         : UPB
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.065 km
-  Batería final  : 99.5 %
+  Batería final  : 61.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5316,7 +5316,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UNAB
   Distancia      : 2.605 km
-  Batería final  : 99.6 %
+  Batería final  : 68.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5366,7 +5366,7 @@
   Origen         : UPB
   Destino        : PTAR Río Frío
   Distancia      : 7.070 km
-  Batería final  : 98.2 %
+  Batería final  : 59.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5444,7 +5444,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UPB
   Distancia      : 5.832 km
-  Batería final  : 99.0 %
+  Batería final  : 67.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5508,7 +5508,7 @@
   Origen         : PTAR Río Frío
   Destino        : CENFER
   Distancia      : 4.558 km
-  Batería final  : 98.9 %
+  Batería final  : 58.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5567,7 +5567,7 @@
   Origen         : UIS Campus Central
   Destino        : CENFER
   Distancia      : 1.557 km
-  Batería final  : 99.7 %
+  Batería final  : 66.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5611,7 +5611,7 @@
   Origen         : PTAR Río Frío
   Destino        : Sede Recreacional Catay
   Distancia      : 9.459 km
-  Batería final  : 97.7 %
+  Batería final  : 55.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5722,7 +5722,7 @@
   Origen         : CENFER
   Destino        : UTS
   Distancia      : 1.063 km
-  Batería final  : 99.8 %
+  Batería final  : 66.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5748,7 +5748,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 9.397 km
-  Batería final  : 97.7 %
+  Batería final  : 53.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5857,7 +5857,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UPB
   Distancia      : 2.055 km
-  Batería final  : 99.7 %
+  Batería final  : 66.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5904,7 +5904,7 @@
   Origen         : UTS
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 0.658 km
-  Batería final  : 99.8 %
+  Batería final  : 53.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5925,7 +5925,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UPB
   Distancia      : 5.832 km
-  Batería final  : 99.0 %
+  Batería final  : 65.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -5989,7 +5989,7 @@
   Origen         : UIS Campus Central
   Destino        : UTS
   Distancia      : 2.298 km
-  Batería final  : 99.4 %
+  Batería final  : 52.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6040,7 +6040,7 @@
   Origen         : CENFER
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 8.308 km
-  Batería final  : 98.6 %
+  Batería final  : 64.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6130,7 +6130,7 @@
   Origen         : UPB
   Destino        : CENFER
   Distancia      : 3.040 km
-  Batería final  : 99.5 %
+  Batería final  : 63.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6190,7 +6190,7 @@
   Origen         : PTAR Río Frío
   Destino        : UPB
   Distancia      : 7.120 km
-  Batería final  : 98.2 %
+  Batería final  : 51.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6291,7 +6291,7 @@
   Origen         : UNAB
   Destino        : PTAR Río Frío
   Distancia      : 6.143 km
-  Batería final  : 99.0 %
+  Batería final  : 62.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6360,7 +6360,7 @@
   Origen         : UNAB
   Destino        : UTS
   Distancia      : 2.488 km
-  Batería final  : 99.4 %
+  Batería final  : 50.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6402,7 +6402,7 @@
   Origen         : UIS Campus Florida
   Destino        : UNAB
   Distancia      : 4.110 km
-  Batería final  : 99.3 %
+  Batería final  : 61.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6476,7 +6476,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UTS
   Distancia      : 0.448 km
-  Batería final  : 99.9 %
+  Batería final  : 50.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6495,7 +6495,7 @@
   Origen         : UIS Campus Central
   Destino        : UNAB
   Distancia      : 3.943 km
-  Batería final  : 99.3 %
+  Batería final  : 61.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6568,7 +6568,7 @@
   Origen         : UIS Campus Central
   Destino        : UTS
   Distancia      : 2.298 km
-  Batería final  : 99.4 %
+  Batería final  : 49.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6619,7 +6619,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.9 %
+  Batería final  : 61.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6641,7 +6641,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : CENFER
   Distancia      : 1.325 km
-  Batería final  : 99.7 %
+  Batería final  : 49.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6671,7 +6671,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Florida
   Distancia      : 2.331 km
-  Batería final  : 99.6 %
+  Batería final  : 60.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6720,7 +6720,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Florida
   Distancia      : 3.704 km
-  Batería final  : 99.1 %
+  Batería final  : 48.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6763,7 +6763,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.9 %
+  Batería final  : 60.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6785,7 +6785,7 @@
   Origen         : UPB
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 5.931 km
-  Batería final  : 98.5 %
+  Batería final  : 47.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6858,7 +6858,7 @@
   Origen         : UPB
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 5.931 km
-  Batería final  : 98.5 %
+  Batería final  : 45.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -6931,7 +6931,7 @@
   Origen         : UNAB
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 7.172 km
-  Batería final  : 98.8 %
+  Batería final  : 59.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7021,7 +7021,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UNAB
   Distancia      : 2.605 km
-  Batería final  : 99.4 %
+  Batería final  : 44.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7071,7 +7071,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Central
   Distancia      : 0.570 km
-  Batería final  : 99.9 %
+  Batería final  : 59.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7091,7 +7091,7 @@
   Origen         : PTAR Río Frío
   Destino        : Sede Recreacional Catay
   Distancia      : 9.459 km
-  Batería final  : 97.7 %
+  Batería final  : 42.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7202,7 +7202,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 7.352 km
-  Batería final  : 98.8 %
+  Batería final  : 58.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7280,7 +7280,7 @@
   Origen         : CENFER
   Destino        : UTS
   Distancia      : 1.063 km
-  Batería final  : 99.7 %
+  Batería final  : 42.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7306,7 +7306,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UTS
   Distancia      : 0.448 km
-  Batería final  : 99.9 %
+  Batería final  : 58.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7325,7 +7325,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Florida
   Distancia      : 3.704 km
-  Batería final  : 99.1 %
+  Batería final  : 41.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7368,7 +7368,7 @@
   Origen         : UNAB
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.749 km
-  Batería final  : 99.5 %
+  Batería final  : 57.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7414,7 +7414,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : Sede Recreacional Catay
   Distancia      : 4.375 km
-  Batería final  : 99.3 %
+  Batería final  : 56.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7471,7 +7471,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.450 km
-  Batería final  : 99.4 %
+  Batería final  : 40.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7517,7 +7517,7 @@
   Origen         : UPB
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 5.931 km
-  Batería final  : 99.0 %
+  Batería final  : 55.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7590,7 +7590,7 @@
   Origen         : UPB
   Destino        : Sede Recreacional Catay
   Distancia      : 3.034 km
-  Batería final  : 99.2 %
+  Batería final  : 40.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7643,7 +7643,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Central
   Distancia      : 2.673 km
-  Batería final  : 99.6 %
+  Batería final  : 55.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7702,7 +7702,7 @@
   Origen         : UPB
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.065 km
-  Batería final  : 99.5 %
+  Batería final  : 39.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7752,7 +7752,7 @@
   Origen         : CENFER
   Destino        : UNAB
   Distancia      : 3.123 km
-  Batería final  : 99.5 %
+  Batería final  : 54.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7807,7 +7807,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 1.644 km
-  Batería final  : 99.6 %
+  Batería final  : 39.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7838,7 +7838,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UTS
   Distancia      : 0.448 km
-  Batería final  : 99.9 %
+  Batería final  : 54.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7857,7 +7857,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : CENFER
   Distancia      : 1.325 km
-  Batería final  : 99.7 %
+  Batería final  : 38.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7887,7 +7887,7 @@
   Origen         : UIS Campus Florida
   Destino        : UPB
   Distancia      : 4.082 km
-  Batería final  : 99.3 %
+  Batería final  : 54.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -7965,7 +7965,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 5.695 km
-  Batería final  : 99.1 %
+  Batería final  : 53.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8036,7 +8036,7 @@
   Origen         : UTS
   Destino        : PTAR Río Frío
   Distancia      : 5.434 km
-  Batería final  : 98.7 %
+  Batería final  : 37.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8109,7 +8109,7 @@
   Origen         : UIS Campus Florida
   Destino        : PTAR Río Frío
   Distancia      : 3.708 km
-  Batería final  : 99.4 %
+  Batería final  : 52.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8153,7 +8153,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UTS
   Distancia      : 0.448 km
-  Batería final  : 99.9 %
+  Batería final  : 37.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8172,7 +8172,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : Sede Recreacional Catay
   Distancia      : 3.111 km
-  Batería final  : 99.5 %
+  Batería final  : 52.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8214,7 +8214,7 @@
   Origen         : UPB
   Destino        : Sede Recreacional Catay
   Distancia      : 3.034 km
-  Batería final  : 99.2 %
+  Batería final  : 36.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8267,7 +8267,7 @@
   Origen         : UPB
   Destino        : UIS Campus Central
   Distancia      : 4.013 km
-  Batería final  : 99.3 %
+  Batería final  : 51.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8333,7 +8333,7 @@
   Origen         : UNAB
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.749 km
-  Batería final  : 99.3 %
+  Batería final  : 35.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8379,7 +8379,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 9.397 km
-  Batería final  : 98.4 %
+  Batería final  : 49.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8488,7 +8488,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 1.644 km
-  Batería final  : 99.6 %
+  Batería final  : 35.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8519,7 +8519,7 @@
   Origen         : CENFER
   Destino        : UNAB
   Distancia      : 3.123 km
-  Batería final  : 99.5 %
+  Batería final  : 49.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8574,7 +8574,7 @@
   Origen         : UTS
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 7.622 km
-  Batería final  : 98.7 %
+  Batería final  : 48.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8655,7 +8655,7 @@
   Origen         : UNAB
   Destino        : UTS
   Distancia      : 2.488 km
-  Batería final  : 99.4 %
+  Batería final  : 34.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8697,7 +8697,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : PTAR Río Frío
   Distancia      : 5.555 km
-  Batería final  : 99.1 %
+  Batería final  : 47.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8770,7 +8770,7 @@
   Origen         : UNAB
   Destino        : UIS Campus Central
   Distancia      : 3.723 km
-  Batería final  : 99.1 %
+  Batería final  : 34.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8836,7 +8836,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UNAB
   Distancia      : 2.605 km
-  Batería final  : 99.6 %
+  Batería final  : 46.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8886,7 +8886,7 @@
   Origen         : UIS Campus Florida
   Destino        : Sede Recreacional Catay
   Distancia      : 6.421 km
-  Batería final  : 98.4 %
+  Batería final  : 32.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -8974,7 +8974,7 @@
   Origen         : UTS
   Destino        : UNAB
   Distancia      : 2.875 km
-  Batería final  : 99.5 %
+  Batería final  : 46.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9027,7 +9027,7 @@
   Origen         : UPB
   Destino        : PTAR Río Frío
   Distancia      : 7.070 km
-  Batería final  : 98.2 %
+  Batería final  : 30.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9105,7 +9105,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.9 %
+  Batería final  : 46.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9127,7 +9127,7 @@
   Origen         : UPB
   Destino        : UIS Campus Florida
   Distancia      : 3.995 km
-  Batería final  : 99.0 %
+  Batería final  : 29.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9192,7 +9192,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 9.397 km
-  Batería final  : 98.4 %
+  Batería final  : 44.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9301,7 +9301,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UNAB
   Distancia      : 2.605 km
-  Batería final  : 99.4 %
+  Batería final  : 29.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9351,7 +9351,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Central
   Distancia      : 2.673 km
-  Batería final  : 99.6 %
+  Batería final  : 44.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9410,7 +9410,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 7.352 km
-  Batería final  : 98.2 %
+  Batería final  : 27.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9488,7 +9488,7 @@
   Origen         : UIS Campus Florida
   Destino        : UTS
   Distancia      : 2.157 km
-  Batería final  : 99.6 %
+  Batería final  : 43.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9533,7 +9533,7 @@
   Origen         : UPB
   Destino        : CENFER
   Distancia      : 3.040 km
-  Batería final  : 99.2 %
+  Batería final  : 26.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9593,7 +9593,7 @@
   Origen         : UNAB
   Destino        : PTAR Río Frío
   Distancia      : 6.143 km
-  Batería final  : 99.0 %
+  Batería final  : 42.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9662,7 +9662,7 @@
   Origen         : UNAB
   Destino        : UPB
   Distancia      : 1.794 km
-  Batería final  : 99.6 %
+  Batería final  : 26.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9699,7 +9699,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 9.397 km
-  Batería final  : 98.4 %
+  Batería final  : 41.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9808,7 +9808,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : Sede Recreacional Catay
   Distancia      : 4.375 km
-  Batería final  : 98.9 %
+  Batería final  : 24.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9865,7 +9865,7 @@
   Origen         : UIS Campus Florida
   Destino        : UPB
   Distancia      : 4.082 km
-  Batería final  : 99.0 %
+  Batería final  : 23.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -9943,7 +9943,7 @@
   Origen         : CENFER
   Destino        : UPB
   Distancia      : 3.011 km
-  Batería final  : 99.5 %
+  Batería final  : 40.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10002,7 +10002,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 7.327 km
-  Batería final  : 98.2 %
+  Batería final  : 22.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10087,7 +10087,7 @@
   Origen         : UPB
   Destino        : Sede Recreacional Catay
   Distancia      : 3.034 km
-  Batería final  : 99.5 %
+  Batería final  : 40.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10140,7 +10140,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : PTAR Río Frío
   Distancia      : 5.555 km
-  Batería final  : 98.6 %
+  Batería final  : 20.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10213,7 +10213,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 1.644 km
-  Batería final  : 99.7 %
+  Batería final  : 39.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10244,7 +10244,8 @@
   Origen         : UPB
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 5.931 km
-  Batería final  : 98.5 %
+  Batería final  : 19.3 %
+  Electrolinera  : Éxito de La Rosita  (desvío: 2.954 km adicionales)
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10310,6 +10311,15 @@
     60             845132313  Transversal 127                     80.1m    5557.2m
     61  [REF]      845132340  (sin nombre)                       373.6m    5930.8m   <<< UIS Parque Tecnológico Guatiguará >>>
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !!!  CAMBIO DE RUTA: EMERGENCIA POR BATERÍA BAJA  !!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Nodo de desvío   : 839097185
+  Batería al desvío: 19.3 %  (umbral: 10 % – 20 %)
+  Nueva ruta hacia : Éxito de La Rosita
+  Distancia extra  : 2.954 km
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 ----------------------------------------------------------------------
   RECORRIDO #197
 ----------------------------------------------------------------------
@@ -10317,7 +10327,7 @@
   Origen         : UTS
   Destino        : UIS Campus Central
   Distancia      : 2.250 km
-  Batería final  : 99.6 %
+  Batería final  : 39.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10368,7 +10378,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 5.695 km
-  Batería final  : 98.6 %
+  Batería final  : 78.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10439,7 +10449,7 @@
   Origen         : UIS Campus Central
   Destino        : UNAB
   Distancia      : 3.943 km
-  Batería final  : 99.3 %
+  Batería final  : 38.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10512,7 +10522,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : Sede Recreacional Catay
   Distancia      : 4.375 km
-  Batería final  : 98.9 %
+  Batería final  : 77.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10569,7 +10579,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Florida
   Distancia      : 3.704 km
-  Batería final  : 99.4 %
+  Batería final  : 38.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10612,7 +10622,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Florida
   Distancia      : 3.704 km
-  Batería final  : 99.1 %
+  Batería final  : 76.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10655,7 +10665,7 @@
   Origen         : UNAB
   Destino        : UPB
   Distancia      : 1.794 km
-  Batería final  : 99.7 %
+  Batería final  : 38.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10692,7 +10702,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : Sede Recreacional Catay
   Distancia      : 4.375 km
-  Batería final  : 98.9 %
+  Batería final  : 75.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10749,7 +10759,7 @@
   Origen         : PTAR Río Frío
   Destino        : UPB
   Distancia      : 7.120 km
-  Batería final  : 98.2 %
+  Batería final  : 73.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10850,7 +10860,7 @@
   Origen         : PTAR Río Frío
   Destino        : Sede Recreacional Catay
   Distancia      : 9.459 km
-  Batería final  : 98.4 %
+  Batería final  : 36.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -10961,7 +10971,7 @@
   Origen         : CENFER
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 8.308 km
-  Batería final  : 97.9 %
+  Batería final  : 71.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11051,7 +11061,7 @@
   Origen         : UIS Campus Florida
   Destino        : PTAR Río Frío
   Distancia      : 3.708 km
-  Batería final  : 99.1 %
+  Batería final  : 70.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11095,7 +11105,7 @@
   Origen         : UPB
   Destino        : UTS
   Distancia      : 2.158 km
-  Batería final  : 99.6 %
+  Batería final  : 36.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11144,7 +11154,7 @@
   Origen         : UIS Campus Central
   Destino        : PTAR Río Frío
   Distancia      : 3.894 km
-  Batería final  : 99.0 %
+  Batería final  : 69.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11189,7 +11199,7 @@
   Origen         : CENFER
   Destino        : UPB
   Distancia      : 3.011 km
-  Batería final  : 99.5 %
+  Batería final  : 35.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11248,7 +11258,7 @@
   Origen         : UPB
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.065 km
-  Batería final  : 99.5 %
+  Batería final  : 69.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11298,7 +11308,7 @@
   Origen         : UTS
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 7.622 km
-  Batería final  : 98.7 %
+  Batería final  : 34.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11379,7 +11389,7 @@
   Origen         : UIS Campus Central
   Destino        : UPB
   Distancia      : 4.066 km
-  Batería final  : 99.0 %
+  Batería final  : 68.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11457,7 +11467,7 @@
   Origen         : UIS Campus Central
   Destino        : UTS
   Distancia      : 2.298 km
-  Batería final  : 99.6 %
+  Batería final  : 33.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11508,7 +11518,7 @@
   Origen         : UIS Campus Central
   Destino        : UTS
   Distancia      : 2.298 km
-  Batería final  : 99.4 %
+  Batería final  : 67.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11559,7 +11569,7 @@
   Origen         : CENFER
   Destino        : UTS
   Distancia      : 1.063 km
-  Batería final  : 99.8 %
+  Batería final  : 33.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11585,7 +11595,7 @@
   Origen         : UNAB
   Destino        : PTAR Río Frío
   Distancia      : 6.143 km
-  Batería final  : 98.5 %
+  Batería final  : 66.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11654,7 +11664,7 @@
   Origen         : UPB
   Destino        : UIS Campus Central
   Distancia      : 4.013 km
-  Batería final  : 99.3 %
+  Batería final  : 33.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11720,7 +11730,7 @@
   Origen         : CENFER
   Destino        : UTS
   Distancia      : 1.063 km
-  Batería final  : 99.7 %
+  Batería final  : 65.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11746,7 +11756,7 @@
   Origen         : CENFER
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 8.308 km
-  Batería final  : 97.9 %
+  Batería final  : 63.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11836,7 +11846,7 @@
   Origen         : PTAR Río Frío
   Destino        : UNAB
   Distancia      : 6.118 km
-  Batería final  : 99.0 %
+  Batería final  : 32.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11909,7 +11919,7 @@
   Origen         : UPB
   Destino        : UTS
   Distancia      : 2.158 km
-  Batería final  : 99.5 %
+  Batería final  : 63.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -11958,7 +11968,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 5.695 km
-  Batería final  : 98.6 %
+  Batería final  : 61.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12029,7 +12039,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Central
   Distancia      : 0.570 km
-  Batería final  : 99.9 %
+  Batería final  : 31.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12049,7 +12059,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Florida
   Distancia      : 1.031 km
-  Batería final  : 99.7 %
+  Batería final  : 61.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12079,7 +12089,7 @@
   Origen         : UIS Campus Central
   Destino        : UNAB
   Distancia      : 3.943 km
-  Batería final  : 99.3 %
+  Batería final  : 31.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12152,7 +12162,7 @@
   Origen         : UIS Campus Central
   Destino        : UTS
   Distancia      : 2.298 km
-  Batería final  : 99.4 %
+  Batería final  : 61.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12203,7 +12213,7 @@
   Origen         : UIS Campus Florida
   Destino        : UPB
   Distancia      : 4.082 km
-  Batería final  : 99.3 %
+  Batería final  : 30.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12281,7 +12291,7 @@
   Origen         : UNAB
   Destino        : UIS Campus Central
   Distancia      : 3.723 km
-  Batería final  : 99.1 %
+  Batería final  : 60.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12347,7 +12357,7 @@
   Origen         : UTS
   Destino        : UIS Campus Florida
   Distancia      : 1.913 km
-  Batería final  : 99.7 %
+  Batería final  : 30.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12388,7 +12398,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UNAB
   Distancia      : 7.178 km
-  Batería final  : 98.2 %
+  Batería final  : 58.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12466,7 +12476,7 @@
   Origen         : UIS Campus Central
   Destino        : UPB
   Distancia      : 4.066 km
-  Batería final  : 99.3 %
+  Batería final  : 29.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12544,7 +12554,7 @@
   Origen         : UIS Campus Florida
   Destino        : CENFER
   Distancia      : 1.157 km
-  Batería final  : 99.7 %
+  Batería final  : 58.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12574,7 +12584,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : Sede Recreacional Catay
   Distancia      : 4.375 km
-  Batería final  : 99.3 %
+  Batería final  : 28.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12631,7 +12641,7 @@
   Origen         : UNAB
   Destino        : PTAR Río Frío
   Distancia      : 6.143 km
-  Batería final  : 98.5 %
+  Batería final  : 56.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12700,7 +12710,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Florida
   Distancia      : 0.664 km
-  Batería final  : 99.9 %
+  Batería final  : 28.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12722,7 +12732,7 @@
   Origen         : UPB
   Destino        : UNAB
   Distancia      : 1.925 km
-  Batería final  : 99.5 %
+  Batería final  : 56.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12759,7 +12769,7 @@
   Origen         : UPB
   Destino        : Sede Recreacional Catay
   Distancia      : 3.034 km
-  Batería final  : 99.5 %
+  Batería final  : 28.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12812,7 +12822,7 @@
   Origen         : UNAB
   Destino        : PTAR Río Frío
   Distancia      : 6.143 km
-  Batería final  : 98.5 %
+  Batería final  : 54.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12881,7 +12891,7 @@
   Origen         : UTS
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 0.658 km
-  Batería final  : 99.9 %
+  Batería final  : 28.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12902,7 +12912,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : Sede Recreacional Catay
   Distancia      : 4.375 km
-  Batería final  : 98.9 %
+  Batería final  : 53.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -12959,7 +12969,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Florida
   Distancia      : 3.704 km
-  Batería final  : 99.1 %
+  Batería final  : 52.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13002,7 +13012,7 @@
   Origen         : UPB
   Destino        : UTS
   Distancia      : 2.158 km
-  Batería final  : 99.6 %
+  Batería final  : 27.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13051,7 +13061,7 @@
   Origen         : UIS Campus Florida
   Destino        : CENFER
   Distancia      : 1.157 km
-  Batería final  : 99.7 %
+  Batería final  : 52.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13081,7 +13091,7 @@
   Origen         : UTS
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 7.622 km
-  Batería final  : 98.7 %
+  Batería final  : 26.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13162,7 +13172,7 @@
   Origen         : UNAB
   Destino        : UTS
   Distancia      : 2.488 km
-  Batería final  : 99.4 %
+  Batería final  : 51.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13204,7 +13214,7 @@
   Origen         : UIS Campus Central
   Destino        : PTAR Río Frío
   Distancia      : 3.894 km
-  Batería final  : 99.3 %
+  Batería final  : 25.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13249,7 +13259,7 @@
   Origen         : UIS Campus Central
   Destino        : CENFER
   Distancia      : 1.557 km
-  Batería final  : 99.6 %
+  Batería final  : 51.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13293,7 +13303,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.850 km
-  Batería final  : 99.5 %
+  Batería final  : 25.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13353,7 +13363,7 @@
   Origen         : UPB
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.065 km
-  Batería final  : 99.5 %
+  Batería final  : 50.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13403,7 +13413,7 @@
   Origen         : UPB
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.065 km
-  Batería final  : 99.7 %
+  Batería final  : 25.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13453,7 +13463,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 5.695 km
-  Batería final  : 98.6 %
+  Batería final  : 49.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13524,7 +13534,7 @@
   Origen         : UTS
   Destino        : UIS Campus Florida
   Distancia      : 1.913 km
-  Batería final  : 99.7 %
+  Batería final  : 24.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13565,7 +13575,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UTS
   Distancia      : 7.419 km
-  Batería final  : 98.2 %
+  Batería final  : 47.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13649,7 +13659,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : PTAR Río Frío
   Distancia      : 12.338 km
-  Batería final  : 98.0 %
+  Batería final  : 22.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13766,7 +13776,7 @@
   Origen         : UNAB
   Destino        : UIS Campus Central
   Distancia      : 3.723 km
-  Batería final  : 99.1 %
+  Batería final  : 46.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13832,7 +13842,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Central
   Distancia      : 3.984 km
-  Batería final  : 99.3 %
+  Batería final  : 22.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13878,7 +13888,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.450 km
-  Batería final  : 99.4 %
+  Batería final  : 46.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13924,7 +13934,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : Sede Recreacional Catay
   Distancia      : 3.111 km
-  Batería final  : 99.5 %
+  Batería final  : 21.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -13966,7 +13976,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 7.327 km
-  Batería final  : 98.2 %
+  Batería final  : 44.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14051,7 +14061,7 @@
   Origen         : UPB
   Destino        : UNAB
   Distancia      : 1.925 km
-  Batería final  : 99.7 %
+  Batería final  : 21.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14088,7 +14098,7 @@
   Origen         : UIS Campus Florida
   Destino        : UTS
   Distancia      : 2.157 km
-  Batería final  : 99.5 %
+  Batería final  : 43.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14133,7 +14143,7 @@
   Origen         : UIS Campus Central
   Destino        : CENFER
   Distancia      : 1.557 km
-  Batería final  : 99.7 %
+  Batería final  : 21.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14177,7 +14187,7 @@
   Origen         : UIS Campus Florida
   Destino        : Sede Recreacional Catay
   Distancia      : 6.421 km
-  Batería final  : 98.4 %
+  Batería final  : 42.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14265,7 +14275,7 @@
   Origen         : UTS
   Destino        : CENFER
   Distancia      : 0.882 km
-  Batería final  : 99.8 %
+  Batería final  : 20.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14289,7 +14299,7 @@
   Origen         : CENFER
   Destino        : UPB
   Distancia      : 3.011 km
-  Batería final  : 99.2 %
+  Batería final  : 41.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14348,7 +14358,7 @@
   Origen         : UPB
   Destino        : UIS Campus Florida
   Distancia      : 3.995 km
-  Batería final  : 99.3 %
+  Batería final  : 20.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14413,7 +14423,7 @@
   Origen         : PTAR Río Frío
   Destino        : UNAB
   Distancia      : 6.118 km
-  Batería final  : 98.5 %
+  Batería final  : 39.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14486,7 +14496,7 @@
   Origen         : PTAR Río Frío
   Destino        : Sede Recreacional Catay
   Distancia      : 9.459 km
-  Batería final  : 98.4 %
+  Batería final  : 18.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14597,7 +14607,7 @@
   Origen         : UIS Campus Florida
   Destino        : UNAB
   Distancia      : 4.110 km
-  Batería final  : 99.0 %
+  Batería final  : 38.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14671,7 +14681,8 @@
   Origen         : UPB
   Destino        : UNAB
   Distancia      : 1.925 km
-  Batería final  : 99.7 %
+  Batería final  : 18.3 %
+  Electrolinera  : Centro Comercial Cacique  (desvío: 0.338 km adicionales)
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14701,6 +14712,15 @@
     24             839091177  Carrera 40                         178.1m    1765.0m
     25  [REF]      839103570  Carrera 40                         159.7m    1924.7m   <<< UNAB >>>
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !!!  CAMBIO DE RUTA: EMERGENCIA POR BATERÍA BAJA  !!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Nodo de desvío   : 839097185
+  Batería al desvío: 18.3 %  (umbral: 10 % – 20 %)
+  Nueva ruta hacia : Centro Comercial Cacique
+  Distancia extra  : 0.338 km
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 ----------------------------------------------------------------------
   RECORRIDO #280
 ----------------------------------------------------------------------
@@ -14708,7 +14728,7 @@
   Origen         : UTS
   Destino        : PTAR Río Frío
   Distancia      : 5.434 km
-  Batería final  : 98.7 %
+  Batería final  : 37.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14781,7 +14801,7 @@
   Origen         : UIS Campus Central
   Destino        : UNAB
   Distancia      : 3.943 km
-  Batería final  : 99.3 %
+  Batería final  : 79.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14854,7 +14874,7 @@
   Origen         : UTS
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 7.622 km
-  Batería final  : 98.1 %
+  Batería final  : 35.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14935,7 +14955,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UPB
   Distancia      : 2.055 km
-  Batería final  : 99.7 %
+  Batería final  : 79.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -14982,7 +15002,7 @@
   Origen         : UIS Campus Florida
   Destino        : UNAB
   Distancia      : 4.110 km
-  Batería final  : 99.3 %
+  Batería final  : 78.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15056,7 +15076,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : CENFER
   Distancia      : 1.325 km
-  Batería final  : 99.7 %
+  Batería final  : 35.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15086,7 +15106,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : CENFER
   Distancia      : 1.325 km
-  Batería final  : 99.8 %
+  Batería final  : 78.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15116,7 +15136,7 @@
   Origen         : UIS Campus Central
   Destino        : UPB
   Distancia      : 4.066 km
-  Batería final  : 99.0 %
+  Batería final  : 34.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15194,7 +15214,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 5.695 km
-  Batería final  : 99.1 %
+  Batería final  : 77.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15265,7 +15285,7 @@
   Origen         : UIS Campus Central
   Destino        : UNAB
   Distancia      : 3.943 km
-  Batería final  : 99.0 %
+  Batería final  : 33.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15338,7 +15358,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : Sede Recreacional Catay
   Distancia      : 3.111 km
-  Batería final  : 99.2 %
+  Batería final  : 32.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15380,7 +15400,7 @@
   Origen         : UNAB
   Destino        : Sede Recreacional Catay
   Distancia      : 4.275 km
-  Batería final  : 99.3 %
+  Batería final  : 76.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15450,7 +15470,7 @@
   Origen         : UNAB
   Destino        : CENFER
   Distancia      : 3.288 km
-  Batería final  : 99.2 %
+  Batería final  : 31.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15500,7 +15520,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Central
   Distancia      : 2.673 km
-  Batería final  : 99.6 %
+  Batería final  : 76.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15559,7 +15579,7 @@
   Origen         : UTS
   Destino        : UNAB
   Distancia      : 2.875 km
-  Batería final  : 99.3 %
+  Batería final  : 31.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15612,7 +15632,7 @@
   Origen         : UPB
   Destino        : Sede Recreacional Catay
   Distancia      : 3.034 km
-  Batería final  : 99.5 %
+  Batería final  : 75.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15665,7 +15685,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UNAB
   Distancia      : 7.178 km
-  Batería final  : 98.2 %
+  Batería final  : 29.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15743,7 +15763,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UTS
   Distancia      : 0.448 km
-  Batería final  : 99.9 %
+  Batería final  : 29.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15762,7 +15782,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UIS Campus Florida
   Distancia      : 9.333 km
-  Batería final  : 98.5 %
+  Batería final  : 74.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15874,7 +15894,7 @@
   Origen         : UIS Campus Central
   Destino        : CENFER
   Distancia      : 1.557 km
-  Batería final  : 99.6 %
+  Batería final  : 28.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15918,7 +15938,7 @@
   Origen         : UPB
   Destino        : Sede Recreacional Catay
   Distancia      : 3.034 km
-  Batería final  : 99.5 %
+  Batería final  : 73.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15971,7 +15991,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Central
   Distancia      : 0.570 km
-  Batería final  : 99.9 %
+  Batería final  : 28.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -15991,7 +16011,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UPB
   Distancia      : 5.832 km
-  Batería final  : 98.6 %
+  Batería final  : 27.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16055,7 +16075,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Central
   Distancia      : 3.984 km
-  Batería final  : 99.3 %
+  Batería final  : 72.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16101,7 +16121,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 9.397 km
-  Batería final  : 98.4 %
+  Batería final  : 71.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16210,7 +16230,7 @@
   Origen         : UIS Campus Central
   Destino        : CENFER
   Distancia      : 1.557 km
-  Batería final  : 99.6 %
+  Batería final  : 26.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16254,7 +16274,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UTS
   Distancia      : 7.419 km
-  Batería final  : 98.8 %
+  Batería final  : 70.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16338,7 +16358,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UNAB
   Distancia      : 7.178 km
-  Batería final  : 98.2 %
+  Batería final  : 25.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16416,7 +16436,7 @@
   Origen         : UTS
   Destino        : UIS Campus Florida
   Distancia      : 1.913 km
-  Batería final  : 99.5 %
+  Batería final  : 24.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16457,7 +16477,7 @@
   Origen         : UPB
   Destino        : CENFER
   Distancia      : 3.040 km
-  Batería final  : 99.5 %
+  Batería final  : 69.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16517,7 +16537,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : PTAR Río Frío
   Distancia      : 12.338 km
-  Batería final  : 97.0 %
+  Batería final  : 21.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16634,7 +16654,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UPB
   Distancia      : 5.832 km
-  Batería final  : 99.0 %
+  Batería final  : 68.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16698,7 +16718,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 5.695 km
-  Batería final  : 98.6 %
+  Batería final  : 20.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16769,7 +16789,8 @@
   Origen         : UNAB
   Destino        : UPB
   Distancia      : 1.794 km
-  Batería final  : 99.6 %
+  Batería final  : 19.6 %
+  Electrolinera  : Centro Comercial Quinta Etapa  (desvío: 1.004 km adicionales)
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16799,6 +16820,15 @@
     24            4657995639  Avenida Carrera 32                  62.7m    1650.9m
     25  [REF]      839097185  Calle 62                           142.7m    1793.6m   <<< UPB >>>
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !!!  CAMBIO DE RUTA: EMERGENCIA POR BATERÍA BAJA  !!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Nodo de desvío   : 839103570
+  Batería al desvío: 19.6 %  (umbral: 10 % – 20 %)
+  Nueva ruta hacia : Centro Comercial Quinta Etapa
+  Distancia extra  : 1.004 km
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 ----------------------------------------------------------------------
   RECORRIDO #321
 ----------------------------------------------------------------------
@@ -16806,7 +16836,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : Sede Recreacional Catay
   Distancia      : 3.111 km
-  Batería final  : 99.5 %
+  Batería final  : 68.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16848,7 +16878,7 @@
   Origen         : UPB
   Destino        : PTAR Río Frío
   Distancia      : 7.070 km
-  Batería final  : 98.2 %
+  Batería final  : 78.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16926,7 +16956,7 @@
   Origen         : UTS
   Destino        : UPB
   Distancia      : 2.326 km
-  Batería final  : 99.6 %
+  Batería final  : 67.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -16976,7 +17006,7 @@
   Origen         : UTS
   Destino        : PTAR Río Frío
   Distancia      : 5.434 km
-  Batería final  : 98.7 %
+  Batería final  : 76.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17049,7 +17079,7 @@
   Origen         : UTS
   Destino        : Sede Recreacional Catay
   Distancia      : 4.646 km
-  Batería final  : 99.2 %
+  Batería final  : 66.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17109,7 +17139,7 @@
   Origen         : CENFER
   Destino        : UNAB
   Distancia      : 3.123 km
-  Batería final  : 99.2 %
+  Batería final  : 76.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17164,7 +17194,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.850 km
-  Batería final  : 99.5 %
+  Batería final  : 66.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17224,7 +17254,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 7.352 km
-  Batería final  : 98.8 %
+  Batería final  : 65.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17302,7 +17332,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Central
   Distancia      : 2.673 km
-  Batería final  : 99.3 %
+  Batería final  : 75.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17361,7 +17391,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Florida
   Distancia      : 1.031 km
-  Batería final  : 99.8 %
+  Batería final  : 65.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17391,7 +17421,7 @@
   Origen         : UIS Campus Central
   Destino        : PTAR Río Frío
   Distancia      : 3.894 km
-  Batería final  : 99.0 %
+  Batería final  : 74.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17436,7 +17466,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UTS
   Distancia      : 0.448 km
-  Batería final  : 99.9 %
+  Batería final  : 64.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17455,7 +17485,7 @@
   Origen         : UPB
   Destino        : UNAB
   Distancia      : 1.925 km
-  Batería final  : 99.5 %
+  Batería final  : 74.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17492,7 +17522,7 @@
   Origen         : UIS Campus Florida
   Destino        : Sede Recreacional Catay
   Distancia      : 6.421 km
-  Batería final  : 98.9 %
+  Batería final  : 63.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17580,7 +17610,7 @@
   Origen         : UIS Campus Florida
   Destino        : UPB
   Distancia      : 4.082 km
-  Batería final  : 99.0 %
+  Batería final  : 73.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17658,7 +17688,7 @@
   Origen         : UNAB
   Destino        : UPB
   Distancia      : 1.794 km
-  Batería final  : 99.7 %
+  Batería final  : 63.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17695,7 +17725,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : PTAR Río Frío
   Distancia      : 5.555 km
-  Batería final  : 98.6 %
+  Batería final  : 71.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17768,7 +17798,7 @@
   Origen         : UIS Campus Central
   Destino        : UNAB
   Distancia      : 3.943 km
-  Batería final  : 99.3 %
+  Batería final  : 62.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17841,7 +17871,7 @@
   Origen         : UTS
   Destino        : Sede Recreacional Catay
   Distancia      : 4.646 km
-  Batería final  : 98.8 %
+  Batería final  : 70.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17901,7 +17931,7 @@
   Origen         : UIS Campus Central
   Destino        : CENFER
   Distancia      : 1.557 km
-  Batería final  : 99.7 %
+  Batería final  : 62.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -17945,7 +17975,7 @@
   Origen         : PTAR Río Frío
   Destino        : UNAB
   Distancia      : 6.118 km
-  Batería final  : 98.5 %
+  Batería final  : 69.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18018,7 +18048,7 @@
   Origen         : UIS Campus Central
   Destino        : UPB
   Distancia      : 4.066 km
-  Batería final  : 99.3 %
+  Batería final  : 62.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18096,7 +18126,7 @@
   Origen         : UNAB
   Destino        : UIS Campus Florida
   Distancia      : 3.845 km
-  Batería final  : 99.0 %
+  Batería final  : 68.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18159,7 +18189,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : Sede Recreacional Catay
   Distancia      : 3.111 km
-  Batería final  : 99.5 %
+  Batería final  : 61.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18201,7 +18231,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : PTAR Río Frío
   Distancia      : 12.338 km
-  Batería final  : 97.0 %
+  Batería final  : 65.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18318,7 +18348,7 @@
   Origen         : UTS
   Destino        : UPB
   Distancia      : 2.326 km
-  Batería final  : 99.6 %
+  Batería final  : 61.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18368,7 +18398,7 @@
   Origen         : UIS Campus Florida
   Destino        : UNAB
   Distancia      : 4.110 km
-  Batería final  : 99.3 %
+  Batería final  : 60.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18442,7 +18472,7 @@
   Origen         : CENFER
   Destino        : UTS
   Distancia      : 1.063 km
-  Batería final  : 99.8 %
+  Batería final  : 60.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18468,7 +18498,7 @@
   Origen         : UNAB
   Destino        : UTS
   Distancia      : 2.488 km
-  Batería final  : 99.4 %
+  Batería final  : 64.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18510,7 +18540,7 @@
   Origen         : UIS Campus Florida
   Destino        : UNAB
   Distancia      : 4.110 km
-  Batería final  : 99.3 %
+  Batería final  : 59.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18584,7 +18614,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.450 km
-  Batería final  : 99.4 %
+  Batería final  : 63.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18630,7 +18660,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Central
   Distancia      : 3.984 km
-  Batería final  : 99.3 %
+  Batería final  : 58.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18676,7 +18706,7 @@
   Origen         : UTS
   Destino        : Sede Recreacional Catay
   Distancia      : 4.646 km
-  Batería final  : 98.8 %
+  Batería final  : 62.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18736,7 +18766,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Florida
   Distancia      : 3.704 km
-  Batería final  : 99.4 %
+  Batería final  : 58.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18779,7 +18809,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Central
   Distancia      : 3.984 km
-  Batería final  : 99.0 %
+  Batería final  : 61.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18825,7 +18855,7 @@
   Origen         : UNAB
   Destino        : UPB
   Distancia      : 1.794 km
-  Batería final  : 99.7 %
+  Batería final  : 58.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18862,7 +18892,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UIS Campus Florida
   Distancia      : 9.333 km
-  Batería final  : 97.7 %
+  Batería final  : 59.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -18974,7 +19004,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UPB
   Distancia      : 2.055 km
-  Batería final  : 99.7 %
+  Batería final  : 57.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19021,7 +19051,7 @@
   Origen         : UPB
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.065 km
-  Batería final  : 99.5 %
+  Batería final  : 58.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19071,7 +19101,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UPB
   Distancia      : 2.055 km
-  Batería final  : 99.7 %
+  Batería final  : 57.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19118,7 +19148,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UNAB
   Distancia      : 7.178 km
-  Batería final  : 98.2 %
+  Batería final  : 57.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19196,7 +19226,7 @@
   Origen         : UTS
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 0.658 km
-  Batería final  : 99.9 %
+  Batería final  : 57.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19217,7 +19247,7 @@
   Origen         : PTAR Río Frío
   Destino        : CENFER
   Distancia      : 4.558 km
-  Batería final  : 98.9 %
+  Batería final  : 55.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19276,7 +19306,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 1.644 km
-  Batería final  : 99.7 %
+  Batería final  : 56.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19307,7 +19337,7 @@
   Origen         : UIS Campus Florida
   Destino        : CENFER
   Distancia      : 1.157 km
-  Batería final  : 99.7 %
+  Batería final  : 55.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19337,7 +19367,7 @@
   Origen         : UTS
   Destino        : Sede Recreacional Catay
   Distancia      : 4.646 km
-  Batería final  : 99.2 %
+  Batería final  : 56.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19397,7 +19427,7 @@
   Origen         : UNAB
   Destino        : UPB
   Distancia      : 1.794 km
-  Batería final  : 99.7 %
+  Batería final  : 55.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19434,7 +19464,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Florida
   Distancia      : 2.331 km
-  Batería final  : 99.4 %
+  Batería final  : 55.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19483,7 +19513,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UPB
   Distancia      : 2.055 km
-  Batería final  : 99.7 %
+  Batería final  : 55.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19530,7 +19560,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : UIS Campus Florida
   Distancia      : 9.333 km
-  Batería final  : 97.7 %
+  Batería final  : 52.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19642,7 +19672,7 @@
   Origen         : UTS
   Destino        : UIS Campus Central
   Distancia      : 2.250 km
-  Batería final  : 99.6 %
+  Batería final  : 55.1 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19693,7 +19723,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : PTAR Río Frío
   Distancia      : 12.338 km
-  Batería final  : 97.0 %
+  Batería final  : 49.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19810,7 +19840,7 @@
   Origen         : UIS Campus Florida
   Destino        : UPB
   Distancia      : 4.082 km
-  Batería final  : 99.3 %
+  Batería final  : 54.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19888,7 +19918,7 @@
   Origen         : UPB
   Destino        : UIS Campus Central
   Distancia      : 4.013 km
-  Batería final  : 99.0 %
+  Batería final  : 48.7 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -19954,7 +19984,7 @@
   Origen         : UIS Campus Central
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 9.381 km
-  Batería final  : 98.4 %
+  Batería final  : 52.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20063,7 +20093,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Central
   Distancia      : 0.570 km
-  Batería final  : 99.9 %
+  Batería final  : 48.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20083,7 +20113,7 @@
   Origen         : UPB
   Destino        : UIS Parque Tecnológico Guatiguará
   Distancia      : 5.931 km
-  Batería final  : 99.0 %
+  Batería final  : 51.9 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20156,7 +20186,7 @@
   Origen         : UTS
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 0.658 km
-  Batería final  : 99.8 %
+  Batería final  : 48.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20177,7 +20207,7 @@
   Origen         : UIS Campus Florida
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 2.450 km
-  Batería final  : 99.6 %
+  Batería final  : 51.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20223,7 +20253,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 1.644 km
-  Batería final  : 99.6 %
+  Batería final  : 48.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20254,7 +20284,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Central
   Distancia      : 1.373 km
-  Batería final  : 99.8 %
+  Batería final  : 51.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20294,7 +20324,7 @@
   Origen         : UNAB
   Destino        : UTS
   Distancia      : 2.488 km
-  Batería final  : 99.4 %
+  Batería final  : 47.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20336,7 +20366,7 @@
   Origen         : UIS Campus Florida
   Destino        : UTS
   Distancia      : 2.157 km
-  Batería final  : 99.5 %
+  Batería final  : 46.8 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20381,7 +20411,7 @@
   Origen         : PTAR Río Frío
   Destino        : UIS Campus Florida
   Distancia      : 3.704 km
-  Batería final  : 99.4 %
+  Batería final  : 50.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20424,7 +20454,7 @@
   Origen         : CENFER
   Destino        : UIS Campus Bucarica (Centro)
   Distancia      : 1.644 km
-  Batería final  : 99.6 %
+  Batería final  : 46.4 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20455,7 +20485,7 @@
   Origen         : UIS Parque Tecnológico Guatiguará
   Destino        : PTAR Río Frío
   Distancia      : 12.338 km
-  Batería final  : 98.0 %
+  Batería final  : 48.6 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20572,7 +20602,7 @@
   Origen         : UIS Campus Central
   Destino        : CENFER
   Distancia      : 1.557 km
-  Batería final  : 99.6 %
+  Batería final  : 46.0 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20616,7 +20646,7 @@
   Origen         : UPB
   Destino        : PTAR Río Frío
   Distancia      : 7.070 km
-  Batería final  : 98.2 %
+  Batería final  : 44.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20694,7 +20724,7 @@
   Origen         : UIS Campus Bucarica (Centro)
   Destino        : UIS Campus Central
   Distancia      : 2.673 km
-  Batería final  : 99.6 %
+  Batería final  : 48.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20753,7 +20783,7 @@
   Origen         : UPB
   Destino        : CENFER
   Distancia      : 3.040 km
-  Batería final  : 99.2 %
+  Batería final  : 43.5 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20813,7 +20843,7 @@
   Origen         : CENFER
   Destino        : Sede Recreacional Catay
   Distancia      : 5.331 km
-  Batería final  : 99.1 %
+  Batería final  : 47.3 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20882,7 +20912,7 @@
   Origen         : CENFER
   Destino        : Sede Recreacional Catay
   Distancia      : 5.331 km
-  Batería final  : 98.7 %
+  Batería final  : 42.2 %
 
   Paso      Nodo OSM  Calle                             Parcial      Acum.
   ────────────────────────────────────────────────────────────────────
@@ -20950,12 +20980,14 @@
 
   Uso de electrolineras (ordenado por frecuencia):
   ──────────────────────────────────────────────────
-  (ninguna recarga registrada)
+  Éxito de La Rosita                          1 recargas  █
+  Centro Comercial Cacique                    1 recargas  █
+  Centro Comercial Quinta Etapa               1 recargas  █
 
   Por vehículo:
   ──────────────────────────────────────────────────
-  Tesla Model 3 Long Range            | Recargas:   0 | km totales:    690.1
-  BYD Seagull (Std Range)             | Recargas:   0 | km totales:    723.1
+  Tesla Model 3 Long Range            | Recargas:   1 | km totales:    690.1
+  BYD Seagull (Std Range)             | Recargas:   2 | km totales:    723.1
 
 ======================================================================
   FIN DEL REPORTE
