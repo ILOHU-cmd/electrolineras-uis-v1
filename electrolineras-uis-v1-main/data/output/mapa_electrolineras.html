@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_33149f874a81596b86a174cbb20c1a11 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; bottom: 30px; left: 30px; z-index: 1000;
+                background: white; padding: 10px; border-radius: 8px;
+                border: 2px solid #ccc; font-size: 13px;">
+      <b>Leyenda</b><br>
+      <span style="color:red;">●</span> Electrolinera<br>
+      <span style="color:#3c6dc5;">●</span> Punto de referencia<br>
+      <span style="color:green;">─</span> Ruta óptima
+    </div>
+    
+    
+            <div class="folium-map" id="map_33149f874a81596b86a174cbb20c1a11" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_33149f874a81596b86a174cbb20c1a11 = L.map(
+                "map_33149f874a81596b86a174cbb20c1a11",
+                {
+                    center: [7.11, -73.1198],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3c02517b46c7801e78df8b8cd56c3290 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3c02517b46c7801e78df8b8cd56c3290.addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var marker_bb8ef5fbbac7393e8bb77224b4bc5e1a = L.marker(
+                [7.1218, -73.1198],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_d2ab805d6755f841656b6f6b048cbf1e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fa8edb0806290251656d15d08903e8da = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b79f584efa7949b425e9b921dbad729c = $(`<div id="html_b79f584efa7949b425e9b921dbad729c" style="width: 100.0%; height: 100.0%;"><b>⚡ Homecenter Bucaramanga</b><br>ID: E1<br>Potencia: 50 kW</div>`)[0];
+                popup_fa8edb0806290251656d15d08903e8da.setContent(html_b79f584efa7949b425e9b921dbad729c);
+            
+        
+
+        marker_bb8ef5fbbac7393e8bb77224b4bc5e1a.bindPopup(popup_fa8edb0806290251656d15d08903e8da)
+        ;
+
+        
+    
+    
+            marker_bb8ef5fbbac7393e8bb77224b4bc5e1a.bindTooltip(
+                `<div>
+                     Homecenter Bucaramanga
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bb8ef5fbbac7393e8bb77224b4bc5e1a.setIcon(icon_d2ab805d6755f841656b6f6b048cbf1e);
+            
+    
+            var marker_a38b2465681f55a59be09c2261704923 = L.marker(
+                [7.105, -73.11],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_0e7a74c1b39c154c3123e7e2c4a339da = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7df993cb137e74024f385ed8b9a7be4b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d84338c8118414488d9d9245909bd8ab = $(`<div id="html_d84338c8118414488d9d9245909bd8ab" style="width: 100.0%; height: 100.0%;"><b>⚡ Centro Comercial Quinta Etapa</b><br>ID: E2<br>Potencia: 22 kW</div>`)[0];
+                popup_7df993cb137e74024f385ed8b9a7be4b.setContent(html_d84338c8118414488d9d9245909bd8ab);
+            
+        
+
+        marker_a38b2465681f55a59be09c2261704923.bindPopup(popup_7df993cb137e74024f385ed8b9a7be4b)
+        ;
+
+        
+    
+    
+            marker_a38b2465681f55a59be09c2261704923.bindTooltip(
+                `<div>
+                     Centro Comercial Quinta Etapa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a38b2465681f55a59be09c2261704923.setIcon(icon_0e7a74c1b39c154c3123e7e2c4a339da);
+            
+    
+            var marker_63967fcfbbdd49da20ddd68ea711d771 = L.marker(
+                [7.1157, -73.1068],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_68e187cb6f65d27fa89cf79bd97907ca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_80155b7b0512711fdde7113f1a03fc81 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8e2ba5c368d0f75255329120d8909fb2 = $(`<div id="html_8e2ba5c368d0f75255329120d8909fb2" style="width: 100.0%; height: 100.0%;"><b>⚡ Centro Comercial Cacique</b><br>ID: E3<br>Potencia: 50 kW</div>`)[0];
+                popup_80155b7b0512711fdde7113f1a03fc81.setContent(html_8e2ba5c368d0f75255329120d8909fb2);
+            
+        
+
+        marker_63967fcfbbdd49da20ddd68ea711d771.bindPopup(popup_80155b7b0512711fdde7113f1a03fc81)
+        ;
+
+        
+    
+    
+            marker_63967fcfbbdd49da20ddd68ea711d771.bindTooltip(
+                `<div>
+                     Centro Comercial Cacique
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_63967fcfbbdd49da20ddd68ea711d771.setIcon(icon_68e187cb6f65d27fa89cf79bd97907ca);
+            
+    
+            var marker_510a258b59eded3ccfa7104c04c17d83 = L.marker(
+                [7.0948, -73.1098],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_b17527f0bc1f0f40626d48fd516a7d78 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_134e54725c44a3fda529d4b9c54199ae = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_de1c74f20913ed6bdc03f51f248b0214 = $(`<div id="html_de1c74f20913ed6bdc03f51f248b0214" style="width: 100.0%; height: 100.0%;"><b>⚡ Centro Comercial Canaveral</b><br>ID: E4<br>Potencia: 22 kW</div>`)[0];
+                popup_134e54725c44a3fda529d4b9c54199ae.setContent(html_de1c74f20913ed6bdc03f51f248b0214);
+            
+        
+
+        marker_510a258b59eded3ccfa7104c04c17d83.bindPopup(popup_134e54725c44a3fda529d4b9c54199ae)
+        ;
+
+        
+    
+    
+            marker_510a258b59eded3ccfa7104c04c17d83.bindTooltip(
+                `<div>
+                     Centro Comercial Canaveral
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_510a258b59eded3ccfa7104c04c17d83.setIcon(icon_b17527f0bc1f0f40626d48fd516a7d78);
+            
+    
+            var marker_064bcccd1bc3d0c7b74f81f1f799a040 = L.marker(
+                [6.99, -73.05],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_fff53cc1c2d0d6f38aa928afdb1d1532 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9e1226104b04fa1acdeee45734e489cc = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_71003a19461004b690c021808caeff9f = $(`<div id="html_71003a19461004b690c021808caeff9f" style="width: 100.0%; height: 100.0%;"><b>⚡ Estación Terpel Piedecuesta</b><br>ID: E5<br>Potencia: 50 kW</div>`)[0];
+                popup_9e1226104b04fa1acdeee45734e489cc.setContent(html_71003a19461004b690c021808caeff9f);
+            
+        
+
+        marker_064bcccd1bc3d0c7b74f81f1f799a040.bindPopup(popup_9e1226104b04fa1acdeee45734e489cc)
+        ;
+
+        
+    
+    
+            marker_064bcccd1bc3d0c7b74f81f1f799a040.bindTooltip(
+                `<div>
+                     Estación Terpel Piedecuesta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_064bcccd1bc3d0c7b74f81f1f799a040.setIcon(icon_fff53cc1c2d0d6f38aa928afdb1d1532);
+            
+    
+            var marker_1ec9187532df68499ec9d2090a9e8e69 = L.marker(
+                [7.0759, -73.1238],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_b3a686186457f224f55ee87a2fee2702 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5a9a703c82ee92054859da9eec96b8dc = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d16c7bfe0d6c01045165ed57b3dddbd2 = $(`<div id="html_d16c7bfe0d6c01045165ed57b3dddbd2" style="width: 100.0%; height: 100.0%;"><b>⚡ Éxito de La Rosita</b><br>ID: E6<br>Potencia: 22 kW</div>`)[0];
+                popup_5a9a703c82ee92054859da9eec96b8dc.setContent(html_d16c7bfe0d6c01045165ed57b3dddbd2);
+            
+        
+
+        marker_1ec9187532df68499ec9d2090a9e8e69.bindPopup(popup_5a9a703c82ee92054859da9eec96b8dc)
+        ;
+
+        
+    
+    
+            marker_1ec9187532df68499ec9d2090a9e8e69.bindTooltip(
+                `<div>
+                     Éxito de La Rosita
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1ec9187532df68499ec9d2090a9e8e69.setIcon(icon_b3a686186457f224f55ee87a2fee2702);
+            
+    
+            var marker_072aa9ed02444bdd369e31c0c6339213 = L.marker(
+                [7.138, -73.1248],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_47036ba75b0978055d81dcdc06dede64 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0c7c9965264d5bcf35aaf790e41219e9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d868f47f162fce77fa9d01cd89769fa8 = $(`<div id="html_d868f47f162fce77fa9d01cd89769fa8" style="width: 100.0%; height: 100.0%;"><b>⚡ Centro Comercial La Florida</b><br>ID: E7<br>Potencia: 22 kW</div>`)[0];
+                popup_0c7c9965264d5bcf35aaf790e41219e9.setContent(html_d868f47f162fce77fa9d01cd89769fa8);
+            
+        
+
+        marker_072aa9ed02444bdd369e31c0c6339213.bindPopup(popup_0c7c9965264d5bcf35aaf790e41219e9)
+        ;
+
+        
+    
+    
+            marker_072aa9ed02444bdd369e31c0c6339213.bindTooltip(
+                `<div>
+                     Centro Comercial La Florida
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_072aa9ed02444bdd369e31c0c6339213.setIcon(icon_47036ba75b0978055d81dcdc06dede64);
+            
+    
+            var marker_a70abb61a3d878eb7dbd7c7e31cf2e4d = L.marker(
+                [7.072, -73.165],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_0fe0925f2a9caa180bf9b1157885984c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "bolt",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_455d6d5fe181f6286a8a761ea907ad6c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9fc33f066e91c9dd5bf9d42c15e75485 = $(`<div id="html_9fc33f066e91c9dd5bf9d42c15e75485" style="width: 100.0%; height: 100.0%;"><b>⚡ Promotores del Oriente (vía a Girón)</b><br>ID: E8<br>Potencia: 50 kW</div>`)[0];
+                popup_455d6d5fe181f6286a8a761ea907ad6c.setContent(html_9fc33f066e91c9dd5bf9d42c15e75485);
+            
+        
+
+        marker_a70abb61a3d878eb7dbd7c7e31cf2e4d.bindPopup(popup_455d6d5fe181f6286a8a761ea907ad6c)
+        ;
+
+        
+    
+    
+            marker_a70abb61a3d878eb7dbd7c7e31cf2e4d.bindTooltip(
+                `<div>
+                     Promotores del Oriente (vía a Girón)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a70abb61a3d878eb7dbd7c7e31cf2e4d.setIcon(icon_0fe0925f2a9caa180bf9b1157885984c);
+            
+    
+            var marker_99b7d1c67f1ac1631d7719b5931baa2a = L.marker(
+                [7.1398, -73.1227],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_0c4e49c08574bcb55967baa079f45fca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a3aa79062ff914b284ebdef51fa1610e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d0300ca2e317466d442d910ad77a6928 = $(`<div id="html_d0300ca2e317466d442d910ad77a6928" style="width: 100.0%; height: 100.0%;"><b>📍 UIS Campus Central</b><br>ID: P1</div>`)[0];
+                popup_a3aa79062ff914b284ebdef51fa1610e.setContent(html_d0300ca2e317466d442d910ad77a6928);
+            
+        
+
+        marker_99b7d1c67f1ac1631d7719b5931baa2a.bindPopup(popup_a3aa79062ff914b284ebdef51fa1610e)
+        ;
+
+        
+    
+    
+            marker_99b7d1c67f1ac1631d7719b5931baa2a.bindTooltip(
+                `<div>
+                     UIS Campus Central
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_99b7d1c67f1ac1631d7719b5931baa2a.setIcon(icon_0c4e49c08574bcb55967baa079f45fca);
+            
+    
+            var marker_569bc093e3c37866616fd42324b9905a = L.marker(
+                [7.1372, -73.1261],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_5d86aeddf5b4c5b8e21f19f4b6b57c90 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3c3a3f59fcabfac6ec5c81d5bdae7262 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e8fca548245b1368e420f5b4e1191562 = $(`<div id="html_e8fca548245b1368e420f5b4e1191562" style="width: 100.0%; height: 100.0%;"><b>📍 UIS Campus Florida</b><br>ID: P2</div>`)[0];
+                popup_3c3a3f59fcabfac6ec5c81d5bdae7262.setContent(html_e8fca548245b1368e420f5b4e1191562);
+            
+        
+
+        marker_569bc093e3c37866616fd42324b9905a.bindPopup(popup_3c3a3f59fcabfac6ec5c81d5bdae7262)
+        ;
+
+        
+    
+    
+            marker_569bc093e3c37866616fd42324b9905a.bindTooltip(
+                `<div>
+                     UIS Campus Florida
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_569bc093e3c37866616fd42324b9905a.setIcon(icon_5d86aeddf5b4c5b8e21f19f4b6b57c90);
+            
+    
+            var marker_3edf54e25f9664d3dbf5192e591bd381 = L.marker(
+                [6.9935, -73.054],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_5ee0d707b88f24cf738e6e1c69f0f69c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5c259a413560621235ffbde5e089cc4b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_15253ec67565e522ac5f6c02845530f2 = $(`<div id="html_15253ec67565e522ac5f6c02845530f2" style="width: 100.0%; height: 100.0%;"><b>📍 UIS Parque Tecnológico Guatiguará</b><br>ID: P3</div>`)[0];
+                popup_5c259a413560621235ffbde5e089cc4b.setContent(html_15253ec67565e522ac5f6c02845530f2);
+            
+        
+
+        marker_3edf54e25f9664d3dbf5192e591bd381.bindPopup(popup_5c259a413560621235ffbde5e089cc4b)
+        ;
+
+        
+    
+    
+            marker_3edf54e25f9664d3dbf5192e591bd381.bindTooltip(
+                `<div>
+                     UIS Parque Tecnológico Guatiguará
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3edf54e25f9664d3dbf5192e591bd381.setIcon(icon_5ee0d707b88f24cf738e6e1c69f0f69c);
+            
+    
+            var marker_8216f339304c084a6de0e54a0a67968b = L.marker(
+                [7.1186, -73.1228],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_2b99b8baae3d0f960c0a3b9b24e551eb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4453ae9c8bee922ad30498c52b253ee4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4e4bf7324ce7abf9c7e57564c4152cfa = $(`<div id="html_4e4bf7324ce7abf9c7e57564c4152cfa" style="width: 100.0%; height: 100.0%;"><b>📍 UIS Campus Bucarica (Centro)</b><br>ID: P4</div>`)[0];
+                popup_4453ae9c8bee922ad30498c52b253ee4.setContent(html_4e4bf7324ce7abf9c7e57564c4152cfa);
+            
+        
+
+        marker_8216f339304c084a6de0e54a0a67968b.bindPopup(popup_4453ae9c8bee922ad30498c52b253ee4)
+        ;
+
+        
+    
+    
+            marker_8216f339304c084a6de0e54a0a67968b.bindTooltip(
+                `<div>
+                     UIS Campus Bucarica (Centro)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8216f339304c084a6de0e54a0a67968b.setIcon(icon_2b99b8baae3d0f960c0a3b9b24e551eb);
+            
+    
+            var marker_e735787f94b35339a0c7336d9959f026 = L.marker(
+                [7.129, -73.125],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_78208f2d47e938b743b5c79b9ba5b4e1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7d2f68609dd79e4042c308dc773a61d0 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3b942c2e3b6f2158f32584b56d71e7be = $(`<div id="html_3b942c2e3b6f2158f32584b56d71e7be" style="width: 100.0%; height: 100.0%;"><b>📍 CENFER</b><br>ID: P5</div>`)[0];
+                popup_7d2f68609dd79e4042c308dc773a61d0.setContent(html_3b942c2e3b6f2158f32584b56d71e7be);
+            
+        
+
+        marker_e735787f94b35339a0c7336d9959f026.bindPopup(popup_7d2f68609dd79e4042c308dc773a61d0)
+        ;
+
+        
+    
+    
+            marker_e735787f94b35339a0c7336d9959f026.bindTooltip(
+                `<div>
+                     CENFER
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e735787f94b35339a0c7336d9959f026.setIcon(icon_78208f2d47e938b743b5c79b9ba5b4e1);
+            
+    
+            var marker_703619897d1c79969bb1270bb5214bf7 = L.marker(
+                [7.1189, -73.106],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_0a9523f354a37f015f150b02063b663e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_336f6b72fe6d9cb1297be29d2a213f2d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e243297d02e468825a200fbcd0b14879 = $(`<div id="html_e243297d02e468825a200fbcd0b14879" style="width: 100.0%; height: 100.0%;"><b>📍 UNAB</b><br>ID: P6</div>`)[0];
+                popup_336f6b72fe6d9cb1297be29d2a213f2d.setContent(html_e243297d02e468825a200fbcd0b14879);
+            
+        
+
+        marker_703619897d1c79969bb1270bb5214bf7.bindPopup(popup_336f6b72fe6d9cb1297be29d2a213f2d)
+        ;
+
+        
+    
+    
+            marker_703619897d1c79969bb1270bb5214bf7.bindTooltip(
+                `<div>
+                     UNAB
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_703619897d1c79969bb1270bb5214bf7.setIcon(icon_0a9523f354a37f015f150b02063b663e);
+            
+    
+            var marker_a1a72bd5cde61e726ff26a0dc0ea5682 = L.marker(
+                [7.1208, -73.1219],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_3b765fe4de4d2fba0dccebc9f8738c4b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_66cedd9f89e89d5684dbe6ec2aa6240b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_fa2ae82333fc6c73336396cfa32527de = $(`<div id="html_fa2ae82333fc6c73336396cfa32527de" style="width: 100.0%; height: 100.0%;"><b>📍 UTS</b><br>ID: P7</div>`)[0];
+                popup_66cedd9f89e89d5684dbe6ec2aa6240b.setContent(html_fa2ae82333fc6c73336396cfa32527de);
+            
+        
+
+        marker_a1a72bd5cde61e726ff26a0dc0ea5682.bindPopup(popup_66cedd9f89e89d5684dbe6ec2aa6240b)
+        ;
+
+        
+    
+    
+            marker_a1a72bd5cde61e726ff26a0dc0ea5682.bindTooltip(
+                `<div>
+                     UTS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a1a72bd5cde61e726ff26a0dc0ea5682.setIcon(icon_3b765fe4de4d2fba0dccebc9f8738c4b);
+            
+    
+            var marker_f2406ca66930083785ba62471a5e8f48 = L.marker(
+                [7.1075, -73.1119],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_32bc1c29f7c4e8c5544edfc08c6eea52 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_227d43a0f320499e2e37506ad7482db2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_636f7f4b6b179165fe280a96830ac310 = $(`<div id="html_636f7f4b6b179165fe280a96830ac310" style="width: 100.0%; height: 100.0%;"><b>📍 UPB</b><br>ID: P8</div>`)[0];
+                popup_227d43a0f320499e2e37506ad7482db2.setContent(html_636f7f4b6b179165fe280a96830ac310);
+            
+        
+
+        marker_f2406ca66930083785ba62471a5e8f48.bindPopup(popup_227d43a0f320499e2e37506ad7482db2)
+        ;
+
+        
+    
+    
+            marker_f2406ca66930083785ba62471a5e8f48.bindTooltip(
+                `<div>
+                     UPB
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f2406ca66930083785ba62471a5e8f48.setIcon(icon_32bc1c29f7c4e8c5544edfc08c6eea52);
+            
+    
+            var marker_73bc5daaee4c3f3888c0c57f5a0e7d47 = L.marker(
+                [7.15, -73.128],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_6f4ed81ed48f8cfb4e679c167955cc14 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b6f3d3adfef100dfa938551ff8c4e6e8 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_36edb3d425ee94dbf2fc968a4e0132ef = $(`<div id="html_36edb3d425ee94dbf2fc968a4e0132ef" style="width: 100.0%; height: 100.0%;"><b>📍 PTAR Río Frío</b><br>ID: P9</div>`)[0];
+                popup_b6f3d3adfef100dfa938551ff8c4e6e8.setContent(html_36edb3d425ee94dbf2fc968a4e0132ef);
+            
+        
+
+        marker_73bc5daaee4c3f3888c0c57f5a0e7d47.bindPopup(popup_b6f3d3adfef100dfa938551ff8c4e6e8)
+        ;
+
+        
+    
+    
+            marker_73bc5daaee4c3f3888c0c57f5a0e7d47.bindTooltip(
+                `<div>
+                     PTAR Río Frío
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_73bc5daaee4c3f3888c0c57f5a0e7d47.setIcon(icon_6f4ed81ed48f8cfb4e679c167955cc14);
+            
+    
+            var marker_259372f07c41c56dff04af973f0d1c5f = L.marker(
+                [7.085, -73.105],
+                {
+}
+            ).addTo(map_33149f874a81596b86a174cbb20c1a11);
+        
+    
+            var icon_cf12fafa727efca7fdb95a4b807ec0ac = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "university",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b2927f4395ccdc5fd3c55d288abf0117 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_bd163c4c73305d57d0066a5c92e2ece9 = $(`<div id="html_bd163c4c73305d57d0066a5c92e2ece9" style="width: 100.0%; height: 100.0%;"><b>📍 Sede Recreacional Catay</b><br>ID: P10</div>`)[0];
+                popup_b2927f4395ccdc5fd3c55d288abf0117.setContent(html_bd163c4c73305d57d0066a5c92e2ece9);
+            
+        
+
+        marker_259372f07c41c56dff04af973f0d1c5f.bindPopup(popup_b2927f4395ccdc5fd3c55d288abf0117)
+        ;
+
+        
+    
+    
+            marker_259372f07c41c56dff04af973f0d1c5f.bindTooltip(
+                `<div>
+                     Sede Recreacional Catay
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_259372f07c41c56dff04af973f0d1c5f.setIcon(icon_cf12fafa727efca7fdb95a4b807ec0ac);
+            
+</script>
+</html>

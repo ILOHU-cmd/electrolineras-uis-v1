@@ -1,0 +1,26 @@
+[
+    {
+        "codigo": "S1",
+        "semilla": 109716,
+        "fecha_guardado": "2026-04-17 00:38:12",
+        "cantidad_recorridos": 500
+    },
+    {
+        "codigo": "S2",
+        "semilla": 670530,
+        "fecha_guardado": "2026-04-17 00:55:38",
+        "cantidad_recorridos": 400
+    },
+    {
+        "codigo": "S3",
+        "semilla": 763992,
+        "fecha_guardado": "2026-04-17 01:18:47",
+        "cantidad_recorridos": 500
+    },
+    {
+        "codigo": "S4",
+        "semilla": 75738,
+        "fecha_guardado": "2026-04-17 01:24:33",
+        "cantidad_recorridos": 500
+    }
+]

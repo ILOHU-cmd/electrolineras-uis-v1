@@ -1,0 +1,50 @@
+{
+    "total_recorridos": 3,
+    "total_recargas": 0,
+    "uso_electrolineras": {},
+    "por_vehiculo": {
+        "Tesla Model 3 Long Range": {
+            "recargas": 0,
+            "km_total": 5.554951189921017
+        },
+        "BYD Seagull (Std Range)": {
+            "recargas": 0,
+            "km_total": 17.081522696403557
+        }
+    },
+    "recorridos": [
+        {
+            "recorrido_num": 1,
+            "vehiculo": "Tesla Model 3 Long Range",
+            "origen_osm": 287184202,
+            "destino_osm": 839087681,
+            "origen_nombre": "UIS Campus Bucarica (Centro)",
+            "destino_nombre": "PTAR Río Frío",
+            "distancia_km": 5.555,
+            "bateria_final_pct": 99.08,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 2,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 948655341,
+            "destino_osm": 845132340,
+            "origen_nombre": "UTS",
+            "destino_nombre": "UIS Parque Tecnológico Guatiguará",
+            "distancia_km": 7.622,
+            "bateria_final_pct": 98.11,
+            "recarga_activada": false
+        },
+        {
+            "recorrido_num": 4,
+            "vehiculo": "BYD Seagull (Std Range)",
+            "origen_osm": 839087681,
+            "destino_osm": 5976124449,
+            "origen_nombre": "PTAR Río Frío",
+            "destino_nombre": "Sede Recreacional Catay",
+            "distancia_km": 9.459,
+            "bateria_final_pct": 97.66,
+            "recarga_activada": false
+        }
+    ]
+}

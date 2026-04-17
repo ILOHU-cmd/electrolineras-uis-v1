@@ -1,0 +1,20 @@
+{
+    "Regresion Logistica": {
+        "accuracy": 0.4118,
+        "f1_weighted": 0.3457,
+        "tiempo_entrenamiento_ms": 5.96,
+        "tiempo_inferencia_ms": 0.3
+    },
+    "Random Forest": {
+        "accuracy": 0.5882,
+        "f1_weighted": 0.5922,
+        "tiempo_entrenamiento_ms": 107.76,
+        "tiempo_inferencia_ms": 3.07
+    },
+    "XGBoost": {
+        "accuracy": 0.8824,
+        "f1_weighted": 0.8922,
+        "tiempo_entrenamiento_ms": 46.73,
+        "tiempo_inferencia_ms": 1.15
+    }
+}
