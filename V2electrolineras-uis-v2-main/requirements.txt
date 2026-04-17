@@ -1,0 +1,28 @@
+# ─────────────────────────────────────────────────────────────
+# PROYECTO ELECTROLINERAS BGA - Dependencias
+# UIS · Semestre 2026-1
+# ─────────────────────────────────────────────────────────────
+# Instalación: pip install -r requirements.txt
+
+# Grafo y red vial
+osmnx>=1.9.1
+networkx>=3.3
+
+# Ciencia de datos
+numpy>=1.26.0
+pandas>=2.2.0
+
+# Machine Learning
+scikit-learn>=1.4.0
+xgboost>=2.0.0
+joblib>=1.3.0
+
+# Visualización
+matplotlib>=3.8.0
+folium>=0.16.0
+
+# Archivos Excel
+openpyxl>=3.1.0
+
+# Utilitario (ya incluido en Python stdlib)
+# csv, json, os, re, time, datetime, random, heapq
