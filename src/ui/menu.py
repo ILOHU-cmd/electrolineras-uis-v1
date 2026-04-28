@@ -1,215 +1,377 @@
 """
-menu.py
--------
-Menú interactivo principal del sistema.
-Implementa ciclo controlado por centinela (while con opción 0 = salir).
-Requisito explícito de la rúbrica del profesor.
+Menu preliminar de la aplicacion.
 
-Opciones del menú:
-  1. Cargar/construir grafo vial
-  2. Ver electrolineras y puntos de referencia
-  3. Ejecutar simulación de recorridos
-  4. Ver resumen estadístico
-  5. Generar mapa interactivo (Folium)
-  6. Entrenar modelo de ML
-  7. Predecir electrolinera con ML
-  8. Exportar datos (CSV / JSON / XLSX)
-  9. Comparar Dijkstra vs ML
-  0. Salir
+Esta version solo es el menu y valida opciones.
+funcionalidades en construccion
 """
 
-import sys
 import os
+import sys
 
+# Permite que Python encuentre los modulos del proyecto
+# sin importar desde que carpeta se ejecute el programa
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from src.utils.validacion import limpiar_pantalla, leer_entero, leer_flotante, confirmar
-from src.utils.archivos import leer_csv, guardar_xlsx
-from src.grafo.constructor_grafo import construir_grafo
-from src.simulacion.simulacion import ejecutar_simulacion, imprimir_resumen
-from src.grafo.visualizacion import generar_mapa_folium, grafico_uso_electrolineras
-from src.ml.modelo_ml import entrenar_modelos, predecir_electrolinera
-from data.datos_estaticos import ELECTROLINERAS, PUNTOS_REFERENCIA, VEHICULOS
+# --- Importaciones del proyecto ---
+# Cada import trae una funcionalidad real de un modulo especifico.
+# Si alguna libreria no esta instalada, el programa igual arranca
+# y muestra un aviso solo cuando se intenta usar esa opcion.
+try:
+    from src.grafo.constructor_grafo import construir_grafo
+    from src.simulacion.simulacion import ejecutar_simulacion, imprimir_resumen
+    from src.grafo.visualizacion import generar_mapa_folium, grafico_uso_electrolineras
+    from src.ml.modelo_ml import cargar_o_entrenar, predecir_electrolinera
+    from src.utils.archivos import leer_csv, guardar_xlsx
+    from data.datos_estaticos import ELECTROLINERAS, PUNTOS_REFERENCIA, VEHICULOS
+    MODULOS_DISPONIBLES = True
+except ImportError as error:
+    MODULOS_DISPONIBLES = False
+    _ERROR_IMPORTACION = str(error)
 
-# Encabezado visual
-BANNER = r"""
-╔══════════════════════════════════════════════════════════════╗
-║   ⚡ SISTEMA DE ELECTROLINERAS - BUCARAMANGA  2026-1        ║
-║   UIS · Algoritmos y Programación · Matemáticas Discretas   ║
-╚══════════════════════════════════════════════════════════════╝
-"""
-
-OPCIONES_MENU = {
-    "1": "Cargar / Construir grafo vial",
-    "2": "Ver electrolineras y puntos de referencia",
-    "3": "Ejecutar simulación de recorridos",
-    "4": "Ver resumen estadístico de la simulación",
-    "5": "Generar mapa interactivo (Folium HTML)",
-    "6": "Entrenar modelo de Machine Learning",
-    "7": "Predecir electrolinera con ML",
-    "8": "Exportar datos a Excel (.xlsx)",
-    "9": "Comparar Dijkstra vs ML (métricas)",
-    "0": "Salir",
-}
+# --- Estado global de la sesion ---
+# Estas variables guardan lo que el usuario va construyendo
+# durante la ejecucion: el grafo, las estadisticas y el modelo ML.
+grafo         = None   # grafo vial cargado con OSMnx
+estadisticas  = {}     # resultados de la ultima simulacion
+modelos_ml    = {}     # modelos entrenados en la sesion
 
 
-class Menu:
-    """Controlador del menú principal."""
+# ─────────────────────────────────────────────────────────────
 
-    def __init__(self):
-        self.grafo = None
-        self.estadisticas = {}
-        self.modelos_entrenados = {}
+def limpiar_pantalla():
+    if os.name == "nt": #funciones que ayudan a que la terminal se limpie tanto en windows como en linux
+        os.system("cls")
+    else:
+        os.system("clear")
 
-    # ─────────────────────────────────────────────────────────
-    # BUCLE PRINCIPAL (centinela = opción "0")
-    # ─────────────────────────────────────────────────────────
-    def ejecutar(self) -> None:
-        """Ejecuta el menú con bucle controlado por centinela."""
-        opcion = ""
-        while opcion != "0":
-            self._mostrar_menu()
-            opcion = input("  → Seleccione una opción: ").strip()
 
-            if opcion == "1":
-                self._opcion_cargar_grafo()
-            elif opcion == "2":
-                self._opcion_ver_nodos()
-            elif opcion == "3":
-                self._opcion_simulacion()
-            elif opcion == "4":
-                self._opcion_resumen()
-            elif opcion == "5":
-                self._opcion_mapa_folium()
-            elif opcion == "6":
-                self._opcion_entrenar_ml()
-            elif opcion == "7":
-                self._opcion_predecir_ml()
-            elif opcion == "8":
-                self._opcion_exportar_xlsx()
-            elif opcion == "9":
-                self._opcion_comparar()
-            elif opcion == "0":
-                print("\n  ¡Hasta luego! ⚡\n")
-            else:
-                print("\n  ⚠  Opción inválida. Ingrese un número del 0 al 9.\n")
+# Funciones para mostrar el menu y manejar opciones
+def mostrar_encabezado():
+    print("=" * 70)
+    print("SISTEMA DE ELECTROLINERAS - AREA METROPOLITANA DE BUCARAMANGA")
+    print("MENU PRELIMINAR DE LA APLICACION")
+    print("=" * 70)
 
-            if opcion not in ("0", ""):
-                input("\n  [Presione Enter para continuar...]")
-                limpiar_pantalla()
+    # Muestra el estado actual de la sesion debajo del titulo
+    estado_grafo = "CARGADO" if grafo else "no cargado"
+    estado_sim   = (str(estadisticas.get("total_recorridos", 0)) + " recorridos"
+                    if estadisticas else "sin datos")
+    estado_ml    = "entrenado" if modelos_ml else "sin entrenar"
 
-    # ─────────────────────────────────────────────────────────
-    # RENDER DEL MENÚ
-    # ─────────────────────────────────────────────────────────
-    def _mostrar_menu(self) -> None:
-        print(BANNER)
-        estado_grafo = "✓ Cargado" if self.grafo else "✗ No cargado"
-        estado_sim = f"✓ {self.estadisticas.get('total_recorridos', 0)} recorridos" \
-                     if self.estadisticas else "✗ Sin datos"
-        estado_ml = "✓ Entrenado" if self.modelos_entrenados else "✗ Sin entrenar"
+    print("Grafo:", estado_grafo,
+          " | Simulacion:", estado_sim,
+          " | ML:", estado_ml)
+    print()
 
-        print(f"  Grafo: {estado_grafo}  |  Simulación: {estado_sim}  |  ML: {estado_ml}\n")
-        print("  ─────────────────────────────────────────")
-        for clave, descripcion in OPCIONES_MENU.items():
-            print(f"   [{clave}]  {descripcion}")
-        print("  ─────────────────────────────────────────\n")
 
-    # ─────────────────────────────────────────────────────────
-    # OPCIONES INDIVIDUALES
-    # ─────────────────────────────────────────────────────────
-    def _opcion_cargar_grafo(self):
-        print("\n  Construyendo grafo vial de Bucaramanga...")
-        usar_cache = confirmar("  ¿Usar caché local si existe?")
-        self.grafo = construir_grafo(desde_cache=usar_cache)
+#funcion que muestra el menu de opciones y valida la seleccion del usuario, cada opcion muestra un mensaje indicando que la funcionalidad esta en construccion, excepto la opcion 0 que finaliza el programa
+def mostrar_menu():
+    print("MENU DE OPCIONES")
+    print("1. Cargar o construir el grafo vial")
+    print("2. Ver electrolineras, puntos de referencia y vehiculos")
+    print("3. Ejecutar simulacion de recorridos")
+    print("4. Ver resumen estadistico")
+    print("5. Generar mapa interactivo")
+    print("6. Entrenar modelos de Machine Learning")
+    print("7. Predecir electrolinera con ML")
+    print("8. Exportar historial a Excel")
+    print("9. Comparar Dijkstra y ML")
+    print("0. Salir")
+    print()
 
-    def _opcion_ver_nodos(self):
-        print("\n  ═══ ELECTROLINERAS (Nodos tipo A) ═══")
-        for e in ELECTROLINERAS:
-            print(f"   {e['id']:>3}  {e['nombre']:<45} "
-                  f"({e['lat']:.4f}, {e['lon']:.4f}) | {e['potencia_kw']} kW")
 
-        print("\n  ═══ PUNTOS DE REFERENCIA (Nodos tipo B) ═══")
-        for p in PUNTOS_REFERENCIA:
-            print(f"   {p['id']:>3}  {p['nombre']:<50} "
-                  f"({p['lat']:.4f}, {p['lon']:.4f})")
+def pausar():
+    input("Presione Enter para continuar...")
 
-        print("\n  ═══ VEHÍCULOS DISPONIBLES ═══")
-        for clave, v in VEHICULOS.items():
-            print(f"   {v['id']:>3}  {v['nombre']:<35} [{v['gama'].upper()}] "
-                  f"| Batería: {v['bateria_kwh']} kWh "
-                  f"| Autonomía: {v['autonomia_real_km']} km")
 
-    def _opcion_simulacion(self):
-        if self.grafo is None:
-            print("\n  ⚠  Primero debe cargar el grafo (opción 1).")
-            return
+def mostrar_mensaje_opcion(numero):
+    print()
+    print("Opcion", numero, "seleccionada.")
+    print("Esta funcionalidad se encuentra en construccion")
 
-        n = leer_entero("  Número de recorridos a simular (1-500): ",
-                        minimo=1, maximo=500)
-        semilla = leer_entero("  Semilla aleatoria (0 = aleatoria): ", minimo=0)
-        semilla = semilla if semilla > 0 else None
+
+# ─────────────────────────────────────────────────────────────
+# FUNCIONES DE CADA OPCION
+# Cada funcion reemplaza al mensaje "en construccion" una vez
+# que el modulo correspondiente esta listo. Mientras tanto,
+# si los modulos no estan disponibles, cae al mensaje original.
+# ─────────────────────────────────────────────────────────────
+
+def opcion_1_cargar_grafo():
+    """Carga o construye el grafo vial de Bucaramanga con OSMnx."""
+    global grafo
+    if not MODULOS_DISPONIBLES:
+        mostrar_mensaje_opcion("1")
+        return
+
+    print()
+    print("Construyendo grafo vial de Bucaramanga...")
+    respuesta = input("Usar cache local si existe? (s/n): ").strip().lower()
+    usar_cache = respuesta == "s"
+    grafo = construir_grafo(desde_cache=usar_cache)
+
+
+def opcion_2_ver_datos():
+    """Muestra electrolineras, puntos de referencia y vehiculos."""
+    if not MODULOS_DISPONIBLES:
+        mostrar_mensaje_opcion("2")
+        return
+
+    print()
+    print("ELECTROLINERAS (Nodos tipo A)")
+    print("-" * 60)
+    for e in ELECTROLINERAS:
+        print(e["id"], "-", e["nombre"],
+              "| lat:", e["lat"], "lon:", e["lon"],
+              "| potencia:", e["potencia_kw"], "kW")
+
+    print()
+    print("PUNTOS DE REFERENCIA (Nodos tipo B)")
+    print("-" * 60)
+    for p in PUNTOS_REFERENCIA:
+        print(p["id"], "-", p["nombre"],
+              "| lat:", p["lat"], "lon:", p["lon"])
+
+    print()
+    print("VEHICULOS ELECTRICOS")
+    print("-" * 60)
+    for clave, v in VEHICULOS.items():
+        print(v["id"], "-", v["nombre"],
+              "| gama:", v["gama"].upper(),
+              "| bateria:", v["bateria_kwh"], "kWh",
+              "| autonomia:", v["autonomia_real_km"], "km")
+
+
+def opcion_3_simulacion():
+    """Ejecuta la simulacion de recorridos de vehiculos electricos."""
+    global estadisticas
+    if not MODULOS_DISPONIBLES:
+        mostrar_mensaje_opcion("3")
+        return
+
+    if grafo is None:
+        print()
+        print("Primero debe cargar el grafo (opcion 1).")
+        return
+
+    # Validar numero de recorridos
+    while True:
+        entrada = input("Numero de recorridos a simular (1-500): ").strip()
+        if entrada.isdigit() and 1 <= int(entrada) <= 500:
+            n_recorridos = int(entrada)
+            break
+        print("Valor invalido. Ingrese un numero entre 1 y 500.")
+
+    # Validar semilla
+    while True:
+        entrada = input("Semilla aleatoria (0 para aleatoria): ").strip()
+        if entrada.isdigit():
+            semilla = int(entrada) if int(entrada) > 0 else None
+            break
+        print("Valor invalido. Ingrese un numero entero positivo o 0.")
+
+    print()
+    estadisticas = ejecutar_simulacion(
+        grafo,
+        n_recorridos=n_recorridos,
+        semilla=semilla,
+    )
+
+
+def opcion_4_resumen():
+    """Muestra el resumen estadistico de la ultima simulacion."""
+    if not MODULOS_DISPONIBLES:
+        mostrar_mensaje_opcion("4")
+        return
+
+    if not estadisticas:
+        print()
+        print("No hay estadisticas disponibles. Ejecute la simulacion primero (opcion 3).")
+        return
+
+    imprimir_resumen(estadisticas)
+
+    if estadisticas.get("uso_electrolineras"):
+        respuesta = input("Generar grafico de barras del uso? (s/n): ").strip().lower()
+        if respuesta == "s":
+            grafico_uso_electrolineras(estadisticas)
+
+
+def opcion_5_mapa():
+    """Genera el mapa interactivo HTML con Folium."""
+    if not MODULOS_DISPONIBLES:
+        mostrar_mensaje_opcion("5")
+        return
+
+    print()
+    print("Generando mapa interactivo...")
+    ruta = generar_mapa_folium(G=grafo)
+    if ruta:
+        print("Mapa guardado. Abra este archivo en su navegador:")
+        print(ruta)
+
+
+def opcion_6_entrenar_ml():
+    """Entrena o carga desde disco el modelo de Machine Learning."""
+    global modelos_ml
+    if not MODULOS_DISPONIBLES:
+        mostrar_mensaje_opcion("6")
+        return
+
+    ruta_pkl = os.path.join(
+        os.path.dirname(__file__), "..", "..", "data", "processed",
+        "modelo_random_forest.pkl"
+    )
+
+    forzar = False
+    if os.path.exists(ruta_pkl):
+        print()
+        print("Se encontro un modelo guardado en disco.")
+        respuesta = input("Desea REENTRENAR el modelo con los datos actuales? (s/n): ").strip().lower()
+        forzar = respuesta == "s"
+    else:
+        print()
+        print("No existe modelo guardado. Se entrenara uno nuevo.")
+
+    modelos_ml = cargar_o_entrenar(forzar_reentrenamiento=forzar)
+
+    if not modelos_ml:
+        print("No se pudo cargar ni entrenar el modelo.")
+        print("Asegurese de haber ejecutado la simulacion primero (opcion 3).")
+
+
+def opcion_7_predecir():
+    """Predice la electrolinera mas probable usando el modelo ML."""
+    if not MODULOS_DISPONIBLES:
+        mostrar_mensaje_opcion("7")
+        return
+
+    if not modelos_ml:
+        print()
+        print("Primero entrene los modelos (opcion 6).")
+        return
+
+    print()
+    print("PREDICCION DE ELECTROLINERA")
+    print("-" * 40)
+
+    # Validar nivel de bateria
+    while True:
+        entrada = input("Nivel de bateria actual (0-100): ").strip()
+        try:
+            nivel = float(entrada)
+            if 0.0 <= nivel <= 100.0:
+                break
+            print("El nivel debe estar entre 0 y 100.")
+        except ValueError:
+            print("Valor invalido. Use numeros decimales (ej: 15.5).")
+
+    # Validar distancia
+    while True:
+        entrada = input("Distancia al ultimo destino en metros: ").strip()
+        try:
+            dist = float(entrada)
+            if dist >= 0.0:
+                break
+            print("La distancia no puede ser negativa.")
+        except ValueError:
+            print("Valor invalido. Use numeros positivos.")
+
+    # Seleccionar vehiculo
+    print("Vehiculos: 0 = Tesla Model 3 LR   |   1 = BYD Seagull")
+    while True:
+        entrada = input("Numero de vehiculo: ").strip()
+        if entrada in ("0", "1"):
+            vid_enc = int(entrada)
+            break
+        print("Opcion invalida. Ingrese 0 o 1.")
+
+    resultado = predecir_electrolinera(nivel, dist, vid_enc)
+    print()
+    print("Electrolinera predicha por ML:", resultado)
+
+
+def opcion_8_exportar():
+    """Exporta el historial de recargas a un archivo Excel."""
+    if not MODULOS_DISPONIBLES:
+        mostrar_mensaje_opcion("8")
+        return
+
+    filas = leer_csv("historial_recargas")
+    if not filas:
+        print()
+        print("No hay historial de recargas. Ejecute la simulacion primero.")
+        return
+
+    ruta = guardar_xlsx("historial_recargas", filas)
+    print()
+    print("Exportado correctamente a:")
+    print(ruta)
+
+
+def opcion_9_comparar():
+    """Compara las metricas de precision y tiempo entre Dijkstra y ML."""
+    if not MODULOS_DISPONIBLES:
+        mostrar_mensaje_opcion("9")
+        return
+
+    if not modelos_ml:
+        print()
+        print("Entrene los modelos primero (opcion 6).")
+        return
+
+    print()
+    print("COMPARACION: DIJKSTRA vs MACHINE LEARNING")
+    print("-" * 50)
+    for nombre, datos in modelos_ml.items():
+        print("Modelo:", nombre)
+        print("  Accuracy         :", datos.get("accuracy", "N/A"))
+        print("  F1 (weighted)    :", datos.get("f1_weighted", "N/A"))
+        print("  Tiempo inferencia:", datos.get("tiempo_inferencia_ms", "N/A"), "ms")
+        print("  (Dijkstra tipico : 5-50 ms para 8 electrolineras)")
+        print()
+
+
+# ─────────────────────────────────────────────────────────────
+# BUCLE PRINCIPAL DEL MENU
+# ─────────────────────────────────────────────────────────────
+
+def ejecutar_menu():
+    while True:
+        limpiar_pantalla()
+        mostrar_encabezado()
+        mostrar_menu()
+        opcion = input("Seleccione una opcion: ").strip()
+
+        if opcion == "1":
+            opcion_1_cargar_grafo()
+        elif opcion == "2":
+            opcion_2_ver_datos()
+        elif opcion == "3":
+            opcion_3_simulacion()
+        elif opcion == "4":
+            opcion_4_resumen()
+        elif opcion == "5":
+            opcion_5_mapa()
+        elif opcion == "6":
+            opcion_6_entrenar_ml()
+        elif opcion == "7":
+            opcion_7_predecir()
+        elif opcion == "8":
+            opcion_8_exportar()
+        elif opcion == "9":
+            opcion_9_comparar()
+        elif opcion == "0":
+            print()
+            print("Programa finalizado.")
+            break
+        else:
+            print()
+            print("Opcion invalida. Debe escribir un numero del 0 al 9.")
 
         print()
-        self.estadisticas = ejecutar_simulacion(
-            self.grafo,
-            n_recorridos=n,
-            semilla=semilla,
-        )
-        imprimir_resumen(self.estadisticas)
+        pausar()
 
-    def _opcion_resumen(self):
-        if not self.estadisticas:
-            print("\n  ⚠  No hay estadísticas disponibles. Ejecute la simulación primero.")
-            return
-        imprimir_resumen(self.estadisticas)
-        if self.estadisticas.get("uso_electrolineras"):
-            if confirmar("  ¿Generar gráfico de barras del uso?"):
-                grafico_uso_electrolineras(self.estadisticas)
 
-    def _opcion_mapa_folium(self):
-        print("\n  Generando mapa interactivo...")
-        ruta = generar_mapa_folium(G=self.grafo)
-        if ruta:
-            print(f"\n  ✓  Abra el archivo en su navegador:\n     {ruta}")
-
-    def _opcion_entrenar_ml(self):
-        print("\n  Iniciando entrenamiento de modelos...\n")
-        self.modelos_entrenados = entrenar_modelos()
-        if not self.modelos_entrenados:
-            print("  ⚠  Entrene con más datos de simulación.")
-
-    def _opcion_predecir_ml(self):
-        if not self.modelos_entrenados:
-            print("\n  ⚠  Primero entrene los modelos (opción 6).")
-            return
-
-        print("\n  ═══ PREDICCIÓN DE ELECTROLINERA ═══")
-        nivel = leer_flotante("  Nivel de batería actual (%): ", minimo=0.0, maximo=100.0)
-        dist = leer_flotante("  Distancia al último destino (metros): ", minimo=0.0)
-
-        print("  Vehículos disponibles: 0=Tesla Model 3 LR | 1=BYD Seagull")
-        vid_enc = leer_entero("  Ingrese el número del vehículo: ", minimo=0, maximo=1)
-
-        resultado = predecir_electrolinera(nivel, dist, vid_enc)
-        print(f"\n  ✓  Electrolinera predicha por ML: {resultado}")
-
-    def _opcion_exportar_xlsx(self):
-        filas = leer_csv("historial_recargas")
-        if not filas:
-            print("\n  ⚠  No hay historial de recargas. Ejecute la simulación primero.")
-            return
-        ruta = guardar_xlsx("historial_recargas", filas)
-        print(f"\n  ✓  Exportado a: {ruta}")
-
-    def _opcion_comparar(self):
-        if not self.modelos_entrenados:
-            print("\n  ⚠  Entrene los modelos primero (opción 6).")
-            return
-
-        print("\n  ═══ COMPARACIÓN: DIJKSTRA vs ML ═══\n")
-        for nombre, datos in self.modelos_entrenados.items():
-            print(f"  {nombre}:")
-            print(f"    Accuracy         : {datos['accuracy']:.4f}")
-            print(f"    F1 (weighted)    : {datos['f1_weighted']:.4f}")
-            print(f"    Tiempo inferencia: {datos['tiempo_inferencia_ms']:.3f} ms")
-            print(f"    (Dijkstra típico : ~5-50 ms para 8 electrolineras)\n")
+if __name__ == "__main__":
+    ejecutar_menu()
