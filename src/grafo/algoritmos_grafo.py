@@ -1,16 +1,16 @@
 """
 algoritmos_grafo.py
--------------------
-Implementación de algoritmos de caminos más cortos:
-  1. Dijkstra    → ruta individual (uso principal en simulación)
-  2. Floyd-Warshall → todas las rutas (uso en análisis completo)
+Implementacion de los algoritmos de camino mas corto.
 
-Se usa NetworkX internamente, pero las funciones están
-encapsuladas para facilitar comparación con modelo de ML.
+Dijkstra: encuentra la ruta mas corta entre dos nodos del grafo.
+Funciona como un explorador que siempre elige el camino menos
+costoso primero, usando una cola de prioridad (heap).
+
+Floyd-Warshall: calcula todas las rutas mas cortas entre todos
+los pares de nodos. Es mas lento pero util para analisis globales.
+Solo se usa en grafos pequenos.
 """
 
-import sys
-import os
 import time
 
 try:
@@ -20,181 +20,173 @@ except ImportError:
     NX_DISPONIBLE = False
 
 
-# ─────────────────────────────────────────────────────────────
-# DIJKSTRA: RUTA MÁS CORTA ENTRE DOS NODOS
-# ─────────────────────────────────────────────────────────────
-def dijkstra(G: "nx.MultiDiGraph", origen: int, destino: int,
-             peso: str = "length") -> tuple:
+def dijkstra(grafo, nodo_origen, nodo_destino):
     """
-    Calcula la ruta más corta entre origen y destino usando Dijkstra.
+    Calcula la ruta mas corta entre dos nodos usando el algoritmo de Dijkstra.
+    Usa NetworkX internamente cuando esta disponible.
 
-    Parámetros
-    ----------
-    G : nx.MultiDiGraph
-        Grafo de la red vial.
-    origen : int
-        Nodo OSM de partida.
-    destino : int
-        Nodo OSM de llegada.
-    peso : str
-        Atributo de arista a minimizar (default: 'length' en metros).
-
-    Retorna
-    -------
-    tuple (ruta: list[int], distancia_m: float, tiempo_ms: float)
-        ruta          → lista de nodos OSM en orden de recorrido.
-        distancia_m   → distancia total en metros.
-        tiempo_ms     → tiempo de cómputo en milisegundos.
-        Si no existe ruta, retorna ([], float('inf'), tiempo_ms).
+    Devuelve una tupla con tres valores:
+    - ruta      : lista de nodos en orden, desde origen hasta destino
+    - distancia : distancia total en metros
+    - tiempo_ms : cuanto tardo el calculo en milisegundos
     """
     if not NX_DISPONIBLE:
-        return _dijkstra_manual(G, origen, destino)
+        # Si no hay NetworkX, usar la version manual
+        return dijkstra_manual(grafo, nodo_origen, nodo_destino)
 
-    t_inicio = time.perf_counter()
+    inicio = time.perf_counter()
+
     try:
-        ruta = nx.shortest_path(G, origen, destino, weight=peso)
-        distancia = nx.shortest_path_length(G, origen, destino, weight=peso)
+        ruta = nx.shortest_path(grafo, nodo_origen, nodo_destino, weight="length")
+        distancia = nx.shortest_path_length(grafo, nodo_origen, nodo_destino, weight="length")
     except nx.NetworkXNoPath:
+        # No existe camino entre los dos nodos
         ruta = []
         distancia = float("inf")
-    except nx.NodeNotFound as e:
-        print(f"  ⚠  Nodo no encontrado: {e}")
+    except nx.NodeNotFound:
+        # Uno de los nodos no existe en el grafo
         ruta = []
         distancia = float("inf")
 
-    tiempo_ms = (time.perf_counter() - t_inicio) * 1000
+    tiempo_ms = (time.perf_counter() - inicio) * 1000
     return ruta, distancia, tiempo_ms
 
 
-# ─────────────────────────────────────────────────────────────
-# ELECTROLINERA MÁS CERCANA DESDE UN NODO
-# ─────────────────────────────────────────────────────────────
-def electrolinera_mas_cercana(G: "nx.MultiDiGraph",
-                               nodo_actual: int,
-                               nodos_electrolineras: dict) -> tuple:
+def electrolinera_mas_cercana(grafo, nodo_actual, nodos_electrolineras):
     """
-    Encuentra la electrolinera más cercana desde nodo_actual
-    evaluando Dijkstra contra cada electrolinera.
+    Encuentra la electrolinera mas cercana al nodo actual.
+    Aplica Dijkstra desde el nodo actual hacia cada electrolinera
+    y se queda con la de menor distancia.
 
-    Parámetros
-    ----------
-    G : nx.MultiDiGraph
-        Grafo vial.
-    nodo_actual : int
-        Nodo OSM desde donde está el vehículo.
-    nodos_electrolineras : dict
-        {'E1': nodo_osm, 'E2': nodo_osm, ...}
+    nodos_electrolineras es un diccionario como: {"E1": 123456, "E2": 654321}
 
-    Retorna
-    -------
-    tuple (id_electrolinera: str, nodo_osm: int, ruta: list,
-           distancia_m: float, tiempo_ms: float)
+    Devuelve:
+    - id_electrolinera : identificador como "E3"
+    - nodo_electrolinera : numero de nodo OSM
+    - ruta              : lista de nodos del camino
+    - distancia         : metros hasta esa electrolinera
+    - tiempo_ms         : tiempo total de todos los Dijkstra ejecutados
     """
-    mejor_id = None
-    mejor_nodo = None
-    mejor_ruta = []
-    mejor_dist = float("inf")
-    tiempo_total = 0.0
+    mejor_id         = None
+    mejor_nodo       = None
+    mejor_ruta       = []
+    mejor_distancia  = float("inf")
+    tiempo_total     = 0.0
 
     for id_electro, nodo_electro in nodos_electrolineras.items():
+        # Caso especial: ya estamos en la electrolinera
         if nodo_electro == nodo_actual:
-            # Ya estamos en la electrolinera
             return id_electro, nodo_electro, [nodo_actual], 0.0, 0.0
 
-        ruta, dist, t_ms = dijkstra(G, nodo_actual, nodo_electro)
-        tiempo_total += t_ms
+        ruta, distancia, tiempo_ms = dijkstra(grafo, nodo_actual, nodo_electro)
+        tiempo_total = tiempo_total + tiempo_ms
 
-        if dist < mejor_dist:
-            mejor_dist = dist
-            mejor_id = id_electro
-            mejor_nodo = nodo_electro
-            mejor_ruta = ruta
+        if distancia < mejor_distancia:
+            mejor_distancia = distancia
+            mejor_id        = id_electro
+            mejor_nodo      = nodo_electro
+            mejor_ruta      = ruta
 
-    return mejor_id, mejor_nodo, mejor_ruta, mejor_dist, tiempo_total
+    return mejor_id, mejor_nodo, mejor_ruta, mejor_distancia, tiempo_total
 
 
-# ─────────────────────────────────────────────────────────────
-# FLOYD-WARSHALL: TODAS LAS RUTAS (análisis global)
-# ─────────────────────────────────────────────────────────────
-def floyd_warshall(G: "nx.MultiDiGraph", peso: str = "length") -> tuple:
+def floyd_warshall(grafo):
     """
-    Calcula todas las rutas más cortas entre todos los pares de nodos.
-    ADVERTENCIA: O(n³) — solo usar en grafos pequeños o sintéticos.
+    Calcula las rutas mas cortas entre todos los pares de nodos.
+    ADVERTENCIA: es muy lento en grafos grandes. Solo usar con el
+    grafo sintetico de prueba o subgrafos pequenos.
 
-    Retorna
-    -------
-    tuple (distancias: dict, tiempo_ms: float)
-        distancias → {nodo_i: {nodo_j: distancia_metros}}
+    Devuelve un diccionario con las distancias y el tiempo que tardo.
     """
     if not NX_DISPONIBLE:
-        print("  ⚠  NetworkX no disponible para Floyd-Warshall.")
+        print("NetworkX no esta disponible para Floyd-Warshall.")
         return {}, 0.0
 
-    print("  ⏳ Ejecutando Floyd-Warshall (puede tardar en grafos grandes)...")
-    t_inicio = time.perf_counter()
+    print("Ejecutando Floyd-Warshall... esto puede tardar.")
+    inicio = time.perf_counter()
 
     try:
-        # NetworkX implementa Floyd-Warshall optimizado
-        distancias = dict(nx.all_pairs_dijkstra_path_length(G, weight=peso))
-    except Exception as e:
-        print(f"  ⚠  Error en Floyd-Warshall: {e}")
+        # all_pairs_dijkstra_path_length es la implementacion eficiente en NetworkX
+        distancias = dict(nx.all_pairs_dijkstra_path_length(grafo, weight="length"))
+    except Exception as error:
+        print("Error al ejecutar Floyd-Warshall:", error)
         distancias = {}
 
-    tiempo_ms = (time.perf_counter() - t_inicio) * 1000
-    print(f"  ✓  Floyd-Warshall completado en {tiempo_ms:.1f} ms")
+    tiempo_ms = (time.perf_counter() - inicio) * 1000
+    print("Floyd-Warshall completado en", round(tiempo_ms, 1), "ms")
     return distancias, tiempo_ms
 
 
-# ─────────────────────────────────────────────────────────────
-# DIJKSTRA MANUAL (fallback sin NetworkX)
-# ─────────────────────────────────────────────────────────────
-def _dijkstra_manual(G, origen: int, destino: int) -> tuple:
+def dijkstra_manual(grafo, nodo_origen, nodo_destino):
     """
-    Implementación manual de Dijkstra usando heap.
-    Fallback para cuando NetworkX no está disponible.
+    Implementacion del algoritmo de Dijkstra sin usar NetworkX.
+    Se usa como respaldo cuando NetworkX no esta instalado.
+
+    Pasos del algoritmo:
+    1. Asignar distancia infinita a todos los nodos
+    2. La distancia al origen es 0
+    3. Usar un heap (cola de prioridad) para siempre procesar el nodo mas cercano
+    4. Para cada vecino, calcular si la nueva ruta es mas corta
+    5. Reconstruir la ruta al final siguiendo los nodos previos
     """
     import heapq
-    t_inicio = time.perf_counter()
 
-    distancias = {nodo: float("inf") for nodo in G.nodes}
-    distancias[origen] = 0
-    previo = {nodo: None for nodo in G.nodes}
-    heap = [(0, origen)]
+    inicio = time.perf_counter()
 
-    while heap:
-        dist_actual, nodo_actual = heapq.heappop(heap)
+    # Inicializar distancias
+    distancias = {}
+    for nodo in grafo.nodes:
+        distancias[nodo] = float("inf")
+    distancias[nodo_origen] = 0
 
-        if nodo_actual == destino:
+    # Guardar el nodo anterior en la ruta optima
+    previo = {}
+    for nodo in grafo.nodes:
+        previo[nodo] = None
+
+    # Cola de prioridad: (distancia, nodo)
+    heap = [(0, nodo_origen)]
+
+    while len(heap) > 0:
+        distancia_actual, nodo_actual = heapq.heappop(heap)
+
+        # Si ya llegamos al destino podemos parar
+        if nodo_actual == nodo_destino:
             break
 
-        if dist_actual > distancias[nodo_actual]:
+        # Ignorar si ya encontramos una ruta mejor antes
+        if distancia_actual > distancias[nodo_actual]:
             continue
 
-        for vecino in G.successors(nodo_actual):
-            # Tomar la arista con menor peso entre multi-aristas
-            edges_data = G.get_edge_data(nodo_actual, vecino)
-            peso_min = min(
-                d.get("length", float("inf"))
-                for d in edges_data.values()
-            )
-            nueva_dist = dist_actual + peso_min
+        # Revisar todos los vecinos del nodo actual
+        for vecino in grafo.successors(nodo_actual):
+            # Obtener el peso de la arista (puede haber varias, tomar la menor)
+            aristas = grafo.get_edge_data(nodo_actual, vecino)
+            peso_minimo = float("inf")
+            for datos_arista in aristas.values():
+                peso = datos_arista.get("length", float("inf"))
+                if peso < peso_minimo:
+                    peso_minimo = peso
 
-            if nueva_dist < distancias[vecino]:
-                distancias[vecino] = nueva_dist
+            nueva_distancia = distancia_actual + peso_minimo
+
+            if nueva_distancia < distancias[vecino]:
+                distancias[vecino] = nueva_distancia
                 previo[vecino] = nodo_actual
-                heapq.heappush(heap, (nueva_dist, vecino))
+                heapq.heappush(heap, (nueva_distancia, vecino))
 
-    # Reconstruir ruta
+    # Reconstruir la ruta desde el destino hasta el origen
     ruta = []
-    nodo = destino
-    while nodo is not None:
-        ruta.append(nodo)
-        nodo = previo[nodo]
+    nodo_actual = nodo_destino
+    while nodo_actual is not None:
+        ruta.append(nodo_actual)
+        nodo_actual = previo[nodo_actual]
     ruta.reverse()
 
-    if ruta[0] != origen:
+    # Si la ruta no empieza en el origen, no existe camino
+    if len(ruta) == 0 or ruta[0] != nodo_origen:
         ruta = []
-        distancias[destino] = float("inf")
+        distancias[nodo_destino] = float("inf")
 
-    tiempo_ms = (time.perf_counter() - t_inicio) * 1000
-    return ruta, distancias[destino], tiempo_ms
+    tiempo_ms = (time.perf_counter() - inicio) * 1000
+    return ruta, distancias[nodo_destino], tiempo_ms

@@ -1,426 +1,346 @@
 """
 simulacion.py
--------------
-Módulo de simulación de recorridos de vehículos eléctricos.
+Modulo que simula los recorridos de los vehiculos electricos.
 
-Lógica principal:
-  1. Seleccionar n recorridos aleatorios entre puntos de referencia.
-  2. Descontar batería según distancia recorrida y consumo del vehículo.
-  3. Cuando batería ∈ [10%, 20%], buscar electrolinera más cercana.
-  4. Calcular ruta Dijkstra hacia esa electrolinera.
-  5. Registrar el evento de recarga en archivos CSV/JSON.
-
-MODIFICACIÓN 1 — Trazabilidad de nodos:
-  Se agrega `trazar_historial_ruta()` que, dado el grafo y la lista
-  de nodos OSM retornada por Dijkstra, reconstruye un historial
-  legible de calles y puntos de interés recorridos.
-  Se integra en el detalle de cada recorrido cuando se usa semilla.
+La logica funciona asi:
+1. Se eligen al azar un origen y un destino entre los puntos de referencia
+2. Se calcula la ruta mas corta con Dijkstra
+3. Se descuenta la bateria segun la distancia recorrida
+4. Si la bateria cae entre 10% y 20%, se busca la electrolinera mas cercana
+5. Se registra cada recarga en el historial CSV
+6. Al final se genera el reporte TXT con todos los detalles
 """
 
 import random
-import sys
 import os
+import sys
 from datetime import datetime, timedelta
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from src.grafo.algoritmos_grafo import dijkstra, electrolinera_mas_cercana
 from src.grafo.constructor_grafo import obtener_nodos_electrolineras, obtener_nodos_referencia, obtener_nombre_nodo
-from src.utils.archivos import registrar_recarga, exportar_estadisticas_json, generar_reporte_txt
+from src.utils.archivos import registrar_recarga, guardar_estadisticas, generar_reporte_txt
 from data.datos_estaticos import VEHICULOS
 
+# Nivel de bateria en que el vehiculo busca electrolinera
+BATERIA_MINIMA  = 10.0   # si baja de aqui es critico
+BATERIA_UMBRAL  = 20.0   # entre 10% y 20% activa la busqueda
+BATERIA_INICIAL = 100.0  # siempre arranca con carga completa
 
-# ─────────────────────────────────────────────────────────────
-# CONSTANTES DE SIMULACIÓN
-# ─────────────────────────────────────────────────────────────
-UMBRAL_RECARGA_MIN = 10.0   # % batería mínimo para buscar recarga
-UMBRAL_RECARGA_MAX = 20.0   # % batería máximo que activa búsqueda
-BATERIA_INICIAL = 100.0     # % con que inicia cada recorrido
+# Para convertir metros a kilometros
 METROS_POR_KM = 1000.0
 
 
 # ─────────────────────────────────────────────────────────────
-# MODIFICACIÓN 1 — TRAZABILIDAD DE NODOS
+# FUNCIONES DE TRAZABILIDAD DE RUTA
 # ─────────────────────────────────────────────────────────────
 
-def trazar_historial_ruta(G, ruta_nodos: list) -> list:
+def trazar_historial_ruta(grafo, lista_nodos):
     """
-    Recibe la lista de nodos OSM devuelta por Dijkstra y construye
-    un historial detallado, segmento a segmento, extrayendo:
-      - nombre de la calle (atributo 'name' de la arista)
-      - distancia parcial del segmento en metros
-      - si el nodo es un punto de interés especial (electrolinera
-        o punto de referencia), lo indica explícitamente.
+    Recibe la lista de nodos que devuelve Dijkstra y construye
+    un historial detallado paso a paso, extrayendo el nombre
+    de cada calle desde los atributos de las aristas del grafo.
 
-    Parámetros
-    ----------
-    G : nx.MultiDiGraph
-        Grafo vial con atributos de aristas y nodos etiquetados.
-    ruta_nodos : list[int]
-        Lista ordenada de nodos OSM que forman la ruta.
-
-    Retorna
-    -------
-    list[dict]
-        Lista de pasos. Cada paso contiene:
-          paso          → número de orden (1-indexed)
-          nodo_osm      → ID del nodo en OpenStreetMap
-          tipo_especial → 'electrolinera' | 'referencia' | None
-          nombre_lugar  → nombre del lugar especial o None
-          calle_desde   → nombre de la calle que lleva a este nodo
-          dist_parcial_m→ metros desde el nodo anterior
-          dist_acum_m   → distancia acumulada desde el origen
+    Devuelve una lista de diccionarios, uno por cada nodo visitado.
     """
-    if not ruta_nodos:
+    if len(lista_nodos) == 0:
         return []
 
     historial = []
-    dist_acumulada = 0.0
+    distancia_acumulada = 0.0
 
-    for idx, nodo in enumerate(ruta_nodos):
-        datos_nodo = G.nodes[nodo]
-        tipo_especial = datos_nodo.get("tipo_especial")
-        nombre_lugar  = datos_nodo.get("nombre_especial")
+    for i in range(len(lista_nodos)):
+        nodo = lista_nodos[i]
+        datos_nodo   = grafo.nodes[nodo]
+        tipo         = datos_nodo.get("tipo", None)
+        nombre_lugar = datos_nodo.get("nombre_lugar", None)
 
-        # Distancia y nombre de calle desde el nodo anterior
-        calle_desde    = None
-        dist_parcial_m = 0.0
+        # Calcular distancia y nombre de calle desde el nodo anterior
+        nombre_calle   = None
+        distancia_paso = 0.0
 
-        if idx > 0:
-            nodo_prev = ruta_nodos[idx - 1]
-            # En MultiDiGraph puede haber varias aristas entre dos nodos;
-            # tomamos la de menor longitud (la que usó Dijkstra).
-            edge_data = G.get_edge_data(nodo_prev, nodo)
-            if edge_data:
-                mejor_arista = min(
-                    edge_data.values(),
-                    key=lambda d: d.get("length", float("inf"))
-                )
-                dist_parcial_m = mejor_arista.get("length", 0.0)
+        if i > 0:
+            nodo_anterior = lista_nodos[i - 1]
+            datos_aristas = grafo.get_edge_data(nodo_anterior, nodo)
 
-                # El nombre puede ser str o list (varias calles fusionadas)
+            if datos_aristas:
+                # Tomar la arista de menor longitud (la que uso Dijkstra)
+                mejor_arista = None
+                mejor_peso   = float("inf")
+                for arista in datos_aristas.values():
+                    peso = arista.get("length", float("inf"))
+                    if peso < mejor_peso:
+                        mejor_peso   = peso
+                        mejor_arista = arista
+
+                distancia_paso = mejor_arista.get("length", 0.0)
+
+                # El nombre de la calle puede ser texto o lista
                 nombre_raw = mejor_arista.get("name", None)
                 if isinstance(nombre_raw, list):
-                    calle_desde = " / ".join(nombre_raw)
+                    nombre_calle = " / ".join(nombre_raw)
                 elif nombre_raw:
-                    calle_desde = nombre_raw
+                    nombre_calle = nombre_raw
                 else:
-                    calle_desde = "(sin nombre)"
+                    nombre_calle = "sin nombre"
 
-            dist_acumulada += dist_parcial_m
+            distancia_acumulada = distancia_acumulada + distancia_paso
 
         historial.append({
-            "paso":           idx + 1,
+            "paso":           i + 1,
             "nodo_osm":       nodo,
-            "tipo_especial":  tipo_especial,
+            "tipo_especial":  tipo,
             "nombre_lugar":   nombre_lugar,
-            "calle_desde":    calle_desde,
-            "dist_parcial_m": round(dist_parcial_m, 1),
-            "dist_acum_m":    round(dist_acumulada, 1),
+            "calle_desde":    nombre_calle,
+            "dist_parcial_m": round(distancia_paso, 1),
+            "dist_acum_m":    round(distancia_acumulada, 1)
         })
 
     return historial
 
 
-def imprimir_historial_ruta(historial: list, titulo: str = "HISTORIAL DE RUTA") -> None:
+# ─────────────────────────────────────────────────────────────
+# FUNCIONES DE BATERIA
+# ─────────────────────────────────────────────────────────────
+
+def calcular_consumo(distancia_m, consumo_kwh_100km, bateria_total_kwh):
     """
-    Imprime en consola el historial de ruta de forma legible,
-    resaltando los puntos de interés especiales.
+    Calcula cuanto porcentaje de bateria se consume al recorrer
+    una distancia dada.
 
-    Parámetros
-    ----------
-    historial : list[dict]
-        Salida de `trazar_historial_ruta()`.
-    titulo : str
-        Encabezado del bloque de impresión.
+    Formula:
+      energia_gastada = (distancia_km / 100) * consumo_kwh_100km
+      porcentaje      = (energia_gastada / bateria_total_kwh) * 100
     """
-    if not historial:
-        print("  ⚠  Historial vacío.")
-        return
+    distancia_km    = distancia_m / METROS_POR_KM
+    energia_gastada = (distancia_km / 100.0) * consumo_kwh_100km
+    porcentaje      = (energia_gastada / bateria_total_kwh) * 100.0
+    return porcentaje
 
-    print(f"\n  {'─'*62}")
-    print(f"  {titulo}")
-    print(f"  {'─'*62}")
-    print(f"  {'Paso':>4}  {'Nodo OSM':>12}  {'Calle':^28}  {'Parcial':>8}  {'Acum.':>8}")
-    print(f"  {'─'*62}")
 
-    for paso in historial:
-        # Indicador visual para nodos especiales
-        if paso["tipo_especial"] == "electrolinera":
-            icono = "⚡"
-            extra = f"  → {paso['nombre_lugar']}"
-        elif paso["tipo_especial"] == "referencia":
-            icono = "📍"
-            extra = f"  → {paso['nombre_lugar']}"
-        else:
-            icono = "  "
-            extra = ""
-
-        calle = (paso["calle_desde"] or "─")[:28]
-        dist_p = f"{paso['dist_parcial_m']:>7.1f}m" if paso["paso"] > 1 else "  origen"
-        dist_a = f"{paso['dist_acum_m']:>7.1f}m"
-
-        print(f"  {paso['paso']:>4}  {icono} {paso['nodo_osm']:>10}  "
-              f"{calle:<28}  {dist_p}  {dist_a}{extra}")
-
-    total_m = historial[-1]["dist_acum_m"]
-    print(f"  {'─'*62}")
-    print(f"  Distancia total: {total_m:.1f} m  ({total_m/1000:.3f} km) "
-          f"| Nodos recorridos: {len(historial)}")
-    print(f"  {'─'*62}\n")
+def necesita_recarga(nivel_bateria):
+    """
+    Retorna True si el nivel de bateria esta en el rango critico
+    que activa la busqueda de electrolinera (entre 10% y 20%).
+    """
+    return BATERIA_MINIMA <= nivel_bateria <= BATERIA_UMBRAL
 
 
 # ─────────────────────────────────────────────────────────────
-# CLASE VEHÍCULO (encapsula estado de batería)
+# SIMULACION PRINCIPAL
 # ─────────────────────────────────────────────────────────────
-class Vehiculo:
-    """Representa un vehículo eléctrico durante la simulación."""
 
-    def __init__(self, datos: dict):
-        self.id = datos["id"]
-        self.nombre = datos["nombre"]
-        self.gama = datos["gama"]
-        self.bateria_kwh = datos["bateria_kwh"]
-        self.autonomia_km = datos["autonomia_real_km"]
-        self.consumo_kwh_100km = datos["consumo_kwh_100km"]
-
-        self.nivel_bateria = BATERIA_INICIAL  # porcentaje actual
-        self.total_recargas = 0
-        self.historial_recargas = []          # lista de eventos
-
-    @property
-    def bateria_actual_kwh(self) -> float:
-        return (self.nivel_bateria / 100.0) * self.bateria_kwh
-
-    def consumir(self, distancia_m: float) -> None:
-        """Descuenta batería según distancia recorrida."""
-        distancia_km = distancia_m / METROS_POR_KM
-        kwh_consumidos = (self.consumo_kwh_100km / 100.0) * distancia_km
-        kwh_consumidos_pct = (kwh_consumidos / self.bateria_kwh) * 100.0
-        self.nivel_bateria = max(0.0, self.nivel_bateria - kwh_consumidos_pct)
-
-    def recargar(self, hasta_pct: float = 80.0) -> None:
-        """Recarga la batería hasta un porcentaje dado (default 80%)."""
-        self.nivel_bateria = min(100.0, hasta_pct)
-        self.total_recargas += 1
-
-    def necesita_recarga(self) -> bool:
-        """Retorna True si el nivel está en el umbral de recarga."""
-        return UMBRAL_RECARGA_MIN <= self.nivel_bateria <= UMBRAL_RECARGA_MAX
-
-    def bateria_critica(self) -> bool:
-        """Retorna True si la batería está por debajo del umbral mínimo."""
-        return self.nivel_bateria < UMBRAL_RECARGA_MIN
-
-    def __str__(self):
-        return (f"{self.nombre} [{self.gama.upper()}] | "
-                f"Batería: {self.nivel_bateria:.1f}% | "
-                f"Recargas: {self.total_recargas}")
-
-
-# ─────────────────────────────────────────────────────────────
-# SIMULACIÓN PRINCIPAL
-# ─────────────────────────────────────────────────────────────
-def ejecutar_simulacion(G, n_recorridos: int = 20,
-                        ids_vehiculos: list = None,
-                        semilla: int = None) -> dict:
+def ejecutar_simulacion(grafo, n_recorridos=20, semilla=None):
     """
-    Ejecuta la simulación completa de recorridos.
-
-    Parámetros
-    ----------
-    G : nx.MultiDiGraph
-        Grafo vial con nodos etiquetados.
-    n_recorridos : int
-        Número de recorridos aleatorios a simular.
-    ids_vehiculos : list[str]
-        Claves de VEHICULOS a incluir (default: todos).
-    semilla : int
-        Semilla aleatoria para reproducibilidad.
-
-    Retorna
-    -------
-    dict
-        Estadísticas completas de la simulación.
+    Ejecuta la simulacion completa de recorridos.
+    Devuelve un diccionario con todas las estadisticas.
     """
+    # Si se fija una semilla, los resultados son reproducibles
     if semilla is not None:
         random.seed(semilla)
 
-    if ids_vehiculos is None:
-        ids_vehiculos = list(VEHICULOS.keys())
+    # Obtener los nodos del grafo que son electrolineras y referencias
+    nodos_electro = obtener_nodos_electrolineras(grafo)
+    nodos_ref     = obtener_nodos_referencia(grafo)
 
-    # Obtener nodos OSM de electrolineras y puntos de referencia
-    nodos_electro = obtener_nodos_electrolineras(G)
-    nodos_ref = obtener_nodos_referencia(G)
-
-    if not nodos_electro:
-        print("  ⚠  No se encontraron electrolineras en el grafo.")
+    if len(nodos_electro) == 0:
+        print("No se encontraron electrolineras en el grafo.")
         return {}
 
-    if not nodos_ref:
-        print("  ⚠  No se encontraron puntos de referencia en el grafo.")
+    if len(nodos_ref) == 0:
+        print("No se encontraron puntos de referencia en el grafo.")
         return {}
 
+    # Convertir los nodos de referencia a una lista para elegir al azar
     lista_nodos_ref = list(nodos_ref.values())
 
-    # Crear instancias de vehículos
-    vehiculos = [Vehiculo(VEHICULOS[k]) for k in ids_vehiculos if k in VEHICULOS]
-    if not vehiculos:
-        print("  ⚠  No se encontraron vehículos válidos.")
-        return {}
+    # Crear una lista con los vehiculos a usar en la simulacion
+    lista_vehiculos = list(VEHICULOS.values())
 
-    print(f"\n  🚗 Iniciando simulación: {n_recorridos} recorridos | "
-          f"{len(vehiculos)} vehículo(s)")
-    if semilla is not None:
-        print(f"  🔒 Semilla fija: {semilla} — se imprimirá historial detallado de ruta\n")
-
-    # Timestamp base de simulación (empezamos en 07:00 del día actual)
-    ts_base = datetime.now().replace(hour=7, minute=0, second=0, microsecond=0)
-
+    # Estructura que guarda todos los resultados
     estadisticas = {
-        "total_recorridos": 0,
-        "total_recargas": 0,
-        "uso_electrolineras": {},   # {nombre: conteo}
-        "por_vehiculo": {},         # {nombre_vehiculo: {recargas, km_total}}
-        "recorridos": [],           # detalle de cada recorrido
+        "total_recorridos":   0,
+        "total_recargas":     0,
+        "uso_electrolineras": {},   # cuantas veces se uso cada electrolinera
+        "por_vehiculo":       {},   # resultados separados por vehiculo
+        "recorridos":         []    # detalle de cada recorrido
     }
 
-    for vid, v in enumerate(vehiculos):
-        estadisticas["por_vehiculo"][v.nombre] = {"recargas": 0, "km_total": 0.0}
+    # Inicializar contadores por vehiculo
+    for vehiculo in lista_vehiculos:
+        estadisticas["por_vehiculo"][vehiculo["nombre"]] = {
+            "recargas":  0,
+            "km_total":  0.0
+        }
 
-    # ─── BUCLE PRINCIPAL (controlado por centinela: i < n_recorridos) ───
+    print("Iniciando simulacion:", n_recorridos, "recorridos con",
+          len(lista_vehiculos), "vehiculos")
+
+    # Hora de inicio simulada (para los timestamps del historial)
+    hora_inicio = datetime.now().replace(hour=7, minute=0, second=0)
+
+    # ── BUCLE PRINCIPAL controlado por centinela ──────────────
+    # El centinela es la variable i: el bucle corre hasta que
+    # i llegue a n_recorridos
     i = 0
     while i < n_recorridos:
-        # Seleccionar origen y destino aleatorios distintos
-        origen = random.choice(lista_nodos_ref)
-        destino_candidatos = [n for n in lista_nodos_ref if n != origen]
-        if not destino_candidatos:
-            i += 1
-            continue
-        destino = random.choice(destino_candidatos)
 
-        # Seleccionar vehículo (rotación circular)
-        vehiculo = vehiculos[i % len(vehiculos)]
-        """vehiculo.nivel_bateria = BATERIA_INICIAL  # reiniciar batería"""
+        # Elegir origen y destino distintos al azar
+        origen  = random.choice(lista_nodos_ref)
+        destinos_posibles = []
+        for nodo in lista_nodos_ref:
+            if nodo != origen:
+                destinos_posibles.append(nodo)
 
-        ts_actual = ts_base + timedelta(hours=i * 2)  # timestamp simulado
-
-        # Calcular ruta origen→destino
-        ruta, distancia_m, _ = dijkstra(G, origen, destino)
-
-        if not ruta or distancia_m == float("inf"):
-            i += 1
+        if len(destinos_posibles) == 0:
+            i = i + 1
             continue
 
-        # Consumir batería del recorrido
-        vehiculo.consumir(distancia_m)
-        estadisticas["por_vehiculo"][vehiculo.nombre]["km_total"] += (
+        destino = random.choice(destinos_posibles)
+
+        # Seleccionar vehiculo de forma rotatoria (0,1,0,1,...)
+        vehiculo = lista_vehiculos[i % len(lista_vehiculos)]
+        nivel_bateria = BATERIA_INICIAL
+
+        # Timestamp simulado para este recorrido
+        hora_recorrido = hora_inicio + timedelta(hours=i * 2)
+
+        # Calcular ruta del recorrido
+        ruta, distancia_m, _ = dijkstra(grafo, origen, destino)
+
+        # Si no existe ruta, saltar este recorrido
+        if len(ruta) == 0 or distancia_m == float("inf"):
+            i = i + 1
+            continue
+
+        # Descontar bateria segun distancia recorrida
+        consumo_pct = calcular_consumo(
+            distancia_m,
+            vehiculo["consumo_kwh_100km"],
+            vehiculo["bateria_kwh"]
+        )
+        nivel_bateria = nivel_bateria - consumo_pct
+        if nivel_bateria < 0.0:
+            nivel_bateria = 0.0
+
+        # Sumar km al contador del vehiculo
+        estadisticas["por_vehiculo"][vehiculo["nombre"]]["km_total"] += (
             distancia_m / METROS_POR_KM
         )
 
-        detalle_recorrido = {
-            "recorrido_num": i + 1,
-            "vehiculo": vehiculo.nombre,
-            "origen_osm": origen,
-            "destino_osm": destino,
-            "origen_nombre": obtener_nombre_nodo(G, origen),
-            "destino_nombre": obtener_nombre_nodo(G, destino),
-            "distancia_km": round(distancia_m / METROS_POR_KM, 3),
-            "bateria_final_pct": round(vehiculo.nivel_bateria, 2),
+        # Construir historial de nodos visitados
+        historial_ruta = trazar_historial_ruta(grafo, ruta)
+
+        # Guardar datos de este recorrido
+        detalle = {
+            "recorrido_num":    i + 1,
+            "vehiculo":         vehiculo["nombre"],
+            "origen_osm":       origen,
+            "destino_osm":      destino,
+            "origen_nombre":    obtener_nombre_nodo(grafo, origen),
+            "destino_nombre":   obtener_nombre_nodo(grafo, destino),
+            "distancia_km":     round(distancia_m / METROS_POR_KM, 3),
+            "bateria_final_pct": round(nivel_bateria, 2),
             "recarga_activada": False,
+            "historial_ruta":   historial_ruta
         }
 
-        # ── MODIFICACIÓN: construir historial de nodos (siempre se guarda en dict)
-        # La impresión en terminal fue reemplazada por el reporte TXT.
-        # imprimir_historial_ruta() ya NO se llama aquí para no saturar la consola.
-        historial_ruta = trazar_historial_ruta(G, ruta)
-        detalle_recorrido["historial_ruta"] = historial_ruta
+        # ── ACTIVAR BUSQUEDA DE ELECTROLINERA ─────────────────
+        if necesita_recarga(nivel_bateria):
 
-        # ─── ACTIVAR BÚSQUEDA DE ELECTROLINERA ───
-        if vehiculo.necesita_recarga() or vehiculo.bateria_critica():
-            nodo_actual = ruta[-1]  # nodo donde quedó el vehículo
+            nodo_actual = ruta[-1]  # ultimo nodo de la ruta
 
-            id_electro, nodo_electro, ruta_carga, dist_carga, t_ms = \
-                electrolinera_mas_cercana(G, nodo_actual, nodos_electro)
+            id_electro, nodo_electro, ruta_carga, dist_carga, _ = \
+                electrolinera_mas_cercana(grafo, nodo_actual, nodos_electro)
 
-            if id_electro:
-                nombre_electro = obtener_nombre_nodo(G, nodo_electro)
+            if id_electro is not None:
+                nombre_electro = obtener_nombre_nodo(grafo, nodo_electro)
 
-                # Registrar evento
+                # Registrar el evento de recarga en el CSV
                 evento = {
-                    "timestamp": ts_actual.strftime("%Y-%m-%d %H:%M:%S"),
-                    "vehiculo_id": vehiculo.id,
-                    "vehiculo_nombre": vehiculo.nombre,
-                    "electrolinera_id": id_electro,
-                    "electrolinera_nombre": nombre_electro,
-                    "nodo_origen_osm": nodo_actual,
-                    "nivel_bateria_llegada": round(vehiculo.nivel_bateria, 2),
-                    "distancia_recorrida_m": round(dist_carga, 1),
+                    "timestamp":             hora_recorrido.strftime("%Y-%m-%d %H:%M:%S"),
+                    "vehiculo_id":           vehiculo["id"],
+                    "vehiculo_nombre":       vehiculo["nombre"],
+                    "electrolinera_id":      id_electro,
+                    "electrolinera_nombre":  nombre_electro,
+                    "nodo_origen":           nodo_actual,
+                    "nivel_bateria_llegada": round(nivel_bateria, 2),
+                    "distancia_metros":      round(dist_carga, 1)
                 }
                 registrar_recarga(evento)
 
-                # Actualizar contadores
-                vehiculo.recargar(hasta_pct=80.0)
+                # Recargar hasta el 80%
+                nivel_bateria = 80.0
+
+                # Actualizar estadisticas
                 estadisticas["total_recargas"] += 1
-                estadisticas["por_vehiculo"][vehiculo.nombre]["recargas"] += 1
-                estadisticas["uso_electrolineras"][nombre_electro] = (
-                    estadisticas["uso_electrolineras"].get(nombre_electro, 0) + 1
-                )
+                estadisticas["por_vehiculo"][vehiculo["nombre"]]["recargas"] += 1
 
-                detalle_recorrido["recarga_activada"] = True
-                detalle_recorrido["electrolinera_usada"] = nombre_electro
-                detalle_recorrido["distancia_a_electro_km"] = round(
-                    dist_carga / METROS_POR_KM, 3
-                )
+                if nombre_electro in estadisticas["uso_electrolineras"]:
+                    estadisticas["uso_electrolineras"][nombre_electro] += 1
+                else:
+                    estadisticas["uso_electrolineras"][nombre_electro] = 1
 
-        estadisticas["recorridos"].append(detalle_recorrido)
+                # Agregar datos de la recarga al detalle del recorrido
+                detalle["recarga_activada"]       = True
+                detalle["electrolinera_usada"]    = nombre_electro
+                detalle["distancia_a_electro_km"] = round(dist_carga / METROS_POR_KM, 3)
+
+        estadisticas["recorridos"].append(detalle)
         estadisticas["total_recorridos"] += 1
-        i += 1
+        i = i + 1
 
-    # ── Guardar estadísticas en JSON (para ML) ───────────────
-    exportar_estadisticas_json(estadisticas)
+    # Guardar estadisticas en JSON
+    guardar_estadisticas(estadisticas)
 
-    # ── Generar reporte TXT detallado (historial completo) ───
+    # Generar el reporte TXT detallado
     ruta_reporte = generar_reporte_txt(estadisticas)
 
-    # ── Mensaje limpio en terminal (no satura con historial) ─
-    print(f"\n  {'─'*55}")
-    print(f"  ✅  Simulación completada.")
-    print(f"      Recorridos : {estadisticas['total_recorridos']}")
-    print(f"      Recargas   : {estadisticas['total_recargas']}")
-    print(f"  {'─'*55}")
-    print(f"  📄  Reporte detallado generado con éxito en:")
-    print(f"      {ruta_reporte}")
-    print(f"  {'─'*55}\n")
+    # Mostrar solo el mensaje final en la terminal
+    print("")
+    print("-" * 55)
+    print("Simulacion completada.")
+    print("  Recorridos : " + str(estadisticas["total_recorridos"]))
+    print("  Recargas   : " + str(estadisticas["total_recargas"]))
+    print("-" * 55)
+    print("Reporte detallado generado con exito en:")
+    print(ruta_reporte)
+    print("-" * 55)
 
     return estadisticas
 
 
-# ─────────────────────────────────────────────────────────────
-# RESUMEN ESTADÍSTICO EN CONSOLA
-# ─────────────────────────────────────────────────────────────
-def imprimir_resumen(estadisticas: dict) -> None:
-    """Imprime un resumen legible de la simulación en consola."""
-    if not estadisticas:
-        print("  ⚠  No hay estadísticas para mostrar.")
+def imprimir_resumen(estadisticas):
+    """
+    Muestra un resumen corto de la simulacion en la terminal.
+    El detalle completo esta en el archivo reporte_simulacion.txt
+    """
+    if len(estadisticas) == 0:
+        print("No hay estadisticas para mostrar.")
         return
 
-    print("\n" + "=" * 60)
-    print("  RESUMEN DE SIMULACIÓN")
+    print("")
     print("=" * 60)
-    print(f"  Total recorridos : {estadisticas['total_recorridos']}")
-    print(f"  Total recargas   : {estadisticas['total_recargas']}")
+    print("  RESUMEN DE SIMULACION")
+    print("=" * 60)
+    print("  Total recorridos :", estadisticas["total_recorridos"])
+    print("  Total recargas   :", estadisticas["total_recargas"])
 
-    print("\n  Uso de electrolineras:")
-    electros = estadisticas.get("uso_electrolineras", {})
-    if electros:
-        for nombre, conteo in sorted(electros.items(), key=lambda x: -x[1]):
-            print(f"    {nombre:<45} → {conteo} recargas")
+    print("")
+    print("  Electrolineras mas usadas:")
+    uso = estadisticas.get("uso_electrolineras", {})
+    if len(uso) > 0:
+        ordenado = sorted(uso.items(), key=lambda x: x[1], reverse=True)
+        for nombre, conteo in ordenado:
+            print("    " + nombre + " : " + str(conteo) + " recargas")
     else:
-        print("    (ninguna recarga registrada)")
+        print("    (ninguna recarga en esta simulacion)")
 
-    print("\n  Por vehículo:")
+    print("")
+    print("  Por vehiculo:")
     for nombre, datos in estadisticas.get("por_vehiculo", {}).items():
-        print(f"    {nombre:<30} | Recargas: {datos['recargas']:>3} | "
-              f"km totales: {datos['km_total']:>8.1f}")
+        print("    " + nombre +
+              " | Recargas: " + str(datos["recargas"]) +
+              " | km: " + str(round(datos["km_total"], 1)))
     print("=" * 60)

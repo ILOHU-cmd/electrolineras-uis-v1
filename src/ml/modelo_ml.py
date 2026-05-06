@@ -1,35 +1,29 @@
 """
 modelo_ml.py
-------------
-Módulo de Machine Learning para predicción de electrolinera óptima.
+Modulo de Machine Learning para predecir que electrolinera
+usara un vehiculo dado su nivel de bateria y tipo.
 
-Tarea: Clasificación supervisada
-  - Input  : nodo_origen (features), nivel_batería, tipo_vehículo
-  - Output : id de la electrolinera que se usará (clase)
+Se entrena un modelo de clasificacion supervisada:
+- Entradas: nivel de bateria, distancia recorrida, tipo de vehiculo
+- Salida  : cual electrolinera probablemente usara el vehiculo
 
-Modelos evaluados:
-  1. Regresión Logística (baseline)
-  2. Random Forest
-  3. XGBoost (si está instalado)
+Modelos disponibles:
+- Regresion Logistica (el mas simple, sirve como punto de comparacion)
+- Random Forest       (el que mejor funciona, es el que se guarda)
+- XGBoost             (si esta instalado)
 
-Métricas: accuracy, F1-score, tiempo de inferencia vs Dijkstra.
-
-MODIFICACIÓN 2 — Persistencia del modelo (memoria en disco):
-  `cargar_o_entrenar()` implementa la lógica de caché:
-    1. Si existe `modelo_random_forest.pkl` en data/processed/ → carga.
-    2. Si no existe o el usuario fuerza reentrenamiento → entrena y guarda.
-  Así el sistema "recuerda" el modelo entre sesiones sin reentrenar
-  cada vez que se abre el programa.
+El modelo entrenado se guarda en disco para no tener que
+reentrenar cada vez que se abre el programa.
 """
 
-import sys
 import os
-import time
+import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from src.utils.archivos import leer_csv, guardar_json
 
+# Intentar importar las librerias de Machine Learning
 try:
     import numpy as np
     import pandas as pd
@@ -37,11 +31,11 @@ try:
     from sklearn.linear_model import LogisticRegression
     from sklearn.model_selection import train_test_split
     from sklearn.preprocessing import LabelEncoder
-    from sklearn.metrics import accuracy_score, f1_score, classification_report
+    from sklearn.metrics import accuracy_score, f1_score
     import joblib
-    SK_DISPONIBLE = True
+    ML_DISPONIBLE = True
 except ImportError:
-    SK_DISPONIBLE = False
+    ML_DISPONIBLE = False
 
 try:
     from xgboost import XGBClassifier
@@ -49,284 +43,242 @@ try:
 except ImportError:
     XGB_DISPONIBLE = False
 
-# Ruta para guardar modelos entrenados
-DIR_MODELOS = os.path.join(os.path.dirname(__file__), "..", "..", "data", "processed")
-os.makedirs(DIR_MODELOS, exist_ok=True)
+import time
 
-# Nombre del modelo principal que se persiste en disco
-MODELO_PRINCIPAL = "random_forest"
-RUTA_MODELO_PRINCIPAL = os.path.join(DIR_MODELOS, f"modelo_{MODELO_PRINCIPAL}.pkl")
+# Carpeta donde se guardan los modelos entrenados
+CARPETA_MODELOS = os.path.join(
+    os.path.dirname(__file__), "..", "..", "data", "processed"
+)
+if not os.path.exists(CARPETA_MODELOS):
+    os.makedirs(CARPETA_MODELOS)
+
+# Nombre del archivo del modelo principal
+ARCHIVO_MODELO = os.path.join(CARPETA_MODELOS, "modelo_random_forest.pkl")
 
 
-# ─────────────────────────────────────────────────────────────
-# MODIFICACIÓN 2 — PERSISTENCIA DEL MODELO (MEMORIA EN DISCO)
-# ─────────────────────────────────────────────────────────────
-
-def cargar_o_entrenar(forzar_reentrenamiento: bool = False) -> dict:
+def preparar_datos():
     """
-    Punto de entrada principal para la Opción [6] del menú.
+    Carga el historial de recargas y lo convierte en un dataset
+    listo para entrenar el modelo.
 
-    Lógica de caché:
-      1. Si `forzar_reentrenamiento=False` Y el archivo .pkl existe
-         → carga el modelo desde disco (instantáneo, sin reentrenar).
-      2. En cualquier otro caso → llama a `entrenar_modelos()`,
-         guarda el resultado y lo retorna.
+    Columnas de entrada (X):
+    - nivel_bateria_llegada : que tan baja estaba la bateria
+    - distancia_metros      : cuanto recorrio antes de recargar
+    - vehiculo_id_enc       : numero que representa el tipo de vehiculo
 
-    Parámetros
-    ----------
-    forzar_reentrenamiento : bool
-        Si True, ignora el caché y reentrena desde cero aunque el
-        archivo .pkl exista. Útil cuando se agregan nuevos datos de
-        simulación.
-
-    Retorna
-    -------
-    dict
-        Mismo formato que `entrenar_modelos()`:
-        {nombre_modelo: {modelo, le_target, accuracy, f1, tiempos}}
-        Retorna {} si no hay datos suficientes.
+    Columna de salida (y):
+    - electrolinera_id : cual electrolinera uso (lo que queremos predecir)
     """
-    if not SK_DISPONIBLE:
-        print("  ⚠  scikit-learn no está instalado.")
-        return {}
-
-    # ── RAMA 1: intentar cargar desde disco ──────────────────
-    if not forzar_reentrenamiento and os.path.exists(RUTA_MODELO_PRINCIPAL):
-        try:
-            paquete = joblib.load(RUTA_MODELO_PRINCIPAL)
-            modelo    = paquete["modelo"]
-            le_target = paquete["le_target"]
-            metricas  = paquete.get("metricas", {})
-
-            print(f"\n  ✅ Modelo cargado desde disco:")
-            print(f"     Archivo  : {RUTA_MODELO_PRINCIPAL}")
-            print(f"     Tipo     : {type(modelo).__name__}")
-            print(f"     Clases   : {list(le_target.classes_)}")
-            if metricas:
-                print(f"     Accuracy : {metricas.get('accuracy', 'N/A')}")
-                print(f"     F1       : {metricas.get('f1_weighted', 'N/A')}")
-            print(f"\n  💡 Para reentrenar use: cargar_o_entrenar(forzar_reentrenamiento=True)")
-
-            return {
-                MODELO_PRINCIPAL: {
-                    "modelo":    modelo,
-                    "le_target": le_target,
-                    **metricas,
-                }
-            }
-        except Exception as e:
-            # El archivo existe pero está corrupto → reentrenar
-            print(f"  ⚠  Error al cargar modelo desde disco: {e}")
-            print(f"  ↺  Reentrenando desde cero...\n")
-
-    # ── RAMA 2: entrenar desde cero ───────────────────────────
-    if forzar_reentrenamiento:
-        print("\n  🔄 Reentrenamiento forzado por el usuario.\n")
-    else:
-        print(f"\n  ℹ  No se encontró modelo en disco ({RUTA_MODELO_PRINCIPAL}).")
-        print(f"  🔧 Entrenando nuevo modelo...\n")
-
-    resultados = entrenar_modelos()
-
-    # Enriquecer el .pkl del modelo principal con métricas
-    # (entrenar_modelos ya guarda el pkl, aquí solo añadimos métricas)
-    if MODELO_PRINCIPAL in _normalizar_claves(resultados):
-        clave_real = _clave_real(resultados, MODELO_PRINCIPAL)
-        datos = resultados[clave_real]
-        metricas_guardadas = {
-            "accuracy":                datos.get("accuracy"),
-            "f1_weighted":             datos.get("f1_weighted"),
-            "tiempo_entrenamiento_ms": datos.get("tiempo_entrenamiento_ms"),
-            "tiempo_inferencia_ms":    datos.get("tiempo_inferencia_ms"),
-        }
-        # Reescribir pkl incluyendo métricas para futuras cargas
-        joblib.dump(
-            {
-                "modelo":    datos["modelo"],
-                "le_target": datos["le_target"],
-                "metricas":  metricas_guardadas,
-            },
-            RUTA_MODELO_PRINCIPAL,
-        )
-
-    return resultados
-
-
-def _normalizar_claves(d: dict) -> dict:
-    """Devuelve un dict con claves normalizadas a minúsculas sin tildes."""
-    return {
-        k.lower()
-         .replace(" ", "_")
-         .replace("ó", "o")
-         .replace("é", "e")
-         .replace("ú", "u"): k
-        for k in d
-    }
-
-
-def _clave_real(d: dict, nombre_normalizado: str) -> str | None:
-    """Retorna la clave original del dict dado su nombre normalizado."""
-    mapa = _normalizar_claves(d)
-    return mapa.get(nombre_normalizado)
-
-
-# ─────────────────────────────────────────────────────────────
-# PREPARAR DATASET DESDE HISTORIAL DE RECARGAS
-# ─────────────────────────────────────────────────────────────
-def preparar_dataset() -> tuple:
-    """
-    Carga el historial de recargas y construye el dataset de entrenamiento.
-
-    Features (X):
-      - nivel_bateria_llegada (float)
-      - distancia_recorrida_m (float)
-      - vehiculo_id_enc       (int, codificado)
-
-    Target (y):
-      - electrolinera_id (string → int codificado)
-
-    Retorna
-    -------
-    tuple (X, y, le_target) donde le_target es el LabelEncoder de la clase.
-    None si no hay datos suficientes.
-    """
-    if not SK_DISPONIBLE:
-        print("  ⚠  scikit-learn no está instalado.")
+    if not ML_DISPONIBLE:
+        print("Las librerias de Machine Learning no estan instaladas.")
         return None
 
     filas = leer_csv("historial_recargas")
+
     if len(filas) < 20:
-        print(f"  ⚠  Dataset insuficiente: {len(filas)} registros. "
-              f"Se necesitan al menos 20. Ejecute más simulaciones.")
+        print("Datos insuficientes:", len(filas), "registros.")
+        print("Se necesitan al menos 20 recargas. Ejecute mas simulaciones.")
         return None
 
-    df = pd.DataFrame(filas)
-    df["nivel_bateria_llegada"] = pd.to_numeric(df["nivel_bateria_llegada"], errors="coerce")
-    df["distancia_recorrida_m"] = pd.to_numeric(df["distancia_recorrida_m"], errors="coerce")
-    df = df.dropna()
+    tabla = pd.DataFrame(filas)
+    tabla["nivel_bateria_llegada"] = pd.to_numeric(tabla["nivel_bateria_llegada"], errors="coerce")
+    tabla["distancia_metros"]      = pd.to_numeric(tabla["distancia_metros"],      errors="coerce")
+    tabla = tabla.dropna()
 
-    # Codificar vehículo
-    le_vehiculo = LabelEncoder()
-    df["vehiculo_enc"] = le_vehiculo.fit_transform(df["vehiculo_id"])
+    # Convertir el ID del vehiculo a numero (los modelos solo aceptan numeros)
+    codificador_vehiculo = LabelEncoder()
+    tabla["vehiculo_enc"] = codificador_vehiculo.fit_transform(tabla["vehiculo_id"])
 
-    # Codificar target (electrolinera)
-    le_target = LabelEncoder()
-    df["target"] = le_target.fit_transform(df["electrolinera_id"])
+    # Convertir el ID de la electrolinera a numero (es lo que queremos predecir)
+    codificador_electro = LabelEncoder()
+    tabla["objetivo"] = codificador_electro.fit_transform(tabla["electrolinera_id"])
 
-    X = df[["nivel_bateria_llegada", "distancia_recorrida_m", "vehiculo_enc"]].values
-    y = df["target"].values
+    # Separar entradas y salida
+    X = tabla[["nivel_bateria_llegada", "distancia_metros", "vehiculo_enc"]].values
+    y = tabla["objetivo"].values
 
-    print(f"  ✓  Dataset: {len(df)} registros | {len(le_target.classes_)} clases")
-    return X, y, le_target
+    print("Dataset preparado:", len(tabla), "registros,",
+          len(codificador_electro.classes_), "electrolineras distintas")
+
+    return X, y, codificador_electro
 
 
-# ─────────────────────────────────────────────────────────────
-# ENTRENAR MODELOS
-# ─────────────────────────────────────────────────────────────
-def entrenar_modelos() -> dict:
+def entrenar_modelos():
     """
-    Entrena y evalúa todos los modelos disponibles.
-
-    Retorna
-    -------
-    dict
-        {nombre_modelo: {modelo, accuracy, f1, tiempo_entrenamiento_ms}}
+    Entrena todos los modelos disponibles y guarda el mejor en disco.
+    Devuelve un diccionario con los resultados de cada modelo.
     """
-    resultado = preparar_dataset()
+    resultado = preparar_datos()
     if resultado is None:
         return {}
 
-    X, y, le_target = resultado
+    X, y, codificador_electro = resultado
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.25, random_state=42, stratify=y if len(set(y)) > 1 else None
+    # Dividir en datos de entrenamiento (75%) y datos de prueba (25%)
+    X_entrenamiento, X_prueba, y_entrenamiento, y_prueba = train_test_split(
+        X, y, test_size=0.25, random_state=42
     )
 
-    modelos_config = {
-        "Regresión Logística": LogisticRegression(max_iter=500, random_state=42),
-        "Random Forest":       RandomForestClassifier(n_estimators=100, random_state=42),
+    # Definir los modelos a probar
+    modelos_a_probar = {
+        "Regresion Logistica": LogisticRegression(max_iter=500, random_state=42),
+        "Random Forest":       RandomForestClassifier(n_estimators=100, random_state=42)
     }
+
     if XGB_DISPONIBLE:
-        modelos_config["XGBoost"] = XGBClassifier(
-            n_estimators=100, use_label_encoder=False,
-            eval_metric="mlogloss", random_state=42, verbosity=0
+        modelos_a_probar["XGBoost"] = XGBClassifier(
+            n_estimators=100,
+            eval_metric="mlogloss",
+            random_state=42,
+            verbosity=0
         )
 
+    print("")
+    print("Entrenando modelos...")
+    print("-" * 50)
+
     resultados = {}
-    print("\n  🤖 Entrenando modelos...\n")
 
-    for nombre, modelo in modelos_config.items():
-        t_inicio = time.perf_counter()
-        modelo.fit(X_train, y_train)
-        t_entrenamiento = (time.perf_counter() - t_inicio) * 1000
+    for nombre, modelo in modelos_a_probar.items():
+        # Entrenar el modelo
+        inicio_entrenamiento = time.perf_counter()
+        modelo.fit(X_entrenamiento, y_entrenamiento)
+        tiempo_entrenamiento = (time.perf_counter() - inicio_entrenamiento) * 1000
 
-        t_inf = time.perf_counter()
-        y_pred = modelo.predict(X_test)
-        t_inferencia = (time.perf_counter() - t_inf) * 1000
+        # Medir tiempo de prediccion
+        inicio_prediccion = time.perf_counter()
+        predicciones = modelo.predict(X_prueba)
+        tiempo_prediccion = (time.perf_counter() - inicio_prediccion) * 1000
 
-        acc = accuracy_score(y_test, y_pred)
-        f1 = f1_score(y_test, y_pred, average="weighted", zero_division=0)
+        # Calcular metricas de calidad
+        accuracy = accuracy_score(y_prueba, predicciones)
+        f1       = f1_score(y_prueba, predicciones, average="weighted", zero_division=0)
 
-        print(f"  {nombre}:")
-        print(f"    Accuracy   : {acc:.4f}")
-        print(f"    F1 (weighted): {f1:.4f}")
-        print(f"    Entrenamiento: {t_entrenamiento:.1f} ms")
-        print(f"    Inferencia   : {t_inferencia:.2f} ms\n")
-
-        # Guardar modelo en disco
-        nombre_archivo = nombre.lower().replace(" ", "_").replace("ó", "o")
-        ruta_modelo = os.path.join(DIR_MODELOS, f"modelo_{nombre_archivo}.pkl")
-        joblib.dump({"modelo": modelo, "le_target": le_target}, ruta_modelo)
+        print(nombre + ":")
+        print("  Precision (accuracy):", round(accuracy, 4))
+        print("  F1 score            :", round(f1, 4))
+        print("  Tiempo entrenamiento:", round(tiempo_entrenamiento, 1), "ms")
+        print("  Tiempo prediccion   :", round(tiempo_prediccion, 3), "ms")
+        print("")
 
         resultados[nombre] = {
-            "modelo": modelo,
-            "le_target": le_target,
-            "accuracy": round(acc, 4),
-            "f1_weighted": round(f1, 4),
-            "tiempo_entrenamiento_ms": round(t_entrenamiento, 2),
-            "tiempo_inferencia_ms": round(t_inferencia, 2),
+            "modelo":                    modelo,
+            "codificador":               codificador_electro,
+            "accuracy":                  round(accuracy, 4),
+            "f1_weighted":               round(f1, 4),
+            "tiempo_entrenamiento_ms":   round(tiempo_entrenamiento, 2),
+            "tiempo_inferencia_ms":      round(tiempo_prediccion, 2)
         }
 
-    # Guardar métricas comparativas
-    metricas = {
-        k: {kk: vv for kk, vv in v.items() if kk != "modelo" and kk != "le_target"}
-        for k, v in resultados.items()
-    }
+    # Guardar metricas en JSON para el historial
+    metricas = {}
+    for nombre, datos in resultados.items():
+        metricas[nombre] = {
+            "accuracy":                datos["accuracy"],
+            "f1_weighted":             datos["f1_weighted"],
+            "tiempo_entrenamiento_ms": datos["tiempo_entrenamiento_ms"],
+            "tiempo_inferencia_ms":    datos["tiempo_inferencia_ms"]
+        }
     guardar_json("metricas_modelos", metricas)
 
     return resultados
 
 
-# ─────────────────────────────────────────────────────────────
-# PREDICCIÓN CON MODELO GUARDADO
-# ─────────────────────────────────────────────────────────────
-def predecir_electrolinera(nivel_bateria: float,
-                            distancia_m: float,
-                            vehiculo_id_enc: int,
-                            nombre_modelo: str = "random_forest") -> str:
+def cargar_o_entrenar(forzar_reentrenamiento=False):
     """
-    Predice la electrolinera más probable dado el estado del vehículo.
+    Punto de entrada para la opcion 6 del menu.
 
-    Retorna
-    -------
-    str
-        ID de la electrolinera predicha (ej: 'E3'), o 'N/A' si falla.
+    Si ya existe el archivo del modelo guardado y no se fuerza el
+    reentrenamiento, lo carga directamente desde disco.
+    Si no existe o se fuerza, entrena uno nuevo y lo guarda.
     """
-    ruta_modelo = os.path.join(DIR_MODELOS, f"modelo_{nombre_modelo}.pkl")
-    if not os.path.exists(ruta_modelo):
-        print(f"  ⚠  Modelo '{nombre_modelo}' no encontrado. Entrene primero.")
+    if not ML_DISPONIBLE:
+        print("Las librerias de Machine Learning no estan instaladas.")
+        return {}
+
+    # Intentar cargar desde disco si existe
+    if not forzar_reentrenamiento and os.path.exists(ARCHIVO_MODELO):
+        try:
+            paquete       = joblib.load(ARCHIVO_MODELO)
+            modelo        = paquete["modelo"]
+            codificador   = paquete["codificador"]
+            metricas      = paquete.get("metricas", {})
+
+            print("")
+            print("Modelo cargado desde disco:")
+            print("  Archivo  :", ARCHIVO_MODELO)
+            print("  Tipo     :", type(modelo).__name__)
+            print("  Clases   :", list(codificador.classes_))
+            if len(metricas) > 0:
+                print("  Accuracy :", metricas.get("accuracy", "N/A"))
+                print("  F1 score :", metricas.get("f1_weighted", "N/A"))
+
+            return {
+                "Random Forest": {
+                    "modelo":            modelo,
+                    "codificador":       codificador,
+                    "accuracy":          metricas.get("accuracy"),
+                    "f1_weighted":       metricas.get("f1_weighted"),
+                    "tiempo_inferencia_ms": metricas.get("tiempo_inferencia_ms")
+                }
+            }
+
+        except Exception as error:
+            print("Error al cargar el modelo:", error)
+            print("Reentrenando desde cero...")
+
+    # Entrenar desde cero
+    if forzar_reentrenamiento:
+        print("Reentrenamiento solicitado por el usuario.")
+    else:
+        print("No existe modelo guardado. Entrenando nuevo modelo...")
+
+    resultados = entrenar_modelos()
+
+    # Guardar el Random Forest en disco (incluyendo las metricas)
+    if "Random Forest" in resultados:
+        datos_rf = resultados["Random Forest"]
+        joblib.dump(
+            {
+                "modelo":      datos_rf["modelo"],
+                "codificador": datos_rf["codificador"],
+                "metricas": {
+                    "accuracy":               datos_rf["accuracy"],
+                    "f1_weighted":            datos_rf["f1_weighted"],
+                    "tiempo_inferencia_ms":   datos_rf["tiempo_inferencia_ms"]
+                }
+            },
+            ARCHIVO_MODELO
+        )
+        print("Modelo guardado en:", ARCHIVO_MODELO)
+
+    return resultados
+
+
+def predecir_electrolinera(nivel_bateria, distancia_m, vehiculo_enc):
+    """
+    Usa el modelo guardado para predecir que electrolinera
+    usara un vehiculo dado su nivel de bateria.
+
+    Devuelve el ID de la electrolinera predicha (ej: "E3")
+    """
+    if not os.path.exists(ARCHIVO_MODELO):
+        print("Modelo no encontrado. Entrene primero (opcion 6).")
         return "N/A"
 
-    paquete = joblib.load(ruta_modelo)
-    modelo = paquete["modelo"]
-    le_target = paquete["le_target"]
+    paquete     = joblib.load(ARCHIVO_MODELO)
+    modelo      = paquete["modelo"]
+    codificador = paquete["codificador"]
 
-    X_nuevo = [[nivel_bateria, distancia_m, vehiculo_id_enc]]
+    # Crear el vector de entrada con los mismos campos que el entrenamiento
+    entrada = [[nivel_bateria, distancia_m, vehiculo_enc]]
 
-    t_inicio = time.perf_counter()
-    pred_enc = modelo.predict(X_nuevo)[0]
-    t_ms = (time.perf_counter() - t_inicio) * 1000
+    inicio      = time.perf_counter()
+    prediccion  = modelo.predict(entrada)[0]
+    tiempo_ms   = (time.perf_counter() - inicio) * 1000
 
-    electrolinera_pred = le_target.inverse_transform([pred_enc])[0]
-    print(f"  ✓  Predicción ML: {electrolinera_pred} ({t_ms:.3f} ms)")
-    return electrolinera_pred
+    # Convertir el numero predicho de vuelta al ID de electrolinera
+    electrolinera = codificador.inverse_transform([prediccion])[0]
+
+    print("Prediccion completada en", round(tiempo_ms, 3), "ms")
+    return electrolinera

@@ -1,164 +1,86 @@
 """
 validacion.py
--------------
-Funciones de validación de entradas del usuario.
-Cubre: negativos, fuera de rango, caracteres inválidos.
-Requisito explícito de la rúbrica del profesor.
+Funciones para leer y validar datos que ingresa el usuario.
+Se usan en todo el programa para evitar que entren valores
+incorrectos como letras donde van numeros, o numeros negativos.
 """
 
-import os
-import re
 
-
-# ─────────────────────────────────────────────────────────────
-# LIMPIEZA DE PANTALLA
-# ─────────────────────────────────────────────────────────────
-def limpiar_pantalla():
-    """Limpia la consola según el sistema operativo."""
-    os.system("cls" if os.name == "nt" else "clear")
-
-
-# ─────────────────────────────────────────────────────────────
-# VALIDACIÓN DE ENTEROS
-# ─────────────────────────────────────────────────────────────
-def leer_entero(mensaje: str, minimo: int = None, maximo: int = None) -> int:
-    """
-    Lee un entero del usuario con validación completa.
-
-    Parámetros
-    ----------
-    mensaje : str
-        Texto que se muestra al usuario.
-    minimo : int, opcional
-        Valor mínimo permitido (inclusive).
-    maximo : int, opcional
-        Valor máximo permitido (inclusive).
-
-    Retorna
-    -------
-    int
-        El entero validado.
-    """
+def leer_entero(mensaje, minimo=None, maximo=None):
+    # Repite la pregunta hasta que el usuario ingrese un numero valido
     while True:
         entrada = input(mensaje).strip()
 
-        # Validar que no esté vacío
-        if not entrada:
-            print("  ⚠  Entrada vacía. Por favor ingrese un número.\n")
+        # Verificar que no este vacio
+        if entrada == "":
+            print("Debe ingresar un valor. No puede dejar esto en blanco.")
             continue
 
-        # Validar que solo contenga dígitos (y posible signo negativo)
-        if not re.fullmatch(r"-?\d+", entrada):
-            print("  ⚠  Carácter inválido. Solo se permiten dígitos enteros.\n")
+        # Verificar que sea un numero entero (acepta negativos con el signo -)
+        es_numero = True
+        texto_a_revisar = entrada
+
+        if texto_a_revisar.startswith("-"):
+            texto_a_revisar = texto_a_revisar[1:]
+
+        if not texto_a_revisar.isdigit():
+            es_numero = False
+
+        if not es_numero:
+            print("Valor invalido. Debe ingresar solo digitos enteros.")
             continue
 
-        valor = int(entrada)
+        numero = int(entrada)
 
-        # Validar rango mínimo
-        if minimo is not None and valor < minimo:
-            print(f"  ⚠  El valor debe ser mayor o igual a {minimo}.\n")
+        # Verificar rango minimo
+        if minimo is not None and numero < minimo:
+            print("El valor minimo permitido es", minimo)
             continue
 
-        # Validar rango máximo
-        if maximo is not None and valor > maximo:
-            print(f"  ⚠  El valor debe ser menor o igual a {maximo}.\n")
+        # Verificar rango maximo
+        if maximo is not None and numero > maximo:
+            print("El valor maximo permitido es", maximo)
             continue
 
-        return valor
+        # Si pasa todas las validaciones, retorna el numero
+        return numero
 
 
-# ─────────────────────────────────────────────────────────────
-# VALIDACIÓN DE FLOTANTES
-# ─────────────────────────────────────────────────────────────
-def leer_flotante(mensaje: str, minimo: float = None, maximo: float = None) -> float:
-    """
-    Lee un número flotante con validación de rango y formato.
-    """
+def leer_flotante(mensaje, minimo=None, maximo=None):
+    # Similar a leer_entero pero acepta decimales
     while True:
         entrada = input(mensaje).strip()
 
-        if not entrada:
-            print("  ⚠  Entrada vacía. Ingrese un número decimal.\n")
+        if entrada == "":
+            print("Debe ingresar un valor.")
             continue
 
+        # Intentar convertir a decimal
         try:
-            valor = float(entrada)
+            numero = float(entrada)
         except ValueError:
-            print("  ⚠  Formato inválido. Use punto decimal (ej: 3.14).\n")
+            print("Valor invalido. Use punto decimal (ejemplo: 15.5)")
             continue
 
-        if minimo is not None and valor < minimo:
-            print(f"  ⚠  El valor mínimo permitido es {minimo}.\n")
+        if minimo is not None and numero < minimo:
+            print("El valor minimo permitido es", minimo)
             continue
 
-        if maximo is not None and valor > maximo:
-            print(f"  ⚠  El valor máximo permitido es {maximo}.\n")
+        if maximo is not None and numero > maximo:
+            print("El valor maximo permitido es", maximo)
             continue
 
-        return valor
+        return numero
 
 
-# ─────────────────────────────────────────────────────────────
-# VALIDACIÓN DE TEXTO
-# ─────────────────────────────────────────────────────────────
-def leer_texto(mensaje: str, solo_alfa: bool = False, max_len: int = 100) -> str:
-    """
-    Lee texto con validación de longitud y caracteres.
-
-    Parámetros
-    ----------
-    solo_alfa : bool
-        Si True, solo acepta letras, espacios y tildes.
-    max_len : int
-        Longitud máxima permitida.
-    """
+def leer_si_no(mensaje):
+    # Pide una confirmacion de si o no al usuario
+    # Retorna True si responde 's', False si responde 'n'
     while True:
-        entrada = input(mensaje).strip()
-
-        if not entrada:
-            print("  ⚠  Campo obligatorio. No puede estar vacío.\n")
-            continue
-
-        if len(entrada) > max_len:
-            print(f"  ⚠  Texto demasiado largo (máx. {max_len} caracteres).\n")
-            continue
-
-        if solo_alfa and not re.fullmatch(r"[A-Za-záéíóúÁÉÍÓÚñÑ ]+", entrada):
-            print("  ⚠  Solo se permiten letras y espacios.\n")
-            continue
-
-        return entrada
-
-
-# ─────────────────────────────────────────────────────────────
-# VALIDACIÓN DE PORCENTAJE DE BATERÍA
-# ─────────────────────────────────────────────────────────────
-def validar_nivel_bateria(nivel: float) -> bool:
-    """
-    Verifica si el nivel de batería está en rango válido [0, 100].
-
-    Retorna
-    -------
-    bool
-        True si el nivel es válido.
-    """
-    return 0.0 <= nivel <= 100.0
-
-
-# ─────────────────────────────────────────────────────────────
-# CONFIRMACIÓN S/N
-# ─────────────────────────────────────────────────────────────
-def confirmar(mensaje: str) -> bool:
-    """
-    Solicita confirmación S/N al usuario.
-
-    Retorna
-    -------
-    bool
-        True si el usuario responde 's' o 'S'.
-    """
-    while True:
-        resp = input(f"{mensaje} [s/n]: ").strip().lower()
-        if resp in ("s", "n"):
-            return resp == "s"
-        print("  ⚠  Respuesta inválida. Ingrese 's' para sí o 'n' para no.\n")
+        respuesta = input(mensaje + " (s/n): ").strip().lower()
+        if respuesta == "s":
+            return True
+        elif respuesta == "n":
+            return False
+        else:
+            print("Respuesta invalida. Ingrese 's' para si o 'n' para no.")

@@ -1,196 +1,184 @@
 """
 constructor_grafo.py
---------------------
-Construye el grafo ponderado de la red vial de Bucaramanga
-usando OSMnx + NetworkX.
+Construye el grafo de la red vial de Bucaramanga usando OSMnx.
 
-Nodos especiales:
-  - Tipo A: Electrolineras  (color rojo  en visualización)
-  - Tipo B: Puntos de referencia (color azul en visualización)
+Un grafo es una estructura matematica formada por nodos (intersecciones)
+y aristas (calles). Cada arista tiene un peso que en este caso es la
+distancia en metros. Esto permite aplicar algoritmos como Dijkstra
+para encontrar la ruta mas corta entre dos puntos.
 
-Las aristas tienen como peso la distancia en metros ('length').
+Este archivo se encarga de:
+1. Descargar la red vial desde OpenStreetMap (o cargarla desde cache)
+2. Marcar cuales nodos son electrolineras y cuales son puntos de referencia
 """
 
-import sys
 import os
+import sys
 
-# Importaciones con manejo de error para entornos sin las librerías
-try:
-    import osmnx as ox
-    import networkx as nx
-    OSMNX_DISPONIBLE = True
-except ImportError:
-    OSMNX_DISPONIBLE = False
-
-# Añadir ruta raíz al path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from data.datos_estaticos import ELECTROLINERAS, PUNTOS_REFERENCIA
 
+# Intentar importar las librerias necesarias
+try:
+    import osmnx as ox
+    import networkx as nx
+    LIBRERIAS_DISPONIBLES = True
+except ImportError:
+    LIBRERIAS_DISPONIBLES = False
 
-# ─────────────────────────────────────────────────────────────
-# CONSTANTES
-# ─────────────────────────────────────────────────────────────
-CIUDAD = "Bucaramanga, Santander, Colombia"
-RADIO_METROS = 15000  # Radio de extracción de la red vial
+# Nombre de la ciudad a descargar
+NOMBRE_CIUDAD = "Bucaramanga, Santander, Colombia"
+
+# Ruta donde se guarda el grafo descargado para no tener que
+# descargarlo cada vez que se abre el programa
+RUTA_CACHE = os.path.join(
+    os.path.dirname(__file__), "..", "..", "data", "raw", "grafo_bga.graphml"
+)
+
+# Crear carpeta raw si no existe
+carpeta_raw = os.path.join(os.path.dirname(__file__), "..", "..", "data", "raw")
+if not os.path.exists(carpeta_raw):
+    os.makedirs(carpeta_raw)
 
 
-# ─────────────────────────────────────────────────────────────
-# FUNCIÓN PRINCIPAL: CONSTRUIR GRAFO
-# ─────────────────────────────────────────────────────────────
-def construir_grafo(desde_cache: bool = True) -> "nx.MultiDiGraph":
+def construir_grafo(desde_cache=True):
     """
-    Descarga (o carga desde caché) el grafo vial de Bucaramanga
-    y agrega los nodos especiales de electrolineras y puntos de
-    referencia como atributos sobre los nodos OSM más cercanos.
-
-    Parámetros
-    ----------
-    desde_cache : bool
-        Si True, intenta cargar el grafo guardado en disco.
-        Si no existe caché, lo descarga de OpenStreetMap.
-
-    Retorna
-    -------
-    nx.MultiDiGraph
-        Grafo vial enriquecido con atributos de nodos especiales.
+    Descarga o carga el grafo vial de Bucaramanga.
+    Si desde_cache es True y ya existe el archivo, lo carga desde disco.
+    Si no existe o desde_cache es False, lo descarga de OpenStreetMap.
     """
-    if not OSMNX_DISPONIBLE:
-        print("  ⚠  OSMnx no está instalado. Usando grafo sintético de prueba.")
-        return _grafo_sintetico()
+    if not LIBRERIAS_DISPONIBLES:
+        print("Las librerias osmnx y networkx no estan instaladas.")
+        print("Usando grafo de prueba en su lugar.")
+        return crear_grafo_sintetico()
 
-    ruta_cache = os.path.join(
-        os.path.dirname(__file__), "..", "..", "data", "raw", "grafo_bga.graphml"
-    )
-
-    if desde_cache and os.path.exists(ruta_cache):
-        print("  ✓  Cargando grafo desde caché local...")
-        G = ox.load_graphml(ruta_cache)
+    if desde_cache and os.path.exists(RUTA_CACHE):
+        print("Cargando grafo desde archivo local...")
+        grafo = ox.load_graphml(RUTA_CACHE)
     else:
-        print("  ↓  Descargando red vial de OpenStreetMap (puede tardar)...")
-        G = ox.graph_from_place(CIUDAD, network_type="drive")
-        ox.save_graphml(G, ruta_cache)
-        print(f"  ✓  Grafo guardado en {ruta_cache}")
+        print("Descargando red vial desde OpenStreetMap...")
+        print("Esto puede tardar unos minutos la primera vez.")
+        grafo = ox.graph_from_place(NOMBRE_CIUDAD, network_type="drive")
+        ox.save_graphml(grafo, RUTA_CACHE)
+        print("Grafo guardado en disco para usos futuros.")
 
-    print(f"  ✓  Grafo cargado: {G.number_of_nodes()} nodos, {G.number_of_edges()} aristas")
+    print("Grafo cargado:", grafo.number_of_nodes(), "nodos,", grafo.number_of_edges(), "aristas")
 
-    # Agregar atributos especiales a nodos OSM cercanos
-    G = _etiquetar_nodos_especiales(G)
-    return G
+    # Marcar los nodos especiales (electrolineras y puntos de referencia)
+    grafo = marcar_nodos_especiales(grafo)
+    return grafo
 
 
-# ─────────────────────────────────────────────────────────────
-# ETIQUETADO DE NODOS ESPECIALES
-# ─────────────────────────────────────────────────────────────
-def _etiquetar_nodos_especiales(G: "nx.MultiDiGraph") -> "nx.MultiDiGraph":
+def marcar_nodos_especiales(grafo):
     """
-    Encuentra el nodo OSM más cercano a cada electrolinera y punto
-    de referencia, y agrega atributos al grafo.
-
-    Atributos agregados:
-        - tipo_especial : 'electrolinera' | 'referencia' | None
-        - id_especial   : 'E1'...'E8' | 'P1'...'P10' | None
-        - nombre_especial : nombre legible del lugar
+    Busca el nodo OSM mas cercano a cada electrolinera y punto de referencia
+    y les agrega una etiqueta para identificarlos en el grafo.
     """
-    # Inicializar todos los nodos como sin tipo especial
-    for nodo in G.nodes:
-        G.nodes[nodo]["tipo_especial"] = None
-        G.nodes[nodo]["id_especial"] = None
-        G.nodes[nodo]["nombre_especial"] = None
+    # Primero inicializar todos los nodos sin etiqueta especial
+    for nodo in grafo.nodes:
+        grafo.nodes[nodo]["tipo"] = None
+        grafo.nodes[nodo]["id_lugar"] = None
+        grafo.nodes[nodo]["nombre_lugar"] = None
 
-    todos_especiales = ELECTROLINERAS + PUNTOS_REFERENCIA
+    # Marcar electrolineras
+    for lugar in ELECTROLINERAS:
+        nodo_cercano = ox.distance.nearest_nodes(grafo, lugar["lon"], lugar["lat"])
+        grafo.nodes[nodo_cercano]["tipo"] = "electrolinera"
+        grafo.nodes[nodo_cercano]["id_lugar"] = lugar["id"]
+        grafo.nodes[nodo_cercano]["nombre_lugar"] = lugar["nombre"]
 
-    for lugar in todos_especiales:
-        nodo_cercano = ox.distance.nearest_nodes(G, lugar["lon"], lugar["lat"])
-        G.nodes[nodo_cercano]["tipo_especial"] = lugar["tipo"]
-        G.nodes[nodo_cercano]["id_especial"] = lugar["id"]
-        G.nodes[nodo_cercano]["nombre_especial"] = lugar["nombre"]
+    # Marcar puntos de referencia
+    for lugar in PUNTOS_REFERENCIA:
+        nodo_cercano = ox.distance.nearest_nodes(grafo, lugar["lon"], lugar["lat"])
+        grafo.nodes[nodo_cercano]["tipo"] = "referencia"
+        grafo.nodes[nodo_cercano]["id_lugar"] = lugar["id"]
+        grafo.nodes[nodo_cercano]["nombre_lugar"] = lugar["nombre"]
 
-    n_electro = sum(
-        1 for n, d in G.nodes(data=True) if d.get("tipo_especial") == "electrolinera"
-    )
-    n_ref = sum(
-        1 for n, d in G.nodes(data=True) if d.get("tipo_especial") == "referencia"
-    )
-    print(f"  ✓  Electrolineras mapeadas: {n_electro} | Puntos de referencia: {n_ref}")
+    # Contar cuantos se marcaron
+    total_electro = 0
+    total_ref = 0
+    for nodo, datos in grafo.nodes(data=True):
+        if datos.get("tipo") == "electrolinera":
+            total_electro = total_electro + 1
+        elif datos.get("tipo") == "referencia":
+            total_ref = total_ref + 1
 
-    return G
+    print("Electrolineras marcadas:", total_electro)
+    print("Puntos de referencia marcados:", total_ref)
+    return grafo
 
 
-# ─────────────────────────────────────────────────────────────
-# CONSULTAS SOBRE EL GRAFO
-# ─────────────────────────────────────────────────────────────
-def obtener_nodos_electrolineras(G: "nx.MultiDiGraph") -> dict:
+def obtener_nodos_electrolineras(grafo):
     """
-    Retorna diccionario {id_especial: nodo_osm} de electrolineras.
-
-    Retorna
-    -------
-    dict
-        {'E1': 123456789, 'E2': 987654321, ...}
+    Recorre el grafo y devuelve un diccionario con los nodos
+    que son electrolineras.
+    Ejemplo de resultado: {"E1": 3245871012, "E2": 987654321}
     """
-    return {
-        d["id_especial"]: n
-        for n, d in G.nodes(data=True)
-        if d.get("tipo_especial") == "electrolinera"
-    }
+    resultado = {}
+    for nodo, datos in grafo.nodes(data=True):
+        if datos.get("tipo") == "electrolinera":
+            resultado[datos["id_lugar"]] = nodo
+    return resultado
 
 
-def obtener_nodos_referencia(G: "nx.MultiDiGraph") -> dict:
+def obtener_nodos_referencia(grafo):
     """
-    Retorna diccionario {id_especial: nodo_osm} de puntos de referencia.
+    Igual que la anterior pero para puntos de referencia.
     """
-    return {
-        d["id_especial"]: n
-        for n, d in G.nodes(data=True)
-        if d.get("tipo_especial") == "referencia"
-    }
+    resultado = {}
+    for nodo, datos in grafo.nodes(data=True):
+        if datos.get("tipo") == "referencia":
+            resultado[datos["id_lugar"]] = nodo
+    return resultado
 
 
-def obtener_nombre_nodo(G: "nx.MultiDiGraph", nodo_osm: int) -> str:
-    """Retorna el nombre especial de un nodo, o su ID OSM como string."""
-    nombre = G.nodes[nodo_osm].get("nombre_especial")
-    return nombre if nombre else str(nodo_osm)
-
-
-# ─────────────────────────────────────────────────────────────
-# GRAFO SINTÉTICO (fallback si OSMnx no está disponible)
-# ─────────────────────────────────────────────────────────────
-def _grafo_sintetico() -> "nx.MultiDiGraph":
+def obtener_nombre_nodo(grafo, nodo):
     """
-    Crea un grafo sintético pequeño para pruebas sin conexión.
-    Los nodos representan ubicaciones simplificadas.
+    Devuelve el nombre de un nodo especial.
+    Si el nodo no tiene nombre, devuelve el numero de nodo como texto.
+    """
+    nombre = grafo.nodes[nodo].get("nombre_lugar", None)
+    if nombre:
+        return nombre
+    return str(nodo)
+
+
+def crear_grafo_sintetico():
+    """
+    Crea un grafo pequeño de prueba cuando OSMnx no esta disponible.
+    Util para probar el programa sin conexion a internet.
     """
     import networkx as nx
     import random
 
-    G = nx.MultiDiGraph()
-    nodos = list(range(1, 20))
+    grafo = nx.MultiDiGraph()
 
-    for n in nodos:
-        G.add_node(n, tipo_especial=None, id_especial=None, nombre_especial=None)
+    # Crear 20 nodos numerados del 1 al 20
+    for i in range(1, 21):
+        grafo.add_node(i, tipo=None, id_lugar=None, nombre_lugar=None)
 
-    # Conectar nodos con distancias aleatorias entre 500 y 5000 m
-    for i in nodos:
-        for j in nodos:
+    # Conectar los nodos con distancias aleatorias
+    for i in range(1, 21):
+        for j in range(1, 21):
             if i != j and random.random() < 0.3:
-                dist = random.randint(500, 5000)
-                G.add_edge(i, j, length=dist)
-                G.add_edge(j, i, length=dist)
+                distancia = random.randint(300, 4000)
+                grafo.add_edge(i, j, length=distancia)
+                grafo.add_edge(j, i, length=distancia)
 
-    # Asignar electrolineras a nodos 1-8
-    for idx, e in enumerate(ELECTROLINERAS):
-        nodo = idx + 1
-        G.nodes[nodo]["tipo_especial"] = "electrolinera"
-        G.nodes[nodo]["id_especial"] = e["id"]
-        G.nodes[nodo]["nombre_especial"] = e["nombre"]
+    # Asignar las 8 electrolineras a los nodos 1 al 8
+    for i, electrolinera in enumerate(ELECTROLINERAS):
+        nodo = i + 1
+        grafo.nodes[nodo]["tipo"] = "electrolinera"
+        grafo.nodes[nodo]["id_lugar"] = electrolinera["id"]
+        grafo.nodes[nodo]["nombre_lugar"] = electrolinera["nombre"]
 
-    # Asignar puntos de referencia a nodos 9-18
-    for idx, p in enumerate(PUNTOS_REFERENCIA):
-        nodo = idx + 9
-        G.nodes[nodo]["tipo_especial"] = "referencia"
-        G.nodes[nodo]["id_especial"] = p["id"]
-        G.nodes[nodo]["nombre_especial"] = p["nombre"]
+    # Asignar los 10 puntos de referencia a los nodos 9 al 18
+    for i, punto in enumerate(PUNTOS_REFERENCIA):
+        nodo = i + 9
+        grafo.nodes[nodo]["tipo"] = "referencia"
+        grafo.nodes[nodo]["id_lugar"] = punto["id"]
+        grafo.nodes[nodo]["nombre_lugar"] = punto["nombre"]
 
-    print(f"  ✓  Grafo sintético creado: {G.number_of_nodes()} nodos, {G.number_of_edges()} aristas")
-    return G
+    print("Grafo sintetico creado:", grafo.number_of_nodes(), "nodos,", grafo.number_of_edges(), "aristas")
+    return grafo
